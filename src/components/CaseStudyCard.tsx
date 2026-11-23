@@ -12,6 +12,24 @@ function Row({ label, text }: { label: string; text: string }) {
   );
 }
 
+// Same as Row, but shows a bulleted list instead of one paragraph.
+function ListRow({ label, items }: { label: string; items: string[] }) {
+  return (
+    <div>
+      <dt className="text-xs font-medium uppercase tracking-wider text-zinc-500">
+        {label}
+      </dt>
+      <dd className="mt-1">
+        <ul className="list-disc space-y-1 pl-5 leading-7">
+          {items.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+      </dd>
+    </div>
+  );
+}
+
 export default function CaseStudyCard({ study }: { study: CaseStudy }) {
   return (
     <article className="rounded-xl border border-zinc-200 p-6 dark:border-zinc-800">
@@ -20,7 +38,7 @@ export default function CaseStudyCard({ study }: { study: CaseStudy }) {
       <dl className="mt-6 space-y-4">
         <Row label="Problem" text={study.problem} />
         <Row label="What I did" text={study.whatIDid} />
-        <Row label="Results" text={study.results} />
+        <ListRow label="Results" items={study.results} />
         <Row label="What I learned" text={study.learned} />
       </dl>
     </article>

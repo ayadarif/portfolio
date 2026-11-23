@@ -8,3 +8,4 @@
 - Deleted the default Next.js logo SVGs from public/. They were unused.
 - Vercel Hobby (free) deploy straight from GitHub main. Every push redeploys; no separate build step to manage.
 - Audited repo for secrets before treating it as public: only .env.example (no values) is tracked.
+- Case study Results changed from one string to a list of bullets. Results are naturally several separate numbers; bullets scan faster.

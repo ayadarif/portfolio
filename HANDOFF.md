@@ -17,8 +17,10 @@ See decisions.md. Ayad chose the stack; Claude chose the file layout (approved p
 - Public GitHub repo: https://github.com/ayadarif/portfolio (pushed 2026-11-24). Secrets audit clean: only .env.example tracked.
 - Deployed on Vercel (Hobby): https://aaportfolio-delta.vercel.app . Live, returns 200, shows placeholder content. Auto-redeploys on push to main.
 
+- Real copy in content.ts (intro, 3 case studies, 3 projects, contact). Results is now a list (string[]); CaseStudyCard renders bullets. Tab title: Ayad Arif | Product Manager.
+
 ## Next
-1. Ayad writes real copy in content.ts; swap placeholder name and links.
+1. Proofread copy on the live site; check phone view.
 2. Add src/app/api/<tool>/route.ts for the AI tools.
 
 ## Open questions

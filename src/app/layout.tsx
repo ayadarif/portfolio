@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Your Name | Product Manager",
+  title: "Ayad Arif | Product Manager",
   description: "Portfolio of a product manager: case studies and AI projects.",
 };
 

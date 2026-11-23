@@ -6,7 +6,7 @@ export type CaseStudy = {
   role: string;
   problem: string;
   whatIDid: string;
-  results: string;
+  results: string[]; // one bullet per entry
   learned: string;
 };
 
@@ -23,54 +23,86 @@ export type ContactLink = {
 };
 
 export const intro = {
-  name: "Your Name",
-  headline: "Product manager. One-line pitch goes here.",
+  name: "Ayad Arif",
+  headline: "Product manager with an analyst's toolkit.",
   summary:
-    "Two or three sentences about who you are, what you build, and what you want to do next. Placeholder text.",
+    "I've spent six years in product and data roles at SastaTicket and Daraz (Alibaba Group), working on growth, retention, pricing and experimentation. I started as an analyst, so I find and size problems myself in SQL and Python before deciding what to build. Right now I'm building AI tools for product teams with Claude Code and the Claude API.",
 };
 
 export const caseStudies: CaseStudy[] = [
   {
-    title: "Case study one title",
-    role: "Your role, company, dates",
-    problem: "Describe the problem in two sentences. Placeholder.",
-    whatIDid: "Describe what you did and how. Placeholder.",
-    results: "State what the numbers moved. Placeholder.",
-    learned: "One honest lesson from this project. Placeholder.",
+    title: "Loyalty program: turning guest traffic into retained accounts",
+    role: "Product Manager, Growth and Strategy | SastaTicket | Apr 2024 to Jul 2026",
+    problem:
+      "Most of SastaTicket's traffic came from guest users. With no stable ID, we couldn't attribute bookings or run clean A/B tests, and a large part of our base was invisible to us. The root cause wasn't tracking. People simply had no reason to create an account and stay signed in.",
+    whatIDid:
+      "Finance rejected my first proposal; to them, a loyalty program looked like giving margin away. So I stopped arguing and ran a pilot. I picked B2B users for it because they book often enough to show a result in weeks, not months. I split a cohort of medium-frequency accounts in two and gave one half cashback while the other got nothing. The rewarded group came back sooner and more often, and that result won the budget. V1 was deliberately small: 1.5% back on the amount paid for flights, capped at PKR 500 per redemption, with no tiers and no other product lines. Once it worked, I added reward tiers, earn and burn rules per product, a payment-method integration that cut merchant fees, and automated push and email triggers.",
+    results: [
+      "3-month retention up 18%",
+      "Registered users up 22%",
+      "CAC down 12%",
+      "Became the top driver of guest-to-account conversion",
+      "Automated triggers reached 25,000 users a month at 4 to 6% re-engagement and cut manual segmentation work by 80%",
+    ],
+    learned:
+      "I underestimated abuse. Points were credited at booking with no lock-up, so some users booked, cancelled and kept the points. We changed the rule so points unlock only after the flight is taken. I now plan for abuse cases before launch, not after.",
   },
   {
-    title: "Case study two title",
-    role: "Your role, company, dates",
-    problem: "Describe the problem in two sentences. Placeholder.",
-    whatIDid: "Describe what you did and how. Placeholder.",
-    results: "State what the numbers moved. Placeholder.",
-    learned: "One honest lesson from this project. Placeholder.",
+    title: "Experimentation: from the loudest voice to evidence",
+    role: "Product Manager, Growth and Strategy | SastaTicket | Apr 2024 to Jul 2026",
+    problem:
+      "Product decisions went to whoever had the strongest hunch or the most sway in the room. Even when someone wanted evidence, the data couldn't settle anything: GA4 and our internal numbers disagreed by 15 to 18%.",
+    whatIDid:
+      "Two things had to be fixed together: the data and the habit. On data, I traced the gap to four causes. Booking events fired twice or not at all. Users lost attribution when they came back from payment gateways. The free GA4 tier had its own limits. And GA4 and our internal systems didn't count a \"booking\" the same way. I unified GA4 with our internal data so the commercial team had one number to trust. On habit, I brought in Growthbook and standardised how four product teams ran A/B tests.",
+    results: [
+      "Reporting discrepancy cut from 15 to 18% to under 6%",
+      "10 to 15 experiments across 4 teams in 6 months",
+      "Removed a decision from search results: choosing a fare type and extras moved from the flight card to the add-ons screen later in checkout. Booking funnel progression rose 2.5%. Nobody, me included, expected a change that small to move anything, which is exactly why it was worth testing.",
+    ],
+    learned:
+      "Adopting a tool is the easy part; discipline is the hard part. Teams still made the classic mistakes: stopping tests the moment results looked good, accepting uneven splits between variants without asking why, and picking the success metric after seeing the results. If I did it again, I'd build those checks into the process from day one instead of catching them in review.",
   },
   {
-    title: "Case study three title",
-    role: "Your role, company, dates",
-    problem: "Describe the problem in two sentences. Placeholder.",
-    whatIDid: "Describe what you did and how. Placeholder.",
-    results: "State what the numbers moved. Placeholder.",
-    learned: "One honest lesson from this project. Placeholder.",
+    title: "Free cancellation: flexibility priced like insurance",
+    role: "Senior Data Analyst | SastaTicket | Sep 2020 to Oct 2022",
+    problem:
+      "Customers kept complaining about airline cancellation charges and asking whether we could do anything about them. Absorbing the cost ourselves was never going to get funded.",
+    whatIDid:
+      "I treated it as an underwriting problem. The customer pays a premium at booking and can later cancel or amend their ticket at no extra cost. A flat fee would have overcharged safe flights and underpriced risky ones, so the premium was priced flight by flight from three inputs: that flight's airline penalty schedule, the time left before departure, and the observed cancellation rate on that route. In effect, an insurance product built inside a travel platform by an analyst, not an underwriter.",
+    results: [
+      "Extended the same pricing model into Free Date Changes and Delay Protection",
+      "Together, the three products lifted profitability by 5%",
+      "Still running about four years after launch",
+      "Became a reason customers chose SastaTicket: customers told me so directly, and many 5-star reviews named Free Cancellation as the feature that set us apart",
+    ],
+    learned:
+      "The pricing model mattered less than the reframe. Everyone saw cancellation fees as a cost to absorb or ignore. Treating them as a risk you could price turned a complaint into a feature people chose us for.",
   },
 ];
 
 export const projects: Project[] = [
   {
-    name: "AI project one",
-    description: "What it does and who it is for. Placeholder.",
-    status: "Planned",
+    name: "Experiment readout tool",
+    description:
+      "Upload A/B test results and get a plain-English readout that flags the mistakes teams make, like calling tests early or uneven splits, and never claims more than the statistics support.",
+    status: "Building now",
   },
   {
-    name: "AI project two",
-    description: "What it does and who it is for. Placeholder.",
-    status: "Planned",
+    name: "Feedback triage agent",
+    description:
+      "Turns a pile of app reviews into ranked themes with representative quotes, so a PM knows what to fix first.",
+    status: "Building now",
+  },
+  {
+    name: "Five-Minute Brief",
+    description:
+      "Paste an email thread before a client meeting and get what you owe, what they owe and what to raise, each tied to the line it came from.",
+    status: "Building now",
   },
 ];
 
 export const contactLinks: ContactLink[] = [
-  { label: "Email", href: "mailto:you@example.com" },
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/your-handle" },
-  { label: "GitHub", href: "https://github.com/your-handle" },
+  { label: "Email", href: "mailto:ayad_arif@hotmail.com" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/ayad-arif" },
+  { label: "GitHub", href: "https://github.com/ayadarif" },
 ];
