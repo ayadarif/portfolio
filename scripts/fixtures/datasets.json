@@ -1,0 +1,395 @@
+[
+ {
+  "name": "clean_win",
+  "plan": {
+   "plannedShareA": 0.5,
+   "confidence": 0.95,
+   "power": 0.8,
+   "monthlyUsers": 200000,
+   "valuePerConversion": 500,
+   "baseline": 0.1,
+   "targetRelLift": 0.1,
+   "plannedPerVariant": 12000
+  },
+  "rows": [
+   {
+    "date": "2026-10-01",
+    "variant": "control",
+    "users": 1000,
+    "conversions": 100
+   },
+   {
+    "date": "2026-10-01",
+    "variant": "treatment",
+    "users": 1010,
+    "conversions": 113
+   },
+   {
+    "date": "2026-10-02",
+    "variant": "control",
+    "users": 1010,
+    "conversions": 98
+   },
+   {
+    "date": "2026-10-02",
+    "variant": "treatment",
+    "users": 1020,
+    "conversions": 110
+   },
+   {
+    "date": "2026-10-03",
+    "variant": "control",
+    "users": 1020,
+    "conversions": 104
+   },
+   {
+    "date": "2026-10-03",
+    "variant": "treatment",
+    "users": 1000,
+    "conversions": 118
+   },
+   {
+    "date": "2026-10-04",
+    "variant": "control",
+    "users": 1000,
+    "conversions": 101
+   },
+   {
+    "date": "2026-10-04",
+    "variant": "treatment",
+    "users": 1010,
+    "conversions": 111
+   },
+   {
+    "date": "2026-10-05",
+    "variant": "control",
+    "users": 1010,
+    "conversions": 97
+   },
+   {
+    "date": "2026-10-05",
+    "variant": "treatment",
+    "users": 1020,
+    "conversions": 107
+   },
+   {
+    "date": "2026-10-06",
+    "variant": "control",
+    "users": 1020,
+    "conversions": 103
+   },
+   {
+    "date": "2026-10-06",
+    "variant": "treatment",
+    "users": 1000,
+    "conversions": 116
+   },
+   {
+    "date": "2026-10-07",
+    "variant": "control",
+    "users": 1000,
+    "conversions": 99
+   },
+   {
+    "date": "2026-10-07",
+    "variant": "treatment",
+    "users": 1010,
+    "conversions": 112
+   },
+   {
+    "date": "2026-10-08",
+    "variant": "control",
+    "users": 1010,
+    "conversions": 102
+   },
+   {
+    "date": "2026-10-08",
+    "variant": "treatment",
+    "users": 1020,
+    "conversions": 115
+   },
+   {
+    "date": "2026-10-09",
+    "variant": "control",
+    "users": 1020,
+    "conversions": 100
+   },
+   {
+    "date": "2026-10-09",
+    "variant": "treatment",
+    "users": 1000,
+    "conversions": 111
+   },
+   {
+    "date": "2026-10-10",
+    "variant": "control",
+    "users": 1000,
+    "conversions": 96
+   },
+   {
+    "date": "2026-10-10",
+    "variant": "treatment",
+    "users": 1010,
+    "conversions": 108
+   },
+   {
+    "date": "2026-10-11",
+    "variant": "control",
+    "users": 1010,
+    "conversions": 105
+   },
+   {
+    "date": "2026-10-11",
+    "variant": "treatment",
+    "users": 1020,
+    "conversions": 119
+   },
+   {
+    "date": "2026-10-12",
+    "variant": "control",
+    "users": 1020,
+    "conversions": 101
+   },
+   {
+    "date": "2026-10-12",
+    "variant": "treatment",
+    "users": 1000,
+    "conversions": 113
+   },
+   {
+    "date": "2026-10-13",
+    "variant": "control",
+    "users": 1000,
+    "conversions": 98
+   },
+   {
+    "date": "2026-10-13",
+    "variant": "treatment",
+    "users": 1010,
+    "conversions": 109
+   },
+   {
+    "date": "2026-10-14",
+    "variant": "control",
+    "users": 1010,
+    "conversions": 103
+   },
+   {
+    "date": "2026-10-14",
+    "variant": "treatment",
+    "users": 1020,
+    "conversions": 117
+   }
+  ]
+ },
+ {
+  "name": "broken_split",
+  "plan": {
+   "plannedShareA": 0.5,
+   "confidence": 0.95,
+   "power": 0.8,
+   "monthlyUsers": 200000,
+   "valuePerConversion": 500,
+   "baseline": 0.1,
+   "targetRelLift": 0.1,
+   "plannedPerVariant": 8000
+  },
+  "rows": [
+   {
+    "date": "2026-10-01",
+    "variant": "control",
+    "users": 1000,
+    "conversions": 100
+   },
+   {
+    "date": "2026-10-01",
+    "variant": "treatment",
+    "users": 900,
+    "conversions": 95
+   },
+   {
+    "date": "2026-10-02",
+    "variant": "control",
+    "users": 1000,
+    "conversions": 100
+   },
+   {
+    "date": "2026-10-02",
+    "variant": "treatment",
+    "users": 900,
+    "conversions": 95
+   },
+   {
+    "date": "2026-10-03",
+    "variant": "control",
+    "users": 1000,
+    "conversions": 100
+   },
+   {
+    "date": "2026-10-03",
+    "variant": "treatment",
+    "users": 900,
+    "conversions": 95
+   },
+   {
+    "date": "2026-10-04",
+    "variant": "control",
+    "users": 1000,
+    "conversions": 100
+   },
+   {
+    "date": "2026-10-04",
+    "variant": "treatment",
+    "users": 900,
+    "conversions": 95
+   },
+   {
+    "date": "2026-10-05",
+    "variant": "control",
+    "users": 1000,
+    "conversions": 100
+   },
+   {
+    "date": "2026-10-05",
+    "variant": "treatment",
+    "users": 900,
+    "conversions": 95
+   },
+   {
+    "date": "2026-10-06",
+    "variant": "control",
+    "users": 1000,
+    "conversions": 100
+   },
+   {
+    "date": "2026-10-06",
+    "variant": "treatment",
+    "users": 900,
+    "conversions": 95
+   },
+   {
+    "date": "2026-10-07",
+    "variant": "control",
+    "users": 1000,
+    "conversions": 100
+   },
+   {
+    "date": "2026-10-07",
+    "variant": "treatment",
+    "users": 900,
+    "conversions": 95
+   },
+   {
+    "date": "2026-10-08",
+    "variant": "control",
+    "users": 1000,
+    "conversions": 100
+   },
+   {
+    "date": "2026-10-08",
+    "variant": "treatment",
+    "users": 900,
+    "conversions": 95
+   },
+   {
+    "date": "2026-10-09",
+    "variant": "control",
+    "users": 1000,
+    "conversions": 100
+   },
+   {
+    "date": "2026-10-09",
+    "variant": "treatment",
+    "users": 900,
+    "conversions": 95
+   },
+   {
+    "date": "2026-10-10",
+    "variant": "control",
+    "users": 1000,
+    "conversions": 100
+   },
+   {
+    "date": "2026-10-10",
+    "variant": "treatment",
+    "users": 900,
+    "conversions": 95
+   }
+  ]
+ },
+ {
+  "name": "early_peek",
+  "plan": {
+   "plannedShareA": 0.5,
+   "confidence": 0.95,
+   "power": 0.8,
+   "monthlyUsers": 200000,
+   "valuePerConversion": 500,
+   "baseline": 0.1,
+   "targetRelLift": 0.1,
+   "plannedPerVariant": 15000
+  },
+  "rows": [
+   {
+    "date": "2026-10-01",
+    "variant": "control",
+    "users": 1000,
+    "conversions": 100
+   },
+   {
+    "date": "2026-10-01",
+    "variant": "treatment",
+    "users": 1000,
+    "conversions": 118
+   },
+   {
+    "date": "2026-10-02",
+    "variant": "control",
+    "users": 1000,
+    "conversions": 96
+   },
+   {
+    "date": "2026-10-02",
+    "variant": "treatment",
+    "users": 1000,
+    "conversions": 112
+   },
+   {
+    "date": "2026-10-03",
+    "variant": "control",
+    "users": 1000,
+    "conversions": 103
+   },
+   {
+    "date": "2026-10-03",
+    "variant": "treatment",
+    "users": 1000,
+    "conversions": 121
+   },
+   {
+    "date": "2026-10-04",
+    "variant": "control",
+    "users": 1000,
+    "conversions": 99
+   },
+   {
+    "date": "2026-10-04",
+    "variant": "treatment",
+    "users": 1000,
+    "conversions": 110
+   },
+   {
+    "date": "2026-10-05",
+    "variant": "control",
+    "users": 1000,
+    "conversions": 102
+   },
+   {
+    "date": "2026-10-05",
+    "variant": "treatment",
+    "users": 1000,
+    "conversions": 116
+   }
+  ]
+ }
+]
