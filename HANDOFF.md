@@ -14,13 +14,12 @@ See decisions.md. Ayad chose the stack; Claude chose the file layout (approved p
 - Scaffolded with create-next-app (run by Ayad).
 - Placeholder content in src/data/content.ts; Hero, CaseStudies, CaseStudyCard, Projects, Contact components; page.tsx; layout metadata.
 - npm run build passes.
+- Public GitHub repo: https://github.com/ayadarif/portfolio (pushed 2026-11-24). Secrets audit clean: only .env.example tracked.
+- Deployed on Vercel (Hobby): https://aaportfolio-delta.vercel.app . Live, returns 200, shows placeholder content. Auto-redeploys on push to main.
 
 ## Next
-1. Ayad reviews the page locally (npm run dev, http://localhost:3000).
-2. Commit; gh auth login; create GitHub repo and push (ask first).
-3. Deploy on Vercel.
-4. Ayad writes real copy in content.ts; swap placeholder name and links.
-5. Add src/app/api/<tool>/route.ts for the AI tools.
+1. Ayad writes real copy in content.ts; swap placeholder name and links.
+2. Add src/app/api/<tool>/route.ts for the AI tools.
 
 ## Open questions
 - Real name/headline, site name, domain (skip paid domain for now).

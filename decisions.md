@@ -6,3 +6,5 @@
 - Components are server components with no client JavaScript. Page is fully static, so it is fast and free to host.
 - Public GitHub repo; secrets only in .env.local and Vercel env vars. .env.example is committed, real .env files are not.
 - Deleted the default Next.js logo SVGs from public/. They were unused.
+- Vercel Hobby (free) deploy straight from GitHub main. Every push redeploys; no separate build step to manage.
+- Audited repo for secrets before treating it as public: only .env.example (no values) is tracked.
