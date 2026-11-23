@@ -9,3 +9,9 @@
 - Vercel Hobby (free) deploy straight from GitHub main. Every push redeploys; no separate build step to manage.
 - Audited repo for secrets before treating it as public: only .env.example (no values) is tracked.
 - Case study Results changed from one string to a list of bullets. Results are naturally several separate numbers; bullets scan faster.
+- Added vitest as the only new dev dependency; bumped @types/node to ^22 because vitest's optional peer dependency refused ^20. Dev-only, no runtime effect.
+- Stats module has zero runtime dependencies. Normal and chi-square tails are coded directly (erfc), so the tool runs in the browser with no stats library.
+- Per-variant rate uses a Wilson CI (safe at low rates); the lift CI is unpooled; the p-value is the pooled z-test from the spec. At the 5% edge the CI and p can disagree slightly, so Ship/Don't ship need both.
+- Power defaults to 80% (spec was silent). MDE uses a closed-form approximation, checked against an exact power solve in scripts/check_stats.py (about 2 to 4% apart).
+- Verdict order: broken split, then below planned sample (even a scary early loss, because peeking inflates false alarms), then win, then loss, else no clear winner.
+- Python check runs in a gitignored venv at scripts/.venv so system Python stays clean. Tests and the script share scripts/fixtures/datasets.json.
