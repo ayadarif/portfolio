@@ -27,7 +27,7 @@ Owner: Ayad Arif. Written Nov 24, 2026. Claude Code works through this file on i
 
 ### T1. Experiment Readout: learning doc
 - Write docs/learn/experiment-readout.md per rule 7. Cover stats.ts formula by formula (Wilson interval, unpooled lift CI vs pooled z-test and why they can disagree at 5%, sample ratio mismatch and its 0.001 threshold, the sample-size formula and the MDE shortcut with its 2 to 4% error), the verdict order, the narrative rules, the validator, why the rewrite request is gated, and the tests.
-- Status:
+- Status: DONE 2026-11-24 (0867ab2)
 
 ### T2. Feedback triage: dataset
 - Spec: docs/feedback-triage-spec.md. Pick the dataset per the criteria there, verify its licence from the dataset card, download without login, record source, licence and URL in decisions.md and the method section.
