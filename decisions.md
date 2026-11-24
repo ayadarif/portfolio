@@ -34,3 +34,8 @@
 - The one exception is the Experiment Readout rewrite route (src/app/api/rewrite). It is dormant: off without a key and never run against the live API. Kept because it is built and tested; deleting it is a separate decision.
 - Demo planned samples are written as literals in demos.ts (not computed) so scripts/write_fixtures.ts runs under plain Node with no tsconfig change; a test in readout.test.ts fails if any drifts from sampleSizePerVariant().
 - Clean win target lift is 11%, not 10%: at 10% the formula needs 14,751 per variant but the data has about 14,130, which would flip the demo to Keep running.
+- Feedback triage demo data: Hugging Face Federal-University-Lokoja/Bank-Review, Apache-2.0 per the dataset card, ungated, downloaded 2026-11-24 from https://huggingface.co/datasets/Federal-University-Lokoja/Bank-Review . Collected by the dataset authors, not us; credited on the page.
+- Banks chosen by 2023 review count (UBA, Access, FBN), not the spec's default list (GTBank, Access, Zenith), because the spec says choose by count and those three rank higher. Year 2023, since 2024 has only a few reviews per bank.
+- Sample is 1,000 reviews with seed 20261124, so the corpus is reproducible. The eval set (T3) is drawn from inside this corpus and held out.
+- Personal data is stripped with regexes before any model call. Tested on made-up examples; it can miss things, and the page will not claim otherwise.
+- Language mix is measured with a word-list heuristic, not a detector library, to avoid a dependency. Reported as rough.

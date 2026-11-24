@@ -13,3 +13,4 @@ Claude Code adds items here instead of stopping. Each item says what default was
 8. Optional: switch future commits to GitHub's noreply email.
 
 ## Added by Claude Code
+9. (T2) Bank choice: the spec said choose by review count but named GTBank, Access, Zenith as default. By 2023 count the top three are UBA, Access, FBN, and I used those. GTBank and Zenith are not in the top six. Say if you want the named defaults instead (needs a re-run of ingest and T3; cheap now, costly after T4). Also: the page will name three real banks; reviews are the dataset authors' public Play Store data, Apache-2.0.
