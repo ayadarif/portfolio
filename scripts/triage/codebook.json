@@ -1,0 +1,32 @@
+{
+  "categories": [
+    {"slug": "login_access", "means": "Cannot sign in, OTP or SMS code not arriving, biometric or face check failing, locked out, device change or re-registration trouble"},
+    {"slug": "transfers_payments", "means": "A transfer, bill payment, airtime or card payment fails, hangs on processing, or is slow"},
+    {"slug": "money_balance", "means": "Money missing or debited without value, reversals not received, wrong or hidden balance, transaction history missing or wrong"},
+    {"slug": "app_stability", "means": "Crashes, freezes, slow to open or load, network error messages, downtime, app not working at all (without a clearer cause above)"},
+    {"slug": "fees_charges", "means": "Complaints about fees, stamp duty, SMS charges, deductions the reviewer thinks are wrong or too high"},
+    {"slug": "ui_ux", "means": "Design, layout, navigation, an update that changed things, hard to find a feature, confusing screens"},
+    {"slug": "feature_request", "means": "Asks for something the app does not have or should add"},
+    {"slug": "support", "means": "Customer service, complaints not resolved, no reply, branch or call centre experience, disputes"},
+    {"slug": "security_fraud", "means": "Worry or report of fraud, unauthorised access, account compromised, scam"},
+    {"slug": "praise", "means": "Positive with no problem raised"},
+    {"slug": "other", "means": "Gibberish, empty praise or complaint with no content, off-topic, not about the app or the service"}
+  ],
+  "unranked": ["praise", "other"],
+  "no_excerpts": ["security_fraud", "praise", "other"],
+  "tie_breaks": [
+    "If a review names a concrete failure, use that failure's category, not app_stability. 'Can't transfer, app is slow' is transfers_payments first, app_stability second.",
+    "money_balance beats transfers_payments when money has actually left the account or vanished. A failed transfer with no money taken is transfers_payments.",
+    "login_access beats app_stability when the only thing the reviewer cannot do is sign in.",
+    "Mixed praise and complaint: the complaint is the category. Add praise as a second category only if it is a real part of the review.",
+    "Use the second category only when the review clearly raises a second, separate issue.",
+    "Unreadable, gibberish or decorative text: other, severity 1.",
+    "Ignore the star rating or any rating mentioned outside the text. Label what the reviewer wrote."
+  ],
+  "severity": {
+    "1": "Annoyance. Unhappy but could still do what they came to do. Includes praise and other.",
+    "2": "Blocked a task. Could not complete something (log in, transfer, see history), with no sign of money lost or being stuck for days.",
+    "3": "Money lost, stuck or locked out. Money debited or missing, unable to use the account or app for days or more, or an urgent need failed."
+  },
+  "severity_rule": "When torn between two levels, choose the lower one."
+}

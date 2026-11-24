@@ -41,7 +41,7 @@ export const caseStudies: CaseStudy[] = [
     results: [
       "3-month retention up 18%",
       "Registered users up 22%",
-      "CAC down 12%",
+      "Paid CAC down 12% (3 months before vs after launch)",
       "Became the top driver of guest-to-account conversion",
       "Automated triggers reached 25,000 users a month at 4 to 6% re-engagement and cut manual segmentation work by 80%",
     ],
@@ -66,15 +66,15 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     title: "Free cancellation: flexibility priced like insurance",
-    role: "Senior Data Analyst | SastaTicket | Sep 2020 to Oct 2022",
+    role: "Senior Data Analyst, then Product Manager | SastaTicket | 2022 to 2026",
     problem:
       "Customers kept complaining about airline cancellation charges and asking whether we could do anything about them. Absorbing the cost ourselves was never going to get funded.",
     whatIDid:
-      "I treated it as an underwriting problem. The customer pays a premium at booking and can later cancel or amend their ticket at no extra cost. A flat fee would have overcharged safe flights and underpriced risky ones, so the premium was priced flight by flight from three inputs: that flight's airline penalty schedule, the time left before departure, and the observed cancellation rate on that route. In effect, an insurance product built inside a travel platform by an analyst, not an underwriter.",
+      "I treated it as an underwriting problem. The customer pays a premium at booking and can later cancel or amend their ticket at no extra cost. A flat fee would have overcharged safe flights and underpriced risky ones, so the premium was priced flight by flight from three inputs: that flight's airline penalty schedule, the time left before departure, and the observed cancellation rate on that route. In effect, an insurance product built inside a travel platform by an analyst, not an underwriter. After I returned as a product manager in 2024, I scaled it to all flights on all routes.",
     results: [
       "Extended the same pricing model into Free Date Changes and Delay Protection",
       "Together, the three products lifted profitability by 5%",
-      "Still running when I left in 2026, about four years after launch",
+      "Still running when I left in 2026, nearly four years after the first version",
       "Became a reason customers chose SastaTicket: customers told me so directly, and many 5-star reviews named Free Cancellation as the feature that set us apart",
     ],
     learned:
@@ -93,8 +93,23 @@ export const projects: Project[] = [
   {
     name: "Feedback triage pipeline",
     description:
-      "A one-off AI pipeline, run with Claude Code, that sorts customer reviews into ranked themes, with its accuracy checked against my own labels.",
-    status: "Planned",
+      "A fixed pipeline, run with Claude Code, that sorts 900 public Google Play reviews of three Nigerian banking apps into categories and severities, then ranks them with plain code. Quotes are checked word for word against the source. On 100 held-out reviews, its first category matched mine 87 times (kappa 0.84), against 50 for a keyword baseline. The tool also runs on any feedback CSV.",
+    status: "Live",
+    href: "/feedback-triage",
+  },
+  {
+    name: "Five-Minute Brief",
+    description:
+      "Paste an email thread before a client meeting and get what you owe, what they owe and what to raise, each tied to the line it came from. The demo uses a made-up thread; generating your own brief may need a Claude account.",
+    status: "Prototype (runs on claude.ai)",
+    href: "https://claude.ai/artifact/MhbGR8RkAYidk3WVEiR7YQ",
+  },
+  {
+    name: "PMEX contract calculator",
+    description:
+      "Margin, tick value in rupees, break-even after fees and taxes, and how far price can move against you before the broker closes the position, for PMEX gold, crude and Brent contracts. A risk tool: it never predicts prices or suggests trades.",
+    status: "Live",
+    href: "/pmex-calculator",
   },
 ];
 

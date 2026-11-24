@@ -44,3 +44,18 @@ next-env.d.ts
 # python venv for scripts/check_stats.py
 /scripts/.venv/
 __pycache__/
+
+# Claude Code local settings
+.claude/settings.local.json
+
+# raw and cached data (large, regenerable)
+/data/raw/
+/data/cache/
+/data/cache_eval1/
+/data/cache_eval2/
+/data/dev/
+/data/run.log
+
+# Ayad working copies of the labelling sheet
+/data/eval/to_label1.csv
+/data/eval/to_label.numbers
