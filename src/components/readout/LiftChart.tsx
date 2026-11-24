@@ -116,7 +116,7 @@ export default function LiftChart({ series, plannedPerVariant }: { series: Cumul
         <circle cx={x(shown)} cy={y(cur.mid)} r={4.5} className="fill-sky-600 stroke-white dark:fill-sky-400 dark:stroke-zinc-900" strokeWidth={2} />
       </svg>
       <p className="mt-2 text-xs text-zinc-500">
-        Line: lift if you had stopped that day. Shaded: ordinary confidence range. {hasSeq && <><span className="text-indigo-700 dark:text-indigo-300">Dashed lines</span>: sequential range, valid however often you check. </>}<span className="text-amber-600">Amber dots</span>: days a peeking team would have seen a &quot;significant&quot; result.
+        Line: lift if you had stopped that day. Shaded: ordinary confidence range. {hasSeq && <><span className="text-indigo-700 dark:text-indigo-300">Dashed lines</span>: sequential range, valid however often you check. </>}<span className="text-amber-800 dark:text-amber-400">Amber dots</span>: days a peeking team would have seen a &quot;significant&quot; result.
         Tap or hover for values.
       </p>
     </div>

@@ -28,7 +28,7 @@ export default function EvalV2() {
       </p>
 
       <h4 className="mt-5 font-medium">Five runs against my labels</h4>
-      <div className="mt-2 overflow-x-auto">
+      <div className="mt-2 overflow-x-auto" role="region" tabIndex={0} aria-label="Scrollable table">
         <table className="w-full min-w-[34rem]">
           <thead><tr className={head}><th className={cell}>Run</th><th className={cell}>Matches either category</th><th className={cell}>Exact first</th><th className={cell}>Kappa (95% interval)</th><th className={cell}>Severity weighted kappa</th></tr></thead>
           <tbody>
@@ -47,7 +47,7 @@ export default function EvalV2() {
       <p className="mt-2 leading-6">Run to run, the model&apos;s own first-category kappa ranged from {f2(ev.repeat_agreement.run_to_run_kappa_min)} to {f2(ev.repeat_agreement.run_to_run_kappa_max)}. Weighted kappa treats severity as ordered, so a 1 against a 3 costs more than a 1 against a 2.</p>
 
       <h4 className="mt-5 font-medium">Per category, run 1</h4>
-      <div className="mt-2 overflow-x-auto">
+      <div className="mt-2 overflow-x-auto" role="region" tabIndex={0} aria-label="Scrollable table">
         <table className="w-full min-w-[30rem]">
           <thead><tr className={head}><th className={cell}>Category</th><th className={cell}>My count</th><th className={cell}>Model count</th><th className={cell}>Precision</th><th className={cell}>Recall</th><th className={cell}>F1</th></tr></thead>
           <tbody>
@@ -61,7 +61,7 @@ export default function EvalV2() {
 
       <h4 className="mt-5 font-medium">When to ask a human</h4>
       <p className="mt-1 leading-6">Where the five runs disagree, the model is less reliable. Treating a review as settled only if enough runs agree on its first category:</p>
-      <div className="mt-2 overflow-x-auto">
+      <div className="mt-2 overflow-x-auto" role="region" tabIndex={0} aria-label="Scrollable table">
         <table className="w-full min-w-[28rem]">
           <thead><tr className={head}><th className={cell}>Runs that must agree</th><th className={cell}>Reviews kept</th><th className={cell}>Matches either of my categories</th><th className={cell}>Sent to a human</th></tr></thead>
           <tbody>

@@ -1,0 +1,46 @@
+{
+ "measured": "2026-11-24",
+ "how": "Lighthouse 12.6.1 via Lighthouse CI, mobile emulation, median of 3 runs per page, local production build; the same config CI runs (lighthouserc.json)",
+ "pages": {
+  "/pmex-calculator": {
+   "performance": 98,
+   "accessibility": 100,
+   "best-practices": 100,
+   "seo": 100,
+   "lcp_ms": 2465,
+   "cls": 0
+  },
+  "/work/loyalty-program": {
+   "performance": 98,
+   "accessibility": 100,
+   "best-practices": 100,
+   "seo": 100,
+   "lcp_ms": 2317,
+   "cls": 0
+  },
+  "/feedback-triage": {
+   "performance": 98,
+   "accessibility": 100,
+   "best-practices": 100,
+   "seo": 100,
+   "lcp_ms": 2468,
+   "cls": 0
+  },
+  "/": {
+   "performance": 98,
+   "accessibility": 100,
+   "best-practices": 100,
+   "seo": 90,
+   "lcp_ms": 2325,
+   "cls": 0
+  },
+  "/experiment-readout": {
+   "performance": 98,
+   "accessibility": 100,
+   "best-practices": 100,
+   "seo": 100,
+   "lcp_ms": 2467,
+   "cls": 0
+  }
+ }
+}

@@ -61,3 +61,6 @@ __pycache__/
 /data/eval/to_label.numbers
 /data/cache_*/
 /data/live_runs.log
+.lighthouseci/
+test-results/
+playwright-report/

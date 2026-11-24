@@ -1,0 +1,46 @@
+name: CI
+on:
+  push:
+    branches: [main, sprint]
+  pull_request:
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: npm ci
+      - name: Lint
+        run: npx eslint src
+      - name: Type check
+        run: npx tsc --noEmit
+      - name: Unit tests (Vitest)
+        run: npm test
+      - name: Python tests (model is never called; evaluation is re-scored from saved runs)
+        run: PYTHONPATH=scripts python3 -m unittest discover -s scripts/tests -v
+      - name: Python cross-checks stay in step with the TypeScript
+        run: |
+          pip install numpy scipy
+          python3 scripts/check_simulator.py
+          python3 scripts/check_sequential.py
+          git diff --exit-code scripts/fixtures
+      - name: Build
+        run: npm run build
+      - name: Playwright and axe (WCAG 2.2 AA rules, light and dark, 320px and 1280px)
+        run: |
+          npx playwright install --with-deps chromium
+          npx playwright test
+      - name: Lighthouse CI (category scores and metric values)
+        run: npx --yes @lhci/cli@0.15.x autorun
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lighthouse-and-playwright
+          path: |
+            .lighthouseci
+            test-results
+          if-no-files-found: ignore

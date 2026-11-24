@@ -75,7 +75,7 @@ export default function Readout({ r, setup }: { r: R; setup: Setup }) {
       )}
 
       <div role="status" className={`rounded-xl border p-5 ${b.cls}`}>
-        <p className="text-xs font-medium uppercase tracking-wider opacity-70">Verdict</p>
+        <p className="text-xs font-medium uppercase tracking-wider">Verdict</p>
         <p className="mt-1 text-2xl font-semibold">{r.verdict}</p>
         <p className="mt-1 text-sm">{b.line}</p>
       </div>

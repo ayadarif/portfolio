@@ -13,6 +13,17 @@ Claude Code adds items here instead of stopping. Each item says what default was
 19. Your own error analysis (P4): about 60 to 90 minutes in data/eval/error_analysis.csv once Claude Code prepares it. Must be yours; not delegable. Default: section shows "in progress".
 20. A real photo for the site (optional). Default: no photo; never an AI portrait.
 
+## Added in phase 2 (Nov 24), each with the default taken
+21. Inconsistency to settle. Your global notes say Daraz was Nov 2022 to Mar 2024 and SastaTicket Apr 2024 to Jul 2026. The site's Free Cancellation case says "Senior Data Analyst, then Product Manager | SastaTicket | 2022 to 2026", and the loyalty and experimentation cases say Apr 2024 to Jul 2026. Default: left the case roles as they were; the hero says only "SastaTicket, Apr 2024 to Jul 2026" and "Before that: Daraz (Alibaba Group)" with no dates. Which is right for the Free Cancellation role line?
+22. Hero facts to confirm: "online travel booking platform in Pakistan" as the SastaTicket descriptor; "Nearly six years in product and data roles"; the three hero numbers (+18% retention, labelled relative; kappa 0.84 vs 0.41; 26% to 1% false winners in a simulation). Default: as written. The hero stops at SastaTicket; add your current role if you want it shown (not added: employer content).
+23. Second labeller: data/eval/peer_to_label.csv (50 reviews, text only) and data/eval/PEER_INSTRUCTIONS.md are ready. When you have their file, save it as data/eval/peer_labelled.csv (columns as in the sheet) and run `PYTHONPATH=scripts python3 -m triage.eval_v2`, then copy data/eval/eval_v2.json to src/data/eval-v2.json. The page then fills in the human ceiling section by itself. Until then it says "Second labeller in progress".
+24. Your error analysis: data/eval/error_analysis.csv has 39 rows (9 run-1 disagreements, 30 random non-eval outputs). Fill the column what_went_wrong_open_code yourself, before looking for patterns; then write the taxonomy (failure mode, count, example, root cause, fix). The page says "in progress" until the column is complete. I did not write any taxonomy.
+25. Run docs/a11y-manual-check.md (keyboard and VoiceOver, about 30 minutes). Nothing on the site claims WCAG conformance; it only says the automated checks pass.
+26. Before merging: push triggers the first real CI run on GitHub (I ran every step locally, but not on Ubuntu). If a step fails there, the fix is small. Home page Lighthouse SEO is 90 (others 100); I have not chased the last 10 points.
+27. The research doc differs from measured numbers in three places: it says 87/100 first-category agreement (87 is the exact-first-category count; the headline is 91 matching either category), 13 disagreements (measured: 9 first-category misses), and its sequential formula has a stray square root of N when read literally (the code uses the standard form, checked against NumPy). The site uses the measured numbers.
+28. Time-sensitive: every step that needed `claude -p` is finished (P1). Nothing left in the roadmap needs the Max subscription, so the 7 December end does not block anything.
+29. Design direction (item 15), overlap line (16), role line (17): defaults used, as written in the items above. Photo (20): none used. Say if you want any changed.
+
 ## Resolved (answered 2026-11-24)
 14. Method line "Labels by Ayad; an AI assistant helped draft the notes, not the labels." confirmed accurate by Ayad; it stays on the triage page.
 10. Eval labels done and committed (d7591e0). T7 run; results are on the triage page and in decisions.md.

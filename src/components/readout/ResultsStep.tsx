@@ -33,7 +33,7 @@ export default function ResultsStep({
       </p>
       <div className="rounded-xl border border-zinc-200 p-4 text-sm dark:border-zinc-800">
         <p className="font-medium">Accepted formats</p>
-        <pre className="mt-2 overflow-x-auto text-xs leading-5 text-zinc-600 dark:text-zinc-400">{`date,variant,users,conversions
+        <pre role="region" tabIndex={0} aria-label="CSV format example" className="mt-2 overflow-x-auto text-xs leading-5 text-zinc-600 dark:text-zinc-400">{`date,variant,users,conversions
 2026-10-01,control,1000,100
 2026-10-01,treatment,1010,113
 

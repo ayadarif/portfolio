@@ -14,7 +14,7 @@ function Accuracy({ ev }: { ev: EvalBlock }) {
       <p className="mt-2 leading-6">
         I labelled {ev.n_eval} reviews by hand, using the same codebook, before the model saw them. The model&apos;s first category matches one of my two categories on <b>{run1.category_agree} of {run1.n}</b> reviews (95% interval {pc(run1.category_agree_ci[0])} to {pc(run1.category_agree_ci[1])}). A second, independent model run gave {run2.category_agree} of {run2.n}.
       </p>
-      <div className="mt-3 overflow-x-auto">
+      <div className="mt-3 overflow-x-auto" role="region" tabIndex={0} aria-label="Scrollable table">
         <table className="w-full min-w-[30rem]">
           <thead><tr className="border-b border-zinc-200 text-left text-xs uppercase tracking-wider text-zinc-500 dark:border-zinc-800"><th className={cell}>Measure</th><th className={cell}>Run 1</th><th className={cell}>Run 2</th><th className={cell}>Keyword baseline</th></tr></thead>
           <tbody>
@@ -32,7 +32,7 @@ function Accuracy({ ev }: { ev: EvalBlock }) {
       </p>
       <h4 className="mt-5 font-medium">Where the model and I differ (run 1)</h4>
       <p className="text-xs text-zinc-500">Rows are my first category, columns the model&apos;s. &quot;Rest&quot; groups the smaller categories.</p>
-      <div className="mt-2 overflow-x-auto">
+      <div className="mt-2 overflow-x-auto" role="region" tabIndex={0} aria-label="Scrollable table">
         <table className="w-full min-w-[32rem] text-xs">
           <thead><tr className="border-b border-zinc-200 dark:border-zinc-800"><th className={cell}></th>{cm.labels.map((l) => <th key={l} className={cell + " text-right"}>{l === "rest" ? "Rest" : categoryLabel(l)}</th>)}</tr></thead>
           <tbody>
@@ -105,7 +105,7 @@ export default function TriagePage({ data }: { data: TriageData }) {
             {info.n_reviews.toLocaleString("en-US")} reviews classified. A review can raise two categories, so shares can add up to more than 100%.
             Not ranked: praise {sharePct(info.categories.find((c) => c.category === "praise")?.share ?? 0)}, other {sharePct(info.categories.find((c) => c.category === "other")?.share ?? 0)}.
           </p>
-          <div className="mt-3 overflow-x-auto">
+          <div className="mt-3 overflow-x-auto" role="region" tabIndex={0} aria-label="Scrollable table">
             <table className="w-full min-w-[34rem] text-sm">
               <thead>
                 <tr className="border-b border-zinc-200 dark:border-zinc-800">

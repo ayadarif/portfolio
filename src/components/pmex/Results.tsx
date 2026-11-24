@@ -68,7 +68,7 @@ export default function Results({ r }: { r: CalcResult }) {
         <p className="text-xs text-zinc-500">
           P&amp;L in rupees for a move of the price from your entry{c.dailyLimitPct ? `, limited to plus or minus ${c.dailyLimitPct}% (the daily limit)` : ""}. Net is after round-trip fees at that exit price. Moves past the liquidation point show the loss at that point.
         </p>
-        <div className="mt-2 overflow-x-auto">
+        <div className="mt-2 overflow-x-auto" role="region" tabIndex={0} aria-label="Scrollable table">
           <table className="w-full min-w-[32rem] text-sm">
             <thead><tr className="border-b border-zinc-200 text-left text-xs uppercase tracking-wider text-zinc-500 dark:border-zinc-800">
               <th className="py-2 pr-2">Move</th><th className="pr-2">Price</th><th className="pr-2">Gross P&amp;L</th><th className="pr-2">Net P&amp;L</th><th className="pr-2">% of margin</th><th>Note</th>
