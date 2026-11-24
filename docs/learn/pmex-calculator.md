@@ -91,3 +91,12 @@ Let `k = size x lots x fx` (rupees per 1.00 of price move; fx is 1 for rupee-quo
 8. The broker closes the position there, so the loss stops at that point instead of following the price further.
 9. So no other part of the code, or a future form change, can produce an impossible position.
 10. Whether the fee model, including the per-lot reading of the Rs 30 floor, matches what was actually charged, to the rupee.
+
+## 6b. The margin-call ladder (phase 2)
+
+A table of price levels against your position, in equal tick steps. For each level it shows equity (account money plus the loss so far), the margin required at that price, their ratio, and a status: OK (equity at or above required margin), Margin call (below it), Auto-liquidated (at or below your broker's threshold times required margin). It also shows the cash that would restore the margin.
+
+Second axis: USD/PKR up 1%, 3% or 5%, applied first. The rate rises, so the rupee margin rises and every later tick costs more rupees, even with price standing still. Profit or loss already settled does not change. Example in the tests: equity equal to the margin at a flat price becomes a margin call after a 5% rate shock, needing 5% of the margin in cash.
+
+What it is not: a forecast. There is no probability of price reaching a level, because that needs a verified formula and a volatility input; it is deferred. "Margin call at required margin" is an assumption (brokers differ) and the page says so. Tola Gold is long only and the ladder stops at its 5% daily limit.
+

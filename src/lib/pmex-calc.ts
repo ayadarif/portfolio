@@ -1,8 +1,8 @@
 // Glue between the calculator form (strings) and src/lib/pmex.ts (numbers). No new maths here.
 import { brokerPresets, contracts, DEFAULT_ALT_PCT, type Contract } from "@/data/pmex-data";
 import {
-  breakEven, contractValue, fxSensitivity, initialMarginPkr, InputError, intradayMarginPct, liquidation, moveTable, positionSizing,
-  summary, tickValue, validate, type BreakEven, type FxSensitivity, type Liquidation, type MoveRow, type Position, type Side, type Sizing,
+  breakEven, contractValue, fxSensitivity, initialMarginPkr, InputError, intradayMarginPct, liquidation, marginLadder, moveTable, positionSizing,
+  summary, tickValue, validate, type BreakEven, type FxSensitivity, type Ladder, type Liquidation, type MoveRow, type Position, type Side, type Sizing,
 } from "./pmex";
 
 export interface CalcForm {
@@ -83,6 +83,7 @@ export interface CalcResult {
   be: BreakEven;
   liq: Liquidation;
   moves: MoveRow[];
+  ladder: Ladder;
   sizing: Sizing | null;
   sizingError: string | null;
   fx: FxSensitivity;
@@ -115,7 +116,7 @@ export function calculate(f: CalcForm): { ok: true; r: CalcResult } | { ok: fals
       ok: true,
       r: {
         position: p, valueQuote: v.quote, valuePkr: v.pkr, marginPkr: margin, marginPctOfAccount: account > 0 ? (margin / account) * 100 : null,
-        tick: tickValue(p), be, liq, moves: moveTable(p), sizing, sizingError, fx: fxSensitivity(p, 1), summary: summary(p, be, liq),
+        tick: tickValue(p), be, liq, moves: moveTable(p), ladder: marginLadder(p), sizing, sizingError, fx: fxSensitivity(p, 1), summary: summary(p, be, liq),
       },
     };
   } catch (e) {

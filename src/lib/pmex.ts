@@ -192,6 +192,76 @@ export function moveTable(p: Position, stepsPct: number[] = MOVE_STEPS_PCT): Mov
     });
 }
 
+// ---------- Margin-call and liquidation ladder ----------
+
+export type LadderStatus = "OK" | "Margin call" | "Auto-liquidated";
+
+export interface LadderRow {
+  ticks: number; // adverse move in ticks (0 = entry)
+  price: number;
+  movePct: number; // adverse move as a percent of entry, positive number
+  equityPkr: number;
+  requiredMarginPkr: number; // at this price and this USD/PKR rate
+  ratio: number; // equity / required margin
+  status: LadderStatus;
+  topUpPkr: number; // cash that would restore equity to the required margin; 0 when OK
+}
+
+export interface LadderBlock { fxShockPct: number; usdPkr: number; rows: LadderRow[] }
+
+export interface Ladder { stepTicks: number; blocks: LadderBlock[]; stoppedAtDailyLimit: boolean; assumption: string }
+
+// 1, 2, 5 x 10^n at or above x: keeps rung spacing readable.
+function niceCeil(x: number): number {
+  if (!(x > 0)) return 1;
+  const e = Math.pow(10, Math.floor(Math.log10(x)));
+  const f = x / e;
+  return (f <= 1 ? 1 : f <= 2 ? 2 : f <= 5 ? 5 : 10) * e;
+}
+
+export const LADDER_FX_SHOCKS_PCT = [0, 1, 3, 5];
+
+// A deterministic stress ladder, no forecast. For each USD/PKR shock (applied first, USD contracts only) it walks the price
+// against the position in equal tick steps and shows equity, required margin at that price and rate, the ratio, and a status:
+//   OK: equity at or above required margin.  Margin call: below it, but above the auto-liquidation threshold (alt x required margin).
+//   Auto-liquidated: at or below the threshold.
+// The shock changes the rupee value of every later tick and the rupee margin; it does not change P&L already settled.
+// "Margin call at required margin" is a modelling assumption; brokers differ. Fees are left out. Tola Gold stops at its daily limit.
+export function marginLadder(p: Position, shocksPct: number[] = LADDER_FX_SHOCKS_PCT, rungs = 10): Ladder {
+  const c = p.contract;
+  const base = liquidation(p);
+  const stepTicks = niceCeil(base.alreadyBelow ? (p.entry * 0.01) / c.tick / rungs : (1.2 * base.moveTicks) / rungs);
+  const dir = p.side === "long" ? -1 : 1; // adverse direction
+  const alt = p.altPct / 100;
+  const m = p.marginPct / 100;
+  const equity0 = p.equityPkr ?? initialMarginPkr(p);
+  const shocks = c.quote === "USD" ? shocksPct : [0];
+  let stoppedAtLimit = false;
+  const blocks = shocks.map((sh) => {
+    const rate = c.quote === "USD" ? p.usdPkr * (1 + sh / 100) : p.usdPkr;
+    const k = c.size * p.lots * fxFor(c, rate);
+    const rows: LadderRow[] = [];
+    for (let i = 0; i <= rungs; i++) {
+      const ticks = i * stepTicks;
+      const move = ticks * c.tick;
+      const movePct = (move / p.entry) * 100;
+      if (c.dailyLimitPct !== undefined && movePct > c.dailyLimitPct) { stoppedAtLimit = true; break; }
+      const price = p.entry + dir * move;
+      if (!(price > 0)) break;
+      const equity = equity0 - move * k;
+      const required = m * price * k;
+      const ratio = equity / required;
+      const status: LadderStatus = equity <= alt * required ? "Auto-liquidated" : equity < required ? "Margin call" : "OK";
+      rows.push({ ticks, price, movePct, equityPkr: equity, requiredMarginPkr: required, ratio, status, topUpPkr: Math.max(0, required - equity) });
+    }
+    return { fxShockPct: sh, usdPkr: rate, rows };
+  });
+  return {
+    stepTicks, blocks, stoppedAtDailyLimit: stoppedAtLimit,
+    assumption: "A margin call is taken to mean equity below the margin required at that price and rate; auto-liquidation is at the threshold you set. Brokers define these differently. Fees are not included.",
+  };
+}
+
 // ---------- Position sizing ----------
 
 export interface SizingInput {

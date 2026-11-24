@@ -19,6 +19,9 @@ export default function PmexCalculatorPage() {
         Fees are modelled from published rate cards and have not yet been checked against a real broker statement.
       </p>
       <div className="mt-8"><Calculator /></div>
+      <p className="mt-10 border-t border-border-token pt-4 text-xs leading-5 text-zinc-500">
+        Educational calculator, not advice. Advising on futures is a licensed activity in Pakistan, regulated by the SECP (Securities and Exchange Commission of Pakistan) under the Futures Market Act, 2016; this tool does not provide it. It shows limits and costs under the numbers you enter, and says nothing about where a price will go.
+      </p>
     </main>
   );
 }

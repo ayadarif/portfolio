@@ -1,4 +1,5 @@
 import type { CalcResult } from "@/lib/pmex-calc";
+import Ladder from "./Ladder";
 
 const rs = (n: number, d = 0) => `${n < -0.5 * 10 ** -d ? "-" : ""}Rs ${Math.abs(n).toLocaleString("en-US", { minimumFractionDigits: d, maximumFractionDigits: d })}`;
 const num = (n: number, d = 2) => n.toLocaleString("en-US", { minimumFractionDigits: d, maximumFractionDigits: d });
@@ -84,6 +85,8 @@ export default function Results({ r }: { r: CalcResult }) {
           </table>
         </div>
       </section>
+
+      <Ladder ladder={r.ladder} priceUnit={c.priceUnit} tickLabel="ticks" />
 
       {(r.sizing || r.sizingError) && (
         <section className={card}>

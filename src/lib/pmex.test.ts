@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { brokerPresets, contracts, type Contract } from "@/data/pmex-data";
 import {
-  breakEven, fxSensitivity, initialMarginPkr, InputError, intradayMarginPct, liquidation, moveTable, positionSizing, settledPnlPkr,
+  breakEven, fxSensitivity, marginLadder, initialMarginPkr, InputError, intradayMarginPct, liquidation, moveTable, positionSizing, settledPnlPkr,
   sideFees, tickValue, validate, type Position,
 } from "./pmex";
 
@@ -233,5 +233,47 @@ describe("real-trade check", () => {
   it.skip("one real round trip: fees on the statement equal the model's, to the rupee", () => {
     const statement = { contract: "crude10", lots: 1, entry: 0, exit: 0, usdPkr: 0, totalChargesPkr: 0 }; // placeholders, not real data
     expect(statement.totalChargesPkr).toBeGreaterThan(0);
+  });
+});
+
+describe("margin-call ladder", () => {
+  it("flips to auto-liquidated exactly where liquidation() says, to within one rung", () => {
+    for (const side of ["long", "short"] as const) {
+      const p = gold({ side, equityPkr: 40000 });
+      const liq = liquidation(p);
+      const lad = marginLadder(p);
+      const rows = lad.blocks[0].rows;
+      const first = rows.findIndex((r) => r.status === "Auto-liquidated");
+      expect(first).toBeGreaterThan(0);
+      expect(rows[first].ticks).toBeGreaterThanOrEqual(liq.moveTicks);
+      expect(rows[first - 1].ticks).toBeLessThan(liq.moveTicks);
+    }
+  });
+  it("starts OK at entry when equity exceeds the margin, and ratios fall as price goes against you", () => {
+    const rows = marginLadder(gold({ equityPkr: 40000 })).blocks[0].rows;
+    expect(rows[0].status).toBe("OK");
+    expect(rows[0].ratio).toBeCloseTo(40000 / 11200, 9);
+    for (let i = 1; i < rows.length; i++) expect(rows[i].ratio).toBeLessThan(rows[i - 1].ratio);
+  });
+  it("a USD/PKR shock raises required margin with no price move: equity equal to margin becomes a margin call", () => {
+    const lad = marginLadder(gold());
+    expect(lad.blocks[0].rows[0].status).toBe("OK");
+    const five = lad.blocks.find((b) => b.fxShockPct === 5)!;
+    expect(five.rows[0].requiredMarginPkr).toBeCloseTo(11200 * 1.05, 6);
+    expect(five.rows[0].status).toBe("Margin call");
+    expect(five.rows[0].topUpPkr).toBeCloseTo(11200 * 0.05, 6);
+  });
+  it("shocks make every later rung worse, never better", () => {
+    const lad = marginLadder(gold({ equityPkr: 40000 }));
+    for (let b = 1; b < lad.blocks.length; b++) lad.blocks[b].rows.forEach((r, i) => expect(r.ratio).toBeLessThan(lad.blocks[b - 1].rows[i].ratio));
+  });
+  it("short mirrors long: price levels sit above entry", () => {
+    const r = marginLadder(gold({ side: "short", equityPkr: 40000 })).blocks[0].rows;
+    expect(r[1].price).toBeGreaterThan(2000);
+  });
+  it("Tola Gold has one block (no USD/PKR) and stops at the 5% daily limit", () => {
+    const lad = marginLadder(tola({ equityPkr: 200000 }));
+    expect(lad.blocks).toHaveLength(1);
+    for (const r of lad.blocks[0].rows) expect(r.movePct).toBeLessThanOrEqual(5);
   });
 });
