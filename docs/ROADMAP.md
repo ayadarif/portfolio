@@ -32,7 +32,7 @@ Owner: Ayad Arif. Written Nov 24, 2026. Claude Code works through this file on i
 ### T2. Feedback triage: dataset
 - Spec: docs/feedback-triage-spec.md. Pick the dataset per the criteria there, verify its licence from the dataset card, download without login, record source, licence and URL in decisions.md and the method section.
 - Ingest: strip personal data, sample about 1,000 reviews (fixed seed), measure language mix, rating mix, date range. Write a short data report in docs/.
-- Status:
+- Status: DONE 2026-11-24 (33d4f24)
 
 ### T3. Feedback triage: codebook and eval sample
 - Write docs/triage-codebook.md (categories with definitions and examples, severity anchors).
