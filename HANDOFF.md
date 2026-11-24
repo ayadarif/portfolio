@@ -51,23 +51,19 @@ Plain explanations, one concept at a time, short replies, no em dashes, ask befo
 # Sprint mode (started 2026-11-24)
 Working through docs/ROADMAP.md on branch `sprint`. Push only with `git push origin sprint`. Things needing Ayad are in NEEDS_AYAD.md, each with the default taken. Statuses and commit hashes are in ROADMAP.md.
 
-## Sprint status
-- T0 to T3 DONE. T4 and T5 DONE (pipeline, then full run: 900 reviews, 49 live calls, 0 failures). T6 and T8 BUILT, reviewer pass in progress. T7 SKIPPED until Ayad's labels are committed (NEEDS_AYAD item 10). T9 and T10 not started.
-- Feedback triage:
-  - Corpus data/corpus.csv (1,000 reviews, 2023, UBA, Access, FBN; seed 20261124). Eval sheet data/eval/to_label.csv (100, stars and bank hidden). Output data/run/triage.json (+ report.html); the site reads src/data/feedback-triage.json (a copy; re-copy after any re-run).
-  - Code in scripts/triage/ (stdlib only). Run: `PYTHONPATH=scripts python3 -m triage run --input data/corpus.csv --text-col text --rating-col score --group-col bank --id-col id --exclude-ids data/eval/to_label.csv --method-extra data/dataset.json --out data/run --cache data/cache`. Cache is gitignored (data/cache on Ayad's Mac), so a re-run costs nothing for cached batches.
-  - Tests: `PYTHONPATH=scripts python3 -m unittest discover -s scripts/tests` (mocked model) and `npx vitest run`.
-  - Claude Code 2.1.331: `claude -p --safe-mode --tools "" --model claude-sonnet-5-5 --no-session-persistence --output-format json --json-schema ...`; answer is in `structured_output`. No `--system-prompt-file`.
-  - Page says "Accuracy check in progress"; T7 replaces that with real numbers only after labels exist. Do not draw conclusions from a rerun of the model on the eval set before labels are committed.
-- PMEX calculator: src/lib/pmex.ts (maths), pmex-calc.ts (form glue), src/data/pmex-data.ts (all numbers with sources), page /pmex-calculator. 32 maths tests plus render tests. Real-trade check test is skipped and waits for a statement (NEEDS_AYAD item 11). Fee floor Rs 30 read as per lot per side (unverified).
-- Learning docs written: docs/learn/experiment-readout.md, feedback-triage.md, pmex-calculator.md (each ends with a 10 question quiz and answers). Ayad should study these and expect to be quizzed.
-- Site: Projects list now has Experiment Readout, Feedback triage pipeline, PMEX contract calculator (all marked Live on the preview). Nothing is merged to main.
+## Sprint status (final, 2026-11-24)
+- DONE: T0 to T6, T8, T9, T10 (hashes in docs/ROADMAP.md). SKIPPED: T7 (needs Ayad's labels, NEEDS_AYAD item 10). Three reviewer passes were run by fresh subagents (triage, PMEX, whole branch); findings fixed or logged below.
+- Branch `sprint` only; `main` untouched. Preview: Vercel builds `sprint` automatically. Merge to main after your review.
+- Tests: 178 vitest (1 skipped real-trade placeholder), 29 Python unittest. Lint, tsc and build pass.
+- Feedback triage: corpus data/corpus.csv (1,000 reviews, 2023, UBA/Access/FBN; seed 20261124; attribution in data/NOTICE.md). Eval sheet data/eval/to_label.csv (100, stars and bank hidden, unlabelled). Output data/run/triage.json (+ report.html); the site reads a copy at src/data/feedback-triage.json (re-copy after any re-run). Full run: 900 reviews, 49 live calls, 0 failures.
+  - Run: `PYTHONPATH=scripts python3 -m triage run --input data/corpus.csv --text-col text --rating-col score --group-col bank --id-col id --exclude-ids data/eval/to_label.csv --method-extra data/dataset.json --out data/run --cache data/cache`. Cache (gitignored) is on Ayad's Mac.
+  - Claude Code 2.1.331: `claude -p --safe-mode --tools "" --model claude-sonnet-5-5 ...`, answer in `structured_output`.
+  - Page says "Accuracy check in progress". Do not run the model on the eval set before labels are committed.
+- PMEX calculator: src/lib/pmex.ts, pmex-calc.ts, src/data/pmex-data.ts, page /pmex-calculator. Fee floor Rs 30 read as per lot per side (unverified). Real-trade check test is skipped, waiting on a statement (item 11).
+- Learning docs (each with a 10 question quiz): docs/learn/experiment-readout.md, feedback-triage.md, pmex-calculator.md. Case study drafts: docs/case-studies/ ("What I learned" left for Ayad).
+- Known nits left: duplicate quote across two categories in one bank; ALT_SOURCE constant unused; PII regex misses grouped 11-digit IDs; themes shown across banks, not per bank (by_group is in the JSON); pipeline shown as a numbered list, not a diagram; README link 404s until merge.
 
 ## Next
-1. Fix whatever the two reviewer subagents report (T6, T8), then mark T6 and T8 DONE.
-2. T9: case study drafts in docs/case-studies/, phone width render checks.
-3. T10: final fresh-reviewer pass, then summarise for Ayad here.
-4. When Ayad commits labels: T7 (eval run on the 100, twice; keyword baseline; publish on the page).
-
-## Not verified by eye
-No browser was used in this sprint. Layouts were checked by type check, build and server-render tests only. Ayad should open /feedback-triage and /pmex-calculator on a phone from the Vercel preview of `sprint`.
+1. Ayad: read NEEDS_AYAD.md (13 items). Biggest: label the 100 eval reviews (item 10), bank choice (item 9), real-trade statement (item 11).
+2. After labels are committed: T7 (run the model twice on the 100, keyword baseline, publish numbers on the page, log disagreements in decisions.md).
+3. Phone check of /feedback-triage and /pmex-calculator on the Vercel preview (nothing was viewed in a browser).

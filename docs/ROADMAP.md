@@ -72,4 +72,4 @@ Owner: Ayad Arif. Written Nov 24, 2026. Claude Code works through this file on i
 
 ### T10. Final review
 - Spawn a fresh reviewer subagent over the whole sprint branch: claims vs code, tests, style, secrets, personal data, licence notes. Fix findings. Summarise the state in HANDOFF.md for Ayad.
-- Status:
+- Status: DONE 2026-11-24; fresh reviewer found no blockers; two should-fix items fixed (case study wording, data/NOTICE.md)

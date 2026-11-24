@@ -12,7 +12,7 @@ Built a fixed pipeline (not an agent) and ran it on 900 public Google Play revie
 - Code checks every answer (ids match, categories exist, severity in range) and retries bad ones.
 - Plain code does the counting and ranking: share of reviews, average stars, average severity, and a priority score (share x average severity x 100). It also checks whether the top three holds when ranked by count alone or by severity 3 reviews alone.
 - Example quotes are chosen by the model but kept only if they appear word for word in the review.
-- 100 reviews were set aside and hand-labelled by me before any accuracy number is produced.
+- 100 reviews are set aside, held out of every model run, to be hand-labelled by me before any accuracy number is produced (labelling not done yet).
 - Packaged as a command line tool: any CSV with a text column in, a JSON file and a standalone HTML report out.
 
 ## Results

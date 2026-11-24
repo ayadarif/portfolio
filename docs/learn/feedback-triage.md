@@ -25,7 +25,7 @@ All under `scripts/triage/` unless stated.
 | `steps.py` | The pipeline: `load_input`, `classify`, `rank`, `themes`, `excerpts`, `run_pipeline`. |
 | `__main__.py` | The command line (`run` and `report`). |
 | `report.py` | Builds the standalone HTML report from `triage.json`. Escapes all text. |
-| `scripts/tests/test_triage.py` | 26 tests with a fake model. |
+| `scripts/tests/test_triage.py` | 29 tests with a fake model. |
 | `src/lib/triage.ts`, `src/components/triage/TriagePage.tsx`, `src/app/feedback-triage/page.tsx` | The website page. A server component that renders `src/data/feedback-triage.json`. |
 
 Two Python ideas you need once. A **callable** is anything you can call with parentheses; `ClaudeRunner` defines `__call__`, so the pipeline treats it like a function, and tests pass a plain function instead. **Dependency injection** is that trick: steps take `llm` as an argument, so tests never touch the real model.
@@ -84,7 +84,7 @@ Per bank, the code picks up to 8 candidate reviews per category (highest severit
 
 ## 4. Decisions you should be able to defend
 
-1. **Open dataset, not scraping.** Apple's terms disallow automated access to its review feed; the Hugging Face dataset is Apache-2.0 and downloads with no login.
+1. **Open dataset, not scraping.** the earlier plan to read Apple's review feed was dropped after I read Apple's robots.txt and Media Services Terms as disallowing automated access (my reading, not legal advice); the Hugging Face dataset is Apache-2.0 and downloads with no login.
 2. **Banks chosen by review count** (UBA, Access, FBN), not the spec's default list. The spec said choose by count.
 3. **Year 2023**: 2024 has a handful of reviews per bank.
 4. **Eval set drawn from inside the corpus and held out** from every model run until the hand labels are committed. The commit time is the proof the labels came first.
