@@ -9,6 +9,7 @@ Note: AGENTS.md says this Next.js has breaking changes; read node_modules/next/d
 
 ## Decisions
 See decisions.md. Ayad chose the stack; Claude chose the file layout (approved plan).
+- No paid API (Ayad, 2026-11-24). AI steps for future projects run offline in Claude Code; the site shows static results. The Readout's dormant /api/rewrite route is the one exception (off, never run against the live API).
 
 ## Done
 - Scaffolded with create-next-app (run by Ayad).
@@ -32,7 +33,6 @@ See decisions.md. Ayad chose the stack; Claude chose the file layout (approved p
 ## Next
 0. Look at /experiment-readout on a phone. Before ever setting ANTHROPIC_API_KEY on Vercel: set a spend limit on the key, and read the README note on the rate limit.
 1. Proofread copy on the live site; check phone view.
-2. Add src/app/api/<tool>/route.ts for the AI tools.
 
 ## Open questions
 - Real name/headline, site name, domain (skip paid domain for now).

@@ -1,39 +1,31 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio
 
-## Getting Started
+Hi, I'm Ayad Arif, a product manager who started out as a data analyst. This site has three case studies from my product work and the AI tools I'm building on the side.
 
-First, run the development server:
+Live site: https://aaportfolio-delta.vercel.app
+
+## Projects
+
+- **Experiment Readout** (live, at `/experiment-readout`): paste or upload A/B test results and get one verdict, plus the checks teams skip: uneven splits, early peeking and underpowered tests. Details below.
+- **Feedback triage** (in progress): JazzCash vs Easypaisa. An AI pipeline, run offline with Claude Code, sorts public app reviews into ranked themes. Not in this repo yet.
+- **Five-Minute Brief** (prototype): paste an email thread before a client meeting and get what you owe, what they owe and what to raise. Not in this repo yet.
+
+The site is Next.js 16, React 19, TypeScript and Tailwind, hosted free on Vercel. All site text lives in `src/data/content.ts`.
+
+## Run it
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev     # site at http://localhost:3000
+npm test        # all unit tests
+npm run build   # production build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Optional cross-check of the stats module against scipy (uses a local Python venv):
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+python3 -m venv scripts/.venv && scripts/.venv/bin/pip install scipy && scripts/.venv/bin/python scripts/check_stats.py
+```
 
 ## Experiment Readout (`/experiment-readout`)
 
@@ -44,7 +36,7 @@ A/B test results in, a verdict out, plus the checks teams skip. Everything excep
 
 ### Optional AI rewrite (OFF by default)
 
-The written readout is rule-based. An optional layer can reword it more naturally using the Claude API. It stays off until you set a key.
+The written readout is rule-based. An optional layer can reword it more naturally using the Claude API. It stays off until you set a key. Tested with a fake fetch; never run against the live API.
 
 1. Put `ANTHROPIC_API_KEY=your-key` in `.env.local` (local) or in the Vercel project settings (live). Never commit it.
 2. With no key, `POST /api/rewrite` answers `{"enabled": false}` and the page shows nothing extra.

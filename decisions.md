@@ -1,6 +1,6 @@
 # Decisions
 
-- Next.js + TypeScript + Tailwind. One stack for the static page now and server-side Claude API calls in the next two projects.
+- Next.js + TypeScript + Tailwind. One stack for the static portfolio page and the in-browser Experiment Readout.
 - All site text in src/data/content.ts. Edit copy without touching layout code.
 - No component library, CMS or animation library. Smallest thing that ships.
 - Components are server components with no client JavaScript. Page is fully static, so it is fast and free to host.
@@ -29,3 +29,7 @@
 - Validator rejects any "significan..." when the stats do not support it, even "not significant". Stricter than needed, but it matches the rule and a false reject just keeps the rule-based text.
 - Validator allows a number only if it equals an input number rounded to the digits written. Heuristic, not proof; a rejected rewrite silently falls back, so the cost of a false reject is low.
 - Rate limit on /api/rewrite is in memory (per server instance). Good enough to slow abuse for a portfolio; a real limit needs a shared store.
+- No paid API. AI steps for future projects run offline in Claude Code; the site shows static results.
+- The one exception is the Experiment Readout rewrite route (src/app/api/rewrite). It is dormant: off without a key and never run against the live API. Kept because it is built and tested; deleting it is a separate decision.
+- Demo planned samples are written as literals in demos.ts (not computed) so scripts/write_fixtures.ts runs under plain Node with no tsconfig change; a test in readout.test.ts fails if any drifts from sampleSizePerVariant().
+- Clean win target lift is 11%, not 10%: at 10% the formula needs 14,751 per variant but the data has about 14,130, which would flip the demo to Keep running.
