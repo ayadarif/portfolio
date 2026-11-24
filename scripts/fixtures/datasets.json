@@ -8,8 +8,8 @@
    "monthlyUsers": 200000,
    "valuePerConversion": 500,
    "baseline": 0.1,
-   "targetRelLift": 0.1,
-   "plannedPerVariant": 12000
+   "targetRelLift": 0.11,
+   "plannedPerVariant": 12242
   },
   "rows": [
    {
@@ -191,8 +191,8 @@
    "monthlyUsers": 200000,
    "valuePerConversion": 500,
    "baseline": 0.1,
-   "targetRelLift": 0.1,
-   "plannedPerVariant": 8000
+   "targetRelLift": 0.13,
+   "plannedPerVariant": 8838
   },
   "rows": [
    {
@@ -326,8 +326,8 @@
    "monthlyUsers": 200000,
    "valuePerConversion": 500,
    "baseline": 0.1,
-   "targetRelLift": 0.1,
-   "plannedPerVariant": 40000
+   "targetRelLift": 0.06,
+   "plannedPerVariant": 40286
   },
   "rows": [
    {

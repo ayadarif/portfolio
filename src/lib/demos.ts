@@ -103,7 +103,11 @@ export interface Demo {
   rows: ResultRow[];
 }
 
-const basePlan = { plannedShareA: 0.5, confidence: 0.95, power: 0.8, monthlyUsers: 200000, valuePerConversion: 500, baseline: 0.1, targetRelLift: 0.1 };
+const basePlan = { plannedShareA: 0.5, confidence: 0.95, power: 0.8, monthlyUsers: 200000, valuePerConversion: 500, baseline: 0.1 };
+
+// plannedPerVariant must equal sampleSizePerVariant(baseline, targetRelLift) for the same plan.
+// It is written out here (not computed) so scripts/write_fixtures.ts can run under plain Node; src/lib/readout.test.ts fails if it drifts.
+const planFor = (targetRelLift: number, plannedPerVariant: number): DemoPlan => ({ ...basePlan, targetRelLift, plannedPerVariant });
 
 export const demos: Demo[] = [
   {
@@ -113,7 +117,7 @@ export const demos: Demo[] = [
     title: "Simplified checkout button",
     hypothesis: "A single-step checkout button will raise the share of visitors who complete a purchase.",
     metric: "Checkout conversion rate",
-    plan: { ...basePlan, plannedPerVariant: 12000 },
+    plan: planFor(0.11, 12242), // needs 12,242 per variant; the data has about 14,100, so the sample is reached
     rows: fromDays(CLEAN_WIN_DAYS),
   },
   {
@@ -123,17 +127,17 @@ export const demos: Demo[] = [
     title: "New pricing page layout",
     hypothesis: "A clearer pricing layout will lift sign-ups from the pricing page.",
     metric: "Sign-up conversion rate",
-    plan: { ...basePlan, plannedPerVariant: 8000 },
+    plan: planFor(0.13, 8838), // needs 8,838 per variant; the smaller arm has 8,979, so the split is the only thing that fails
     rows: build({ seed: 22, days: 10, usersA: 1000, usersB: 900, baseline: 0.1, relLift: () => 0.05 }),
   },
   {
     name: "early_peek",
     label: "Early peek",
-    blurb: "Looked great on day 3. The lift faded as data came in.",
+    blurb: "Looked great on day 3. The lift faded as data came in. Caught because the planned sample wasn't reached.",
     title: "Referral banner on the home screen",
     hypothesis: "A referral banner will raise the share of users who start a referral.",
     metric: "Referral start rate",
-    plan: { ...basePlan, plannedPerVariant: 40000 },
+    plan: planFor(0.06, 40286), // needs 40,286 per variant; only about 28,100 arrived, so the plan says keep running
     // Novelty effect: the lift jumps to about +40% on day 3, then decays to about zero by week two.
     rows: build({
       seed: 33,

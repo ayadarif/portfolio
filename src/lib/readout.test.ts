@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { demos } from "./demos";
+import { sampleSizePerVariant } from "./stats";
 import { parseResults } from "./csv";
 import { buildReadout, emptyForm, parseSetup, rowsToCsv, type FormState } from "./readout";
 
@@ -55,4 +56,16 @@ describe("parseSetup", () => {
     const r = parseSetup({ ...emptyForm, plannedN: "1,000", confidence: "99", shareA: "60" });
     expect(r.ok && r.setup).toMatchObject({ plannedPerVariant: 1000, confidence: 0.99, shareA: 0.6 });
   });
+});
+
+describe("demo plans", () => {
+  const expected = { clean_win: "Ship it", broken_split: "Fix the data first", early_peek: "Keep running" } as const;
+  for (const d of demos) {
+    it(`${d.name}: planned sample matches the formula and the verdict is ${expected[d.name]}`, () => {
+      expect(d.plan.plannedPerVariant).toBe(sampleSizePerVariant(d.plan.baseline, d.plan.targetRelLift, "relative", d.plan.confidence, d.plan.power));
+      const s = parseSetup(formFor(d));
+      if (!s.ok) throw new Error(s.error);
+      expect(buildReadout(s.setup, d.rows).verdict).toBe(expected[d.name]);
+    });
+  }
 });
