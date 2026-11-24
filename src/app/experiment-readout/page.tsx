@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import HowItWorks from "@/components/readout/HowItWorks";
 import Tool from "@/components/readout/Tool";
 
 export const metadata: Metadata = {
@@ -18,6 +19,7 @@ export default function ExperimentReadoutPage() {
       <div className="mt-8">
         <Tool />
       </div>
+      <HowItWorks />
     </main>
   );
 }

@@ -22,3 +22,10 @@
 - Underpowered check is skipped (shown grey, "Skipped") when no minimum lift is entered, rather than guessing a target.
 - Business impact needs both monthly users and value per conversion, or neither. Half-filled would silently show nothing.
 - vitest.config.ts added only to resolve the "@/" import alias in tests; scripts/ excluded from tsconfig so the Next build does not type-check the Node fixture script.
+- Written readout is rules and templates first (src/lib/narrative.ts), so the tool works with no AI and never says "significant" unless p < alpha and the CI excludes zero. The AI layer can only reword it.
+- Impact sentence is skipped when the verdict is "Fix the data first": numbers from a broken split should not get a dollar figure. Value is printed as a plain number, not a currency, because the form has no currency field.
+- AI rewrite calls the Claude Messages API with plain fetch, no SDK: one request, zero new dependencies. Model id lives in one constant in src/lib/rewrite.ts.
+- AI rewrite sends only verdict, computed numbers and the rule-based text, never the name, hypothesis or metric text. The key stays on the server.
+- Validator rejects any "significan..." when the stats do not support it, even "not significant". Stricter than needed, but it matches the rule and a false reject just keeps the rule-based text.
+- Validator allows a number only if it equals an input number rounded to the digits written. Heuristic, not proof; a rejected rewrite silently falls back, so the cost of a false reject is low.
+- Rate limit on /api/rewrite is in memory (per server instance). Good enough to slow abuse for a portfolio; a real limit needs a shared store.

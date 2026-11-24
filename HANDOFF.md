@@ -25,8 +25,12 @@ See decisions.md. Ayad chose the stack; Claude chose the file layout (approved p
   - Regenerate fixtures after editing demos: node scripts/write_fixtures.ts (then npm test and the scipy check).
   - NOT checked by eye: no browser was available in the session, so the layout (phone width, dark mode, chart) was only verified through type check, build and server-render tests. Open the live URL on your phone first.
 
+- Experiment Readout finish (2026-11-24): polish fixes (step numbers get list-none; clearer lift toggle with a live example; labels no longer run together; "Smallest lift" marked as needed for the underpowered check); rule-based written readout (src/lib/narrative.ts, shown under the verdict via WrittenReadout.tsx); AI rewrite layer built but OFF (src/app/api/rewrite/route.ts, src/lib/rewrite.ts, src/lib/validate-rewrite.ts; runs only if ANTHROPIC_API_KEY is set); "How this works" section (HowItWorks.tsx). 94 tests pass; build and lint pass. README and decisions.md updated.
+  - NOT checked by eye: no browser available again. Check on your phone: step labels, lift toggle hint, label spacing, readout paragraph, How this works.
+  - Route checked with curl: no key gives {"enabled":false}; fake key gives ok:false (fallback); junk payload 400; oversize 413. A real rewrite has never been run (no key).
+
 ## Next
-0. Experiment Readout: look at it on a phone; then the written readout (rules and templates, 4 to 6 sentences; optional Claude API rewrite behind ANTHROPIC_API_KEY).
+0. Look at /experiment-readout on a phone. Before ever setting ANTHROPIC_API_KEY on Vercel: set a spend limit on the key, and read the README note on the rate limit.
 1. Proofread copy on the live site; check phone view.
 2. Add src/app/api/<tool>/route.ts for the AI tools.
 
