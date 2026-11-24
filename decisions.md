@@ -15,3 +15,10 @@
 - Power defaults to 80% (spec was silent). MDE uses a closed-form approximation, checked against an exact power solve in scripts/check_stats.py (about 2 to 4% apart).
 - Verdict order: broken split, then below planned sample (even a scary early loss, because peeking inflates false alarms), then win, then loss, else no clear winner.
 - Python check runs in a gitignored venv at scripts/.venv so system Python stays clean. Tests and the script share scripts/fixtures/datasets.json.
+- Readout chart is hand-written SVG, not Recharts or Chart.js: one line, one band and a zero line is about 120 lines, adds no dependency, and I can explain every line.
+- Chart reads its container width (ResizeObserver) instead of scaling a fixed viewBox, so axis text stays readable on a phone.
+- Demos come from src/lib/demos.ts with a fixed seed; scripts/fixtures/datasets.json is generated from it so tests, the scipy check and the UI share one source.
+- clean_win kept as originally written (scipy-checked test numbers depend on it); early_peek rebuilt as a novelty effect (lift near +40% on day 3, fading), 28 days, planned 40,000 per variant; broken_split regenerated with daily noise. All have unequal user totals.
+- Underpowered check is skipped (shown grey, "Skipped") when no minimum lift is entered, rather than guessing a target.
+- Business impact needs both monthly users and value per conversion, or neither. Half-filled would silently show nothing.
+- vitest.config.ts added only to resolve the "@/" import alias in tests; scripts/ excluded from tsconfig so the Next build does not type-check the Node fixture script.

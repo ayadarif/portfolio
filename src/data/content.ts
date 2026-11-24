@@ -85,7 +85,8 @@ export const projects: Project[] = [
     name: "Experiment readout tool",
     description:
       "Upload A/B test results and get a plain-English readout that flags the mistakes teams make, like calling tests early or uneven splits, and never claims more than the statistics support.",
-    status: "Building now",
+    status: "Live (written readout coming)",
+    href: "/experiment-readout",
   },
   {
     name: "Feedback triage agent",

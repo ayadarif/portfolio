@@ -20,8 +20,13 @@ See decisions.md. Ayad chose the stack; Claude chose the file layout (approved p
 - Real copy in content.ts (intro, 3 case studies, 3 projects, contact). Results is now a list (string[]); CaseStudyCard renders bullets. Tab title: Ayad Arif | Product Manager.
 - Experiment Readout stats module (2026-11-24): src/lib/stats.ts, 36 vitest tests (npm test), scripts/check_stats.py (scipy check, uses scripts/.venv). Run: python3 -m venv scripts/.venv && scripts/.venv/bin/pip install scipy && scripts/.venv/bin/python scripts/check_stats.py
 
+- Experiment Readout UI (2026-11-24) at /experiment-readout: 3 steps (Setup, Results, Readout), 3 demos, verdict banner, 3 checks, stats table, SVG lift chart, placeholder for the written readout. Linked from Projects. 66 tests pass; build passes.
+  - Files: src/lib/csv.ts (parser), readout.ts (form to numbers, one buildReadout call), demos.ts (seeded demos), src/components/readout/*. Chart is hand-written SVG (LiftChart.tsx), no chart library.
+  - Regenerate fixtures after editing demos: node scripts/write_fixtures.ts (then npm test and the scipy check).
+  - NOT checked by eye: no browser was available in the session, so the layout (phone width, dark mode, chart) was only verified through type check, build and server-render tests. Open the live URL on your phone first.
+
 ## Next
-0. Experiment Readout UI at /experiment-readout (spec: docs/experiment-readout-spec.md). Stats module is done; build UI on top of it.
+0. Experiment Readout: look at it on a phone; then the written readout (rules and templates, 4 to 6 sentences; optional Claude API rewrite behind ANTHROPIC_API_KEY).
 1. Proofread copy on the live site; check phone view.
 2. Add src/app/api/<tool>/route.ts for the AI tools.
 
