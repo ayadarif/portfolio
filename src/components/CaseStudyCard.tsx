@@ -39,7 +39,23 @@ export default function CaseStudyCard({ study }: { study: CaseStudy }) {
         <Row label="Problem" text={study.problem} />
         <Row label="What I did" text={study.whatIDid} />
         <ListRow label="Results" items={study.results} />
-        <Row label="What I learned" text={study.learned} />
+        <div>
+          <dt className="text-xs font-medium uppercase tracking-wider text-zinc-500">
+            What I learned
+          </dt>
+          <dd className="mt-1 leading-7">
+            {study.learned}
+            {study.learnedLink && (
+              <>
+                {" "}Later, I built those checks into a tool:{" "}
+                <a href={study.learnedLink.href} className="font-medium underline">
+                  {study.learnedLink.text}
+                </a>
+                .
+              </>
+            )}
+          </dd>
+        </div>
       </dl>
     </article>
   );

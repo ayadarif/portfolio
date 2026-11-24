@@ -8,6 +8,7 @@ export type CaseStudy = {
   whatIDid: string;
   results: string[]; // one bullet per entry
   learned: string;
+  learnedLink?: { text: string; href: string }; // optional closing sentence with a link, shown after `learned`
 };
 
 export type Project = {
@@ -26,7 +27,7 @@ export const intro = {
   name: "Ayad Arif",
   headline: "Product manager with an analyst's toolkit.",
   summary:
-    "I've spent six years in product and data roles at SastaTicket and Daraz (Alibaba Group), working on growth, retention, pricing and experimentation. I started as an analyst, so I find and size problems myself in SQL and Python before deciding what to build. Right now I'm building AI tools for product teams with Claude Code and the Claude API.",
+    "I've spent nearly six years in product and data roles at SastaTicket and Daraz (Alibaba Group), working on growth, retention, pricing and experimentation. I started as an analyst, so I find and size problems myself in SQL and Python before deciding what to build. Right now I'm building AI tools for product teams with Claude Code.",
 };
 
 export const caseStudies: CaseStudy[] = [
@@ -53,7 +54,7 @@ export const caseStudies: CaseStudy[] = [
     problem:
       "Product decisions went to whoever had the strongest hunch or the most sway in the room. Even when someone wanted evidence, the data couldn't settle anything: GA4 and our internal numbers disagreed by 15 to 18%.",
     whatIDid:
-      "Two things had to be fixed together: the data and the habit. On data, I traced the gap to four causes. Booking events fired twice or not at all. Users lost attribution when they came back from payment gateways. The free GA4 tier had its own limits. And GA4 and our internal systems didn't count a \"booking\" the same way. I unified GA4 with our internal data so the commercial team had one number to trust. On habit, I brought in Growthbook and standardised how four product teams ran A/B tests.",
+      "Two things had to be fixed together: the data and the habit. On data, I traced the gap to four causes. Booking events fired twice or not at all. Users lost attribution when they came back from payment gateways. The free GA4 tier had its own limits. And GA4 and our internal systems didn't count a \"booking\" the same way. I unified GA4 with our internal data so the commercial team had one number to trust. On habit, I brought in GrowthBook and standardised how four product teams ran A/B tests.",
     results: [
       "Reporting discrepancy cut from 15 to 18% to under 6%",
       "10 to 15 experiments across 4 teams in 6 months",
@@ -61,6 +62,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     learned:
       "Adopting a tool is the easy part; discipline is the hard part. Teams still made the classic mistakes: stopping tests the moment results looked good, accepting uneven splits between variants without asking why, and picking the success metric after seeing the results. If I did it again, I'd build those checks into the process from day one instead of catching them in review.",
+    learnedLink: { text: "Experiment Readout", href: "/experiment-readout" },
   },
   {
     title: "Free cancellation: flexibility priced like insurance",
@@ -72,7 +74,7 @@ export const caseStudies: CaseStudy[] = [
     results: [
       "Extended the same pricing model into Free Date Changes and Delay Protection",
       "Together, the three products lifted profitability by 5%",
-      "Still running about four years after launch",
+      "Still running when I left in 2026, about four years after launch",
       "Became a reason customers chose SastaTicket: customers told me so directly, and many 5-star reviews named Free Cancellation as the feature that set us apart",
     ],
     learned:
@@ -82,23 +84,23 @@ export const caseStudies: CaseStudy[] = [
 
 export const projects: Project[] = [
   {
-    name: "Experiment readout tool",
+    name: "Experiment Readout",
     description:
-      "Upload A/B test results and get a plain-English readout that flags the mistakes teams make, like calling tests early or uneven splits, and never claims more than the statistics support.",
-    status: "Live (written readout coming)",
+      "Review an A/B test the way a careful analyst would: checks for uneven splits, early peeking and underpowered tests, then gives one clear verdict. Won't call a result significant unless the p-value and the confidence range both support it.",
+    status: "Live",
     href: "/experiment-readout",
   },
   {
-    name: "Feedback triage agent",
+    name: "Feedback triage",
     description:
-      "Turns a pile of app reviews into ranked themes with representative quotes, so a PM knows what to fix first.",
-    status: "Building now",
+      "JazzCash vs Easypaisa. An AI pipeline, run offline with Claude Code, sorts hundreds of public app reviews (many in Roman Urdu) into ranked themes, with its accuracy measured against my own labels.",
+    status: "In progress",
   },
   {
     name: "Five-Minute Brief",
     description:
       "Paste an email thread before a client meeting and get what you owe, what they owe and what to raise, each tied to the line it came from.",
-    status: "Building now",
+    status: "Prototype",
   },
 ];
 
