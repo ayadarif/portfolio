@@ -124,7 +124,21 @@ Plain-English terms: the **Wilson interval** is the range of true agreement rate
 - Personal-data stripping is regex only.
 - Themes are built from one-line summaries, not full text.
 
-## 7. Quiz (10 questions)
+## 6b. Evaluation v2 (phase 2): the new methods in plain terms
+
+- **Bootstrap interval.** Re-draw the 100 reviews with replacement 2,000 times, recompute the number each time, and take the middle 95%. It shows how much the number would wobble if you had labelled a different 100 reviews. It does not cover label quality.
+- **Wilson interval.** The standard interval for "k out of n" (91 of 100). Better than the textbook one when n is small or the share is near 100%.
+- **Precision, recall, F1.** For one category: precision = of the reviews the model put there, how many I agree with; recall = of the reviews I put there, how many the model found; F1 = their balance. Tiny categories give noisy values.
+- **Jaccard.** For a review with two categories: overlap of the two sets divided by their union. 1 means identical sets.
+- **Weighted kappa.** Kappa for ordered scores (severity 1 to 3): a 1 against a 3 is penalised more than a 1 against a 2.
+- **Krippendorff's alpha.** Agreement among several raters, allowed to have missing ratings (the second labeller will only do 50 of the 100). 1 is perfect, 0 is chance. It is how the human ceiling will be reported: me against the peer, and each of us against the model.
+- **Repeated-run agreement.** Five runs of the same prompt. Where they all agree on a review, it is "settled"; the rest go to a person. In this data accuracy barely rises when you demand agreement (92.9% to 93.1%), so it is a weak signal here. That is a finding, not a failure.
+- **Batch test.** One review per call, and shuffled batches of 25. Agreement with my labels did not move, so I found no neighbour contamination on categories. Severity is less stable.
+- **Prompt injection.** 15 fake reviews with instructions inside ("ignore your rules"). The model labelled all 15 by their real content. That shows resistance to these attacks, not to all.
+- **Cost.** The numbers are Claude Code's own estimate of what the API would have charged. I paid $0 marginal on a Max subscription.
+- **Replay.** Every run is saved in `data/eval/runs/`. `scripts/triage/eval_v2.py` recomputes everything from those files. A test fails if a published number changes. CI never calls the model.
+
+## 7. Quiz (14 questions)
 
 1. Why does `preflight()` refuse to run when `ANTHROPIC_API_KEY` is set?
 2. What does `--tools ""` protect against?
@@ -136,6 +150,10 @@ Plain-English terms: the **Wilson interval** is the range of true agreement rate
 8. Why are the stars and bank hidden on the labelling sheet?
 9. Why is the eval set not proportional to the star mix, and what does that limit?
 10. The model matched either of your categories on 91 of 100 with a 95% interval of 83.8% to 95.2%. What does that interval cover, and what does it not?
+11. Why can Krippendorff's alpha cope with only 50 of 100 reviews having a second label, when Fleiss' kappa cannot?
+12. Five runs agree on 87 reviews. What is the accuracy on those, and what does that say about using agreement as a confidence signal?
+13. Batch size 1 changed more labels than shuffled batches of 25 did, yet agreement with you did not move. How do you read that?
+14. Why is a 15-item injection set a weak proof, and what would make it stronger?
 
 ## Answers
 
@@ -149,3 +167,7 @@ Plain-English terms: the **Wilson interval** is the range of true agreement rate
 8. They could nudge your labels (a 1 star review reads as more severe). You label from the text alone, as the model does.
 9. So 2 and 3 star reviews aren't too few to measure. It means the agreement figure describes this sampled set, not the whole corpus.
 10. It covers sampling noise from having only 100 reviews. It does not cover label quality (one labeller), nor the fact that the set was quota sampled rather than representative of all 900.
+11. Alpha is built from pairs of ratings actually present in each unit, so missing ratings just shrink the number of pairs. Fleiss' kappa assumes every unit has the same number of raters.
+12. 93.1% on the 87 unanimous reviews against 92.9% on the 99 with at least 3 of 5 agreeing, so barely better. Agreement across runs does not separate right from wrong here; the model is consistently wrong on the vague reviews too.
+13. One-at-a-time labelling moves some borderline reviews to a different but equally defensible category. Moving about with no change in agreement with me means the movement is noise on borderline cases, not a systematic effect of batching.
+14. Fifteen attacks of one family cannot cover the space. Stronger: more varied attacks (hidden in the middle of long reviews, other languages, role play), repeated runs, and an attempt to break the output schema.

@@ -168,7 +168,13 @@ Moving parts. N* is the total sample (both arms) where the band is tightest; I s
 
 Honest trade-off. Group sequential tests (fixed looks, alpha spending) keep more power when the sample estimate is good (Spotify: 0.90 to 0.93 against about 0.72). I chose the confidence sequence because it needs no look schedule. Code: `sequentialHalfWidth` in src/lib/stats.ts. Check: `scripts/check_sequential.py`.
 
-## 7. Quiz (10 questions)
+## 6c. The peeking simulator (P5)
+
+An A/A test gives both versions the same true rate, so any winner is a false alarm. The simulator runs hundreds of them, checks at every look you choose, and counts how many ever show a "winner". With a daily check over 24 days at a 10% rate it is about 28% for the ordinary interval and about 1% for the sequential band (400 tests, fixed seed).
+
+How it stays checkable: a tiny integer random number generator (mulberry32) with a fixed seed, ported line by line to Python (`scripts/check_simulator.py`). The vitest test compares counts exactly. Daily conversions use a normal approximation (sum of 12 uniform draws), because it is reproducible to the last bit in both languages. It runs in chunks of 25 tests so the page stays responsive, and the result is announced in a `role="status"` region.
+
+## 7. Quiz (16 questions)
 
 1. Why does the lift CI use unpooled variance while the p-value uses pooled?
 2. Which of the two standard errors is never smaller, and what does that imply at the 5% edge?
@@ -184,6 +190,8 @@ Honest trade-off. Group sequential tests (fixed looks, alpha spending) keep more
 12. Why is the sequential band wider than the ordinary one, and what does that buy?
 13. Why does every early call say the effect is probably overstated?
 14. When would you pick a group sequential test instead?
+15. Why must the simulator's random numbers be reproducible, and how does the project prove its two versions agree?
+16. In an A/A test, what does a 28% result for the ordinary interval mean in plain words?
 
 ## Answers
 
@@ -201,3 +209,5 @@ Honest trade-off. Group sequential tests (fixed looks, alpha spending) keep more
 12. It has to hold at every look, not one. That costs width; it buys a false alarm rate that stays near alpha (1.05% against 26.2% in my simulation).
 13. You only stop early when the data has run high, so the stopped estimate is biased upward (Statsig warns of the same).
 14. When the looks are fixed and known in advance and the sample size estimate is good: it keeps more power.
+15. So anyone can re-run it and get the same answer, and so the Python port can be compared with the TypeScript. The test asserts identical counts on two reference settings.
+16. In 28 of 100 tests where nothing was different, someone checking every day would at some point have called a winner.

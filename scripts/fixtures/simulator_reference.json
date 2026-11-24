@@ -1,0 +1,183 @@
+[
+ {
+  "config": {
+   "baseline": 0.1,
+   "dailyPerArm": 500,
+   "days": 24,
+   "checkEvery": 1,
+   "tests": 400,
+   "seed": 20261124
+  },
+  "result": {
+   "tests": 400,
+   "naiveAny": 112,
+   "seqAny": 5,
+   "planned": 12000,
+   "looks": [
+    {
+     "day": 1,
+     "naive": 22,
+     "seq": 0
+    },
+    {
+     "day": 2,
+     "naive": 31,
+     "seq": 0
+    },
+    {
+     "day": 3,
+     "naive": 36,
+     "seq": 0
+    },
+    {
+     "day": 4,
+     "naive": 45,
+     "seq": 0
+    },
+    {
+     "day": 5,
+     "naive": 52,
+     "seq": 0
+    },
+    {
+     "day": 6,
+     "naive": 57,
+     "seq": 0
+    },
+    {
+     "day": 7,
+     "naive": 64,
+     "seq": 1
+    },
+    {
+     "day": 8,
+     "naive": 70,
+     "seq": 2
+    },
+    {
+     "day": 9,
+     "naive": 74,
+     "seq": 2
+    },
+    {
+     "day": 10,
+     "naive": 77,
+     "seq": 2
+    },
+    {
+     "day": 11,
+     "naive": 78,
+     "seq": 3
+    },
+    {
+     "day": 12,
+     "naive": 82,
+     "seq": 3
+    },
+    {
+     "day": 13,
+     "naive": 83,
+     "seq": 3
+    },
+    {
+     "day": 14,
+     "naive": 85,
+     "seq": 4
+    },
+    {
+     "day": 15,
+     "naive": 91,
+     "seq": 4
+    },
+    {
+     "day": 16,
+     "naive": 94,
+     "seq": 4
+    },
+    {
+     "day": 17,
+     "naive": 95,
+     "seq": 4
+    },
+    {
+     "day": 18,
+     "naive": 98,
+     "seq": 4
+    },
+    {
+     "day": 19,
+     "naive": 99,
+     "seq": 4
+    },
+    {
+     "day": 20,
+     "naive": 101,
+     "seq": 4
+    },
+    {
+     "day": 21,
+     "naive": 103,
+     "seq": 4
+    },
+    {
+     "day": 22,
+     "naive": 109,
+     "seq": 4
+    },
+    {
+     "day": 23,
+     "naive": 110,
+     "seq": 5
+    },
+    {
+     "day": 24,
+     "naive": 112,
+     "seq": 5
+    }
+   ]
+  }
+ },
+ {
+  "config": {
+   "baseline": 0.03,
+   "dailyPerArm": 800,
+   "days": 14,
+   "checkEvery": 3,
+   "tests": 300,
+   "seed": 7
+  },
+  "result": {
+   "tests": 300,
+   "naiveAny": 45,
+   "seqAny": 2,
+   "planned": 11200,
+   "looks": [
+    {
+     "day": 3,
+     "naive": 21,
+     "seq": 1
+    },
+    {
+     "day": 6,
+     "naive": 28,
+     "seq": 1
+    },
+    {
+     "day": 9,
+     "naive": 36,
+     "seq": 1
+    },
+    {
+     "day": 12,
+     "naive": 41,
+     "seq": 2
+    },
+    {
+     "day": 14,
+     "naive": 45,
+     "seq": 2
+    }
+   ]
+  }
+ }
+]
