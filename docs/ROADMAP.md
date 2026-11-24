@@ -52,7 +52,7 @@ Owner: Ayad Arif. Written Nov 24, 2026. Claude Code works through this file on i
 - Static page /feedback-triage per spec. Eval section shows "Accuracy check in progress" until T7 is done; never invent a number.
 - Package as a reusable CLI: any CSV with a text column in, the same JSON and a standalone HTML report out. README usage section.
 - Update the Projects entry in src/data/content.ts only to describe what exists (link the page once live on the preview).
-- Status: BUILT 2026-11-24 (e21f775); eval section reads Accuracy check in progress; reviewer pass pending
+- Status: DONE 2026-11-24 (1882359); reviewer findings fixed; eval section reads Accuracy check in progress
 
 ### T7. Feedback triage: eval (blocked until Ayad's labels are committed)
 - Run the model on the 100 eval reviews twice. Report agreement with a 95% interval, Cohen's kappa, confusion matrix for the top categories, severity exact and within-one agreement, share in "other", run-to-run agreement, and a keyword baseline. Publish on the page. Log disagreements in decisions.md.
@@ -63,12 +63,12 @@ Owner: Ayad Arif. Written Nov 24, 2026. Claude Code works through this file on i
 - Spec: docs/pmex-calculator-spec.md (v1.1). Build Layer 1 at /pmex-calculator with all maths in src/lib/pmex.ts and unit tests. Contract and fee data in one file with source URL and date per row. Defaults: gold oz, crude and Tola Gold; KTrade and SCS fee presets; ALT 55%.
 - Tests must include: Tola Gold has no short side; auto-liquidation distance; fee floor of Rs 30 binding on CRUDE10; USD/PKR change moves tick value and margin but not settled P&L.
 - Add "Real-trade check" to NEEDS_AYAD.md (one broker statement, account numbers removed) and leave a skipped test ready for it.
-- Status: BUILT 2026-11-24 (411eb82); reviewer pass pending; real-trade check waiting on Ayad (NEEDS_AYAD item 11)
+- Status: DONE 2026-11-24 (1882359); reviewer findings fixed; real-trade check waits on Ayad (NEEDS_AYAD item 11)
 
 ### T9. Polish and case study drafts
 - docs/case-studies/<project>.md for Experiment Readout, Feedback triage and PMEX calculator: Problem, What I did, Results, What I learned (leave "What I learned" for Ayad). Drafts only; don't publish to the site.
 - Check every page on phone width with server-render tests; fix anything broken.
-- Status:
+- Status: DONE 2026-11-24 (1882359); drafts in docs/case-studies, phone layout tests in src/phone-layout.test.tsx
 
 ### T10. Final review
 - Spawn a fresh reviewer subagent over the whole sprint branch: claims vs code, tests, style, secrets, personal data, licence notes. Fix findings. Summarise the state in HANDOFF.md for Ayad.
