@@ -39,3 +39,6 @@
 - Sample is 1,000 reviews with seed 20261124, so the corpus is reproducible. The eval set (T3) is drawn from inside this corpus and held out.
 - Personal data is stripped with regexes before any model call. Tested on made-up examples; it can miss things, and the page will not claim otherwise.
 - Language mix is measured with a word-list heuristic, not a detector library, to avoid a dependency. Reported as rough.
+- Eval set: 100 reviews from inside the corpus, seed 20261125, quota 30/15/15/15/25 for 1 to 5 stars (not proportional, so 2 and 3 star reviews are not too thin to measure). Consequence: agreement on the eval set is not a population estimate; say so on the page.
+- The labelling sheet hides star rating and bank so they do not nudge Ayad's labels. Its order is shuffled.
+- Codebook slugs are fixed and shared by the model and by Ayad; tie-break rules and severity anchors are in docs/triage-codebook.md. When torn on severity, label lower.
