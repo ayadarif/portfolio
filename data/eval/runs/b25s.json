@@ -1,0 +1,882 @@
+{
+ "tag": "b25s",
+ "description": "100 eval reviews, batch 25, shuffled order (seed 20261124)",
+ "saved_at_utc": "2026-11-24T11:10:06+00:00",
+ "claude_code_version": "2.1.331 (Claude Code)",
+ "model": "claude-sonnet-5-5",
+ "auth_method": "claude.ai",
+ "prompt_hash": "3dd5d5f6ac2d62ad",
+ "order": [
+  "r0565",
+  "r0838",
+  "r0064",
+  "r0404",
+  "r0421",
+  "r0025",
+  "r0020",
+  "r0722",
+  "r0251",
+  "r0727",
+  "r0734",
+  "r0945",
+  "r0852",
+  "r0519",
+  "r0039",
+  "r0771",
+  "r0316",
+  "r0884",
+  "r0134",
+  "r0885",
+  "r0090",
+  "r0435",
+  "r0662",
+  "r0833",
+  "r0698",
+  "r0082",
+  "r0624",
+  "r0311",
+  "r0158",
+  "r0688",
+  "r0102",
+  "r0998",
+  "r0227",
+  "r0935",
+  "r0726",
+  "r0154",
+  "r0555",
+  "r0880",
+  "r0264",
+  "r0375",
+  "r0295",
+  "r0926",
+  "r0213",
+  "r0430",
+  "r0487",
+  "r0754",
+  "r0918",
+  "r0532",
+  "r0803",
+  "r0583",
+  "r0675",
+  "r0307",
+  "r0678",
+  "r0929",
+  "r0558",
+  "r0284",
+  "r0199",
+  "r0736",
+  "r0547",
+  "r0338",
+  "r0517",
+  "r0436",
+  "r0093",
+  "r0476",
+  "r0610",
+  "r0331",
+  "r0977",
+  "r0984",
+  "r0886",
+  "r0417",
+  "r0664",
+  "r0797",
+  "r0895",
+  "r0546",
+  "r0776",
+  "r0590",
+  "r0894",
+  "r0036",
+  "r0334",
+  "r0143",
+  "r0051",
+  "r0100",
+  "r0019",
+  "r0347",
+  "r0902",
+  "r0420",
+  "r0834",
+  "r0887",
+  "r0975",
+  "r0908",
+  "r0443",
+  "r0497",
+  "r0302",
+  "r0294",
+  "r0099",
+  "r0478",
+  "r0846",
+  "r0937",
+  "r0462",
+  "r0551"
+ ],
+ "labels": {
+  "r0565": {
+   "categories": [
+    "login_access"
+   ],
+   "severity": 3,
+   "summary": "Customer has been unable to log in to the app for almost 24 hours."
+  },
+  "r0838": {
+   "categories": [
+    "other"
+   ],
+   "severity": 1,
+   "summary": "Customer says the app is very annoying without giving any specific problem."
+  },
+  "r0064": {
+   "categories": [
+    "app_stability"
+   ],
+   "severity": 2,
+   "summary": "App works on some days and fails on others, making it unreliable."
+  },
+  "r0404": {
+   "categories": [
+    "other"
+   ],
+   "severity": 1,
+   "summary": "Customer says the app is giving them trouble, with no detail."
+  },
+  "r0421": {
+   "categories": [
+    "other"
+   ],
+   "severity": 1,
+   "summary": "Customer only states they were served at a particular branch, with no feedback about the app or service."
+  },
+  "r0025": {
+   "categories": [
+    "login_access"
+   ],
+   "severity": 2,
+   "summary": "Customer has had major, ongoing trouble logging in to their account on the mobile app."
+  },
+  "r0020": {
+   "categories": [
+    "app_stability",
+    "ui_ux"
+   ],
+   "severity": 1,
+   "summary": "App is slow with poor connection, and customer prefers the old version."
+  },
+  "r0722": {
+   "categories": [
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Customer says the app is working well and serving its purpose."
+  },
+  "r0251": {
+   "categories": [
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Customer says the bank is the best compared with other banks."
+  },
+  "r0727": {
+   "categories": [
+    "praise",
+    "app_stability"
+   ],
+   "severity": 1,
+   "summary": "Nice experience overall, though the network sometimes fails."
+  },
+  "r0734": {
+   "categories": [
+    "other"
+   ],
+   "severity": 1,
+   "summary": "Customer calls it the worst application with no specifics."
+  },
+  "r0945": {
+   "categories": [
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Customer gives a vague positive comment about the app."
+  },
+  "r0852": {
+   "categories": [
+    "feature_request",
+    "login_access"
+   ],
+   "severity": 2,
+   "summary": "Customer cannot increase their transaction limit without a token."
+  },
+  "r0519": {
+   "categories": [
+    "app_stability"
+   ],
+   "severity": 1,
+   "summary": "App is good but is slow to open."
+  },
+  "r0039": {
+   "categories": [
+    "app_stability"
+   ],
+   "severity": 2,
+   "summary": "App works one day then fails for about three days, and customer wants a quick fix."
+  },
+  "r0771": {
+   "categories": [
+    "ui_ux"
+   ],
+   "severity": 1,
+   "summary": "Customer says they do not understand the app."
+  },
+  "r0316": {
+   "categories": [
+    "praise",
+    "feature_request"
+   ],
+   "severity": 1,
+   "summary": "App is good but customer says it needs some improvement."
+  },
+  "r0884": {
+   "categories": [
+    "app_stability"
+   ],
+   "severity": 2,
+   "summary": "App is not opening anymore, and customer refers to another bank's app."
+  },
+  "r0134": {
+   "categories": [
+    "transfers_payments",
+    "fees_charges"
+   ],
+   "severity": 3,
+   "summary": "Card payments for goods failed with a daily withdrawal limit error although no withdrawals were made."
+  },
+  "r0885": {
+   "categories": [
+    "feature_request",
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Customer says the bank is doing well and asks for a way to hide account balance."
+  },
+  "r0090": {
+   "categories": [
+    "transfers_payments"
+   ],
+   "severity": 2,
+   "summary": "Customer cannot make transfers on the banking app."
+  },
+  "r0435": {
+   "categories": [
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Customer says the app is nice and cool."
+  },
+  "r0662": {
+   "categories": [
+    "support",
+    "ui_ux"
+   ],
+   "severity": 2,
+   "summary": "Customer cannot report an issue in the app since updating it."
+  },
+  "r0833": {
+   "categories": [
+    "money_balance",
+    "feature_request"
+   ],
+   "severity": 1,
+   "summary": "Transfer receipt cannot be accessed from transaction history unless saved immediately after the transfer."
+  },
+  "r0698": {
+   "categories": [
+    "app_stability"
+   ],
+   "severity": 2,
+   "summary": "Customer has had difficulty opening the app lately."
+  },
+  "r0082": {
+   "categories": [
+    "support"
+   ],
+   "severity": 1,
+   "summary": "Customer says their issue was not resolved smoothly."
+  },
+  "r0624": {
+   "categories": [
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Customer says the app is really good."
+  },
+  "r0311": {
+   "categories": [
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Customer finds the app fast and perfect and likes it."
+  },
+  "r0158": {
+   "categories": [
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Customer says the app is very good and easy."
+  },
+  "r0688": {
+   "categories": [
+    "transfers_payments",
+    "ui_ux"
+   ],
+   "severity": 2,
+   "summary": "Since updating, the account-to-debit selector shows blank, so the customer cannot transfer or do anything in the app."
+  },
+  "r0102": {
+   "categories": [
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Customer finds the app helpful but sometimes frustrating."
+  },
+  "r0998": {
+   "categories": [
+    "app_stability"
+   ],
+   "severity": 3,
+   "summary": "After upgrading, the app keeps crashing and is unusable; customer asks to downgrade and blames poor testing."
+  },
+  "r0227": {
+   "categories": [
+    "app_stability",
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Customer enjoys the app but notes delayed responses unless the network is strong, and asks for improvement."
+  },
+  "r0935": {
+   "categories": [
+    "feature_request"
+   ],
+   "severity": 1,
+   "summary": "Customer likes the app but wants a toggle to hide the account balance."
+  },
+  "r0726": {
+   "categories": [
+    "money_balance"
+   ],
+   "severity": 3,
+   "summary": "Customer sent four transfers of the same amount to another bank but only three arrived; one is missing."
+  },
+  "r0154": {
+   "categories": [
+    "transfers_payments"
+   ],
+   "severity": 1,
+   "summary": "Bank name sometimes doesn't appear when transferring until the customer leaves the app and signs in again."
+  },
+  "r0555": {
+   "categories": [
+    "money_balance",
+    "transfers_payments"
+   ],
+   "severity": 3,
+   "summary": "Transfers often error at the end yet the customer is debited, complaints take long, and wrong success feedback is given."
+  },
+  "r0880": {
+   "categories": [
+    "other"
+   ],
+   "severity": 1,
+   "summary": "Customer reports a terrible experience with no details."
+  },
+  "r0264": {
+   "categories": [
+    "ui_ux"
+   ],
+   "severity": 1,
+   "summary": "Customer prefers the look of the old app."
+  },
+  "r0375": {
+   "categories": [
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Customer says banking is efficient and fast."
+  },
+  "r0295": {
+   "categories": [
+    "app_stability",
+    "money_balance"
+   ],
+   "severity": 2,
+   "summary": "Transaction history won't load and the app sometimes won't open for transactions."
+  },
+  "r0926": {
+   "categories": [
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Customer thanks the bank for an important update."
+  },
+  "r0213": {
+   "categories": [
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Customer says the app is fast and easy to use."
+  },
+  "r0430": {
+   "categories": [
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Customer praises good performance."
+  },
+  "r0487": {
+   "categories": [
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Customer says the app makes things easier."
+  },
+  "r0754": {
+   "categories": [
+    "login_access"
+   ],
+   "severity": 3,
+   "summary": "Unable to log in for days after getting a new phone because the mPIN isn't recognised."
+  },
+  "r0918": {
+   "categories": [
+    "money_balance",
+    "app_stability"
+   ],
+   "severity": 3,
+   "summary": "App won't open for days; a transfer failed to credit the other bank yet the customer was debited."
+  },
+  "r0532": {
+   "categories": [
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Customer praises the bank's app as the best in a caption-style comment."
+  },
+  "r0803": {
+   "categories": [
+    "app_stability"
+   ],
+   "severity": 1,
+   "summary": "Customer says the app is full of errors and embarrassing."
+  },
+  "r0583": {
+   "categories": [
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Customer calls the app the greatest of all time."
+  },
+  "r0675": {
+   "categories": [
+    "ui_ux"
+   ],
+   "severity": 1,
+   "summary": "Customer says the app looks and works like outdated software and asks for an update."
+  },
+  "r0307": {
+   "categories": [
+    "ui_ux",
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Likes the app but asks for the upgrade or update process to be made easier."
+  },
+  "r0678": {
+   "categories": [
+    "app_stability"
+   ],
+   "severity": 2,
+   "summary": "Reports the app is not working, with no further detail."
+  },
+  "r0929": {
+   "categories": [
+    "login_access"
+   ],
+   "severity": 2,
+   "summary": "Cannot sign in to the app despite downloading it eight times; other apps work fine on the phone."
+  },
+  "r0558": {
+   "categories": [
+    "fees_charges"
+   ],
+   "severity": 1,
+   "summary": "Complains of excessive deductions for electronic charges."
+  },
+  "r0284": {
+   "categories": [
+    "app_stability"
+   ],
+   "severity": 1,
+   "summary": "Calls the app unsatisfactory and says its reliability is poor."
+  },
+  "r0199": {
+   "categories": [
+    "money_balance",
+    "transfers_payments"
+   ],
+   "severity": 3,
+   "summary": "Since Friday the app shows insufficient balance at POS despite funds, and transfers fail on a salary account at month end."
+  },
+  "r0736": {
+   "categories": [
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Says the app is nice and very easy to operate."
+  },
+  "r0547": {
+   "categories": [
+    "app_stability"
+   ],
+   "severity": 1,
+   "summary": "Calls the apps terrible and the service horrible, mentioning iOS, with no specifics."
+  },
+  "r0338": {
+   "categories": [
+    "app_stability"
+   ],
+   "severity": 2,
+   "summary": "Says the app is very unreliable, going up and down unpredictably, making it hard to rely on for banking."
+  },
+  "r0517": {
+   "categories": [
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Says the app is fast and safe."
+  },
+  "r0436": {
+   "categories": [
+    "other",
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Likes the app but says their ATM card is rejected; the card expired in 2024."
+  },
+  "r0093": {
+   "categories": [
+    "money_balance",
+    "feature_request"
+   ],
+   "severity": 2,
+   "summary": "Transaction records don't update daily so transactions can't be traced, and receipts can't be regenerated after closing the success screen."
+  },
+  "r0476": {
+   "categories": [
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Gives the app top marks and thanks staff at two named branches for their help."
+  },
+  "r0610": {
+   "categories": [
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Says it is their go-to bank app for transactions."
+  },
+  "r0331": {
+   "categories": [
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Says the first attempt was cumbersome but later use became friendly."
+  },
+  "r0977": {
+   "categories": [
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Calls it a fine app and gives credit to the bank."
+  },
+  "r0984": {
+   "categories": [
+    "transfers_payments"
+   ],
+   "severity": 2,
+   "summary": "Unable to make transfers with the app for the past four days."
+  },
+  "r0886": {
+   "categories": [
+    "login_access",
+    "app_stability"
+   ],
+   "severity": 2,
+   "summary": "App shows a deactivated message on its own and reinstalling doesn't help, so it can't be used."
+  },
+  "r0417": {
+   "categories": [
+    "support",
+    "app_stability"
+   ],
+   "severity": 2,
+   "summary": "Says the bank cannot give a loan because of ongoing maintenance and found the explanation unsatisfactory."
+  },
+  "r0664": {
+   "categories": [
+    "other"
+   ],
+   "severity": 1,
+   "summary": "Asks for service improvement, saying it is sometimes frustrating, with no specifics."
+  },
+  "r0797": {
+   "categories": [
+    "app_stability",
+    "login_access"
+   ],
+   "severity": 2,
+   "summary": "Says the app is unstable and logging in to transact is very difficult, comparing it unfavourably to a competitor."
+  },
+  "r0895": {
+   "categories": [
+    "app_stability",
+    "transfers_payments"
+   ],
+   "severity": 2,
+   "summary": "App refuses to open and any transaction attempted is unsuccessful."
+  },
+  "r0546": {
+   "categories": [
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Says another bank's mobile app is the best ever and they love it."
+  },
+  "r0776": {
+   "categories": [
+    "login_access"
+   ],
+   "severity": 2,
+   "summary": "Confused by a message saying their mobile number is deactivated."
+  },
+  "r0590": {
+   "categories": [
+    "app_stability"
+   ],
+   "severity": 2,
+   "summary": "Customer pleads for help because they cannot upgrade the app."
+  },
+  "r0894": {
+   "categories": [
+    "app_stability"
+   ],
+   "severity": 2,
+   "summary": "App keeps closing by itself in the current version, though earlier versions worked."
+  },
+  "r0036": {
+   "categories": [
+    "login_access"
+   ],
+   "severity": 3,
+   "summary": "Customer has been unable to log in for days."
+  },
+  "r0334": {
+   "categories": [
+    "feature_request"
+   ],
+   "severity": 1,
+   "summary": "Asks whether naira can be sent from the app to Rwanda or Kenya in local currencies."
+  },
+  "r0143": {
+   "categories": [
+    "support",
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Likes the app but cannot access the option to log a complaint."
+  },
+  "r0051": {
+   "categories": [
+    "money_balance",
+    "transfers_payments"
+   ],
+   "severity": 2,
+   "summary": "Cannot see their balance and also cannot transfer."
+  },
+  "r0100": {
+   "categories": [
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Calls the app splendid and amazing."
+  },
+  "r0019": {
+   "categories": [
+    "app_stability",
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Considers it a better bank app but asks for improved network reliability."
+  },
+  "r0347": {
+   "categories": [
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Says the app is very fast with no network delay."
+  },
+  "r0902": {
+   "categories": [
+    "app_stability"
+   ],
+   "severity": 2,
+   "summary": "Says the app never opens and the experience is terrible."
+  },
+  "r0420": {
+   "categories": [
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Says the app is the best among all."
+  },
+  "r0834": {
+   "categories": [
+    "app_stability"
+   ],
+   "severity": 2,
+   "summary": "App suddenly shows a network request failed error, persisting after reinstalling."
+  },
+  "r0887": {
+   "categories": [
+    "app_stability",
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "App is good and easy to use, but occasional network issues are annoying."
+  },
+  "r0975": {
+   "categories": [
+    "app_stability"
+   ],
+   "severity": 2,
+   "summary": "Reports the application is not working."
+  },
+  "r0908": {
+   "categories": [
+    "other"
+   ],
+   "severity": 1,
+   "summary": "Calls it the worst app and disappointing, with no specific issue given."
+  },
+  "r0443": {
+   "categories": [
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Says the app is easy to access and to keep it up."
+  },
+  "r0497": {
+   "categories": [
+    "money_balance",
+    "support"
+   ],
+   "severity": 3,
+   "summary": "Debited for transfers recipients say they never received, and the transaction history has been cleared."
+  },
+  "r0302": {
+   "categories": [
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Says the app always works and is easy to use."
+  },
+  "r0294": {
+   "categories": [
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Says using the app has been nice and the experience cool."
+  },
+  "r0099": {
+   "categories": [
+    "security_fraud",
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Finds the app nice but thinks the bank should improve its security."
+  },
+  "r0478": {
+   "categories": [
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Says it is the best mobile app."
+  },
+  "r0846": {
+   "categories": [
+    "app_stability"
+   ],
+   "severity": 2,
+   "summary": "New update keeps crashing when the app is opened."
+  },
+  "r0937": {
+   "categories": [
+    "app_stability"
+   ],
+   "severity": 2,
+   "summary": "Says the app is not working at all."
+  },
+  "r0462": {
+   "categories": [
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Describes the app as credible, secure and easy to use."
+  },
+  "r0551": {
+   "categories": [
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Says the app is the best, fast and safe."
+  }
+ },
+ "live_calls": 4,
+ "cache_hits": 0,
+ "failures": [],
+ "calls": [
+  {
+   "label": "classify 1/4",
+   "latency_s": 8.61,
+   "input_tokens": 2,
+   "output_tokens": 1354,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 1266,
+   "total_cost_usd_estimate": 0.0187771
+  },
+  {
+   "label": "classify 2/4",
+   "latency_s": 8.63,
+   "input_tokens": 2,
+   "output_tokens": 1361,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 1739,
+   "total_cost_usd_estimate": 0.020739100000000003
+  },
+  {
+   "label": "classify 3/4",
+   "latency_s": 10.03,
+   "input_tokens": 2,
+   "output_tokens": 1454,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 1675,
+   "total_cost_usd_estimate": 0.0214131
+  },
+  {
+   "label": "classify 4/4",
+   "latency_s": 7.89,
+   "input_tokens": 2,
+   "output_tokens": 1255,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 1262,
+   "total_cost_usd_estimate": 0.0177711
+  }
+ ],
+ "cost_note": "total_cost_usd_estimate is Claude Code's API-equivalent estimate; actual marginal spend is $0 on a Max subscription."
+}
