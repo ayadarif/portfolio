@@ -3,6 +3,7 @@
 import type { Readout as R, Setup } from "@/lib/readout";
 import type { Status, Verdict } from "@/lib/stats";
 import LiftChart from "./LiftChart";
+import WrittenReadout from "./WrittenReadout";
 import { int, pct, pval, signedInt, spct, spts } from "./format";
 
 const banner: Record<Verdict, { cls: string; line: string }> = {
@@ -41,7 +42,7 @@ export default function Readout({ r, setup }: { r: R; setup: Setup }) {
       name: "Underpowered",
       status: power.status,
       reason: power.targetAbs === null
-        ? "No minimum lift set in the plan, so this check was skipped."
+        ? "Skipped: no smallest lift was set. Go back to Setup and fill in \"Smallest lift you care about\" to turn this check on."
         : power.status === "amber"
           ? `This sample can only detect lifts of ${spts(mde).replace("+", "")} or more; you cared about ${spts(power.targetAbs).replace("+", "")}. "No difference" would mean little.`
           : `This sample can detect lifts down to ${spts(mde).replace("+", "")}, smaller than the ${spts(power.targetAbs).replace("+", "")} you cared about.`,
@@ -76,6 +77,8 @@ export default function Readout({ r, setup }: { r: R; setup: Setup }) {
         <p className="mt-1 text-2xl font-semibold">{r.verdict}</p>
         <p className="mt-1 text-sm">{b.line}</p>
       </div>
+
+      <WrittenReadout r={r} setup={setup} />
 
       <section>
         <h3 className="text-lg font-semibold">Checks</h3>
@@ -113,11 +116,6 @@ export default function Readout({ r, setup }: { r: R; setup: Setup }) {
           </div>
         </section>
       )}
-
-      <section className="rounded-xl border border-dashed border-zinc-300 p-5 text-sm text-zinc-500 dark:border-zinc-700">
-        <p className="font-medium text-foreground">Written readout</p>
-        <p className="mt-1">A plain-English summary of this result is coming next.</p>
-      </section>
     </div>
   );
 }
