@@ -23,7 +23,7 @@ Owner: Ayad Arif. Written Nov 24, 2026. Claude Code works through this file on i
 
 ### T0. Set up the sprint branch
 - `git switch -c sprint` (or switch to it if it exists). Make sure .gitignore contains `.claude/settings.local.json`. Commit this roadmap, NEEDS_AYAD.md and the two new specs in docs/. Push with `git push -u origin sprint`.
-- Status:
+- Status: DONE 2026-11-24 (6ed7145)
 
 ### T1. Experiment Readout: learning doc
 - Write docs/learn/experiment-readout.md per rule 7. Cover stats.ts formula by formula (Wilson interval, unpooled lift CI vs pooled z-test and why they can disagree at 5%, sample ratio mismatch and its 0.001 threshold, the sample-size formula and the MDE shortcut with its 2 to 4% error), the verdict order, the narrative rules, the validator, why the rewrite request is gated, and the tests.
