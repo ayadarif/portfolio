@@ -29,10 +29,14 @@ See decisions.md. Ayad chose the stack; Claude chose the file layout (approved p
 - Experiment Readout finish (2026-11-24): polish fixes (step numbers get list-none; clearer lift toggle with a live example; labels no longer run together; "Smallest lift" marked as needed for the underpowered check); rule-based written readout (src/lib/narrative.ts, shown under the verdict via WrittenReadout.tsx); AI rewrite layer built but OFF (src/app/api/rewrite/route.ts, src/lib/rewrite.ts, src/lib/validate-rewrite.ts; runs only if ANTHROPIC_API_KEY is set); "How this works" section (HowItWorks.tsx). 94 tests pass; build and lint pass. README and decisions.md updated.
   - NOT checked by eye: no browser available again. Check on your phone: step labels, lift toggle hint, label spacing, readout paragraph, How this works.
   - Route checked with curl: no key gives {"enabled":false}; fake key gives ok:false (fallback); junk payload 400; oversize 413. A real rewrite has never been run (no key).
+- Review fix batch (2026-11-24): copy fixes in content.ts (intro, GrowthBook, Readout link via optional learnedLink, case study 3 wording, three new project entries); demo planned samples now match sampleSizePerVariant (clean win 12,242 at 11% lift, broken split 8,838 at 13%, early peek 40,286 at 6%; data unchanged, verdicts unchanged; guard test in readout.test.ts); README intro; no-paid-API decision; Open Graph metadata plus generated /opengraph-image (metadataBase is https://aaportfolio-delta.vercel.app, change it if a custom domain arrives). 97 tests pass; lint and build pass.
+  - Early peek now also shows an amber "underpowered" check (MDE 0.71 pts vs 0.60 target). Intended; 7% target would remove it.
+  - /experiment-readout has no openGraph of its own, so shared links to it show the home page title and image.
 
 ## Next
 0. Look at /experiment-readout on a phone. Before ever setting ANTHROPIC_API_KEY on Vercel: set a spend limit on the key, and read the README note on the rate limit.
 1. Proofread copy on the live site; check phone view.
+2. After Vercel redeploys, run the link through LinkedIn Post Inspector to check the preview card (LinkedIn caches).
 
 ## Open questions
 - Real name/headline, site name, domain (skip paid domain for now).
