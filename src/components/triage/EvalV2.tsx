@@ -76,7 +76,7 @@ export default function EvalV2() {
       <h4 className="mt-5 font-medium">Does batching 25 reviews per call change labels?</h4>
       <p className="mt-1 leading-6">
         The pipeline sends 25 reviews per call. I re-ran the {ev.n_eval} reviews one at a time, and again in batches of 25 in shuffled order. Against my labels: batch size 1 matched either category on {bt.batch_1.agree_either} (kappa {f2(bt.batch_1.kappa_vs_ayad)}), shuffled batches of 25 on {bt.batch_25_shuffled.agree_either} (kappa {f2(bt.batch_25_shuffled.kappa_vs_ayad)}); the five standard runs had kappas of {bt.batch_25_original_runs_1_to_5_kappa_vs_ayad.map(f2).join(", ")}.
-        Batch size 1 gave the same first category as run 1 on {bt.batch_1.same_first_as_run1} reviews, shuffled batches on {bt.batch_25_shuffled.same_first_as_run1}, so one-at-a-time labelling changes more labels than shuffling does, but not in a way that moves agreement with me. Same severity as run 1: {bt.batch_1.severity_same_as_run1} and {bt.batch_25_shuffled.severity_same_as_run1} of {ev.n_eval}. On categories the data shows no sign of neighbours changing each other's labels; severity is the less stable field.
+        Batch size 1 gave the same first category as run 1 on {bt.batch_1.same_first_as_run1} reviews, shuffled batches on {bt.batch_25_shuffled.same_first_as_run1}, so one-at-a-time labelling changes more labels than shuffling does, but not in a way that moves agreement with me. Same severity as run 1: {bt.batch_1.severity_same_as_run1} and {bt.batch_25_shuffled.severity_same_as_run1} of {ev.n_eval}. On categories the data shows no sign of neighbours changing each other&apos;s labels; severity is the less stable field.
       </p>
 
       <h4 className="mt-5 font-medium">Prompt injection</h4>
