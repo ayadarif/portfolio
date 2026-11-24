@@ -64,3 +64,30 @@ Working through docs/ROADMAP.md on branch `sprint`. Push only with `git push ori
 ## Next
 1. Open: real-trade statement (item 11); confirm the labels method line (NEEDS_AYAD). Consider the codebook rule for generic service complaints (decisions.md).
 3. Phone check of /feedback-triage and /pmex-calculator on the Vercel preview. Ayad confirmed /experiment-readout looks clean on a phone (2026-11-24); the two new pages were not viewed in a browser.
+
+---
+# Phase 2 (depth and design), 2026-11-24
+Source docs: docs/research/portfolio-design-and-depth.md, docs/ROADMAP.md (P1 to P8). Branch `sprint`; push only `git push origin sprint`. Items for Ayad: NEEDS_AYAD.md items 21 to 29 (and 11, 15 to 20).
+
+## Done
+- P1 live runs (Claude Code 2.1.331, claude-sonnet-5-5, claude.ai login): runs 3 to 5, batch 1, shuffled batch 25, 15 injection reviews. Saved in data/eval/runs/*.json (committed); raw per-call caches are gitignored on Ayad's Mac. Code: scripts/triage/live_runs.py. Per-call tokens, latency, cost estimate logged by claude_runner.py.
+- P2 sequential band: src/lib/stats.ts (sequentialHalfWidth, sequentialBand, verdict), new verdicts "Early win (valid sequential call)" and "Stop: it's hurting", band on the chart. Checks: scripts/check_sequential.py (NumPy grid 1e-10, A/A: 26.2% naive vs 1.05% sequential). ADR 0001.
+- P3 redesign: Instrument Panel direction. globals.css tokens (OKLCH), Plex fonts, inline theme script and toggle (src/components/site), hero, index table, home sections, /work/[slug] pages with OG images, footer with Karachi time and colophon (Lighthouse numbers from src/data/lighthouse.json). Older pages recoloured by redefining the zinc and sky ramps in globals.css.
+- P4 eval v2: scripts/triage/eval_v2.py -> data/eval/eval_v2.json (copied to src/data/eval-v2.json); EvalV2.tsx on the triage page. Python test fails if published numbers change. Peer and error-analysis sheets prepared (data/eval/peer_to_label.csv, PEER_INSTRUCTIONS.md, error_analysis.csv). Model card, data card in docs/.
+- P5 peeking simulator: src/lib/simulator.ts, PeekSimulator.tsx, exact Python port scripts/check_simulator.py.
+- P6 PMEX margin-call ladder (marginLadder in src/lib/pmex.ts, Ladder.tsx), SECP footer, ADR 0004.
+- P7: .github/workflows/ci.yml, Playwright + axe (e2e/), lighthouserc.json, README rewrite with screenshots (docs/img), ADRs 0001 to 0006, JSON-LD, sitemap, robots, docs/a11y-manual-check.md.
+
+## New dependencies (told per your rule)
+@playwright/test and @axe-core/playwright (dev). Playwright's Chromium is cached in ~/Library/Caches/ms-playwright (about 600 MB; delete it if storage is tight, CI installs its own). Lighthouse CI is run with npx, not installed.
+
+## Tests
+Vitest 193 pass (1 skipped real-trade placeholder); Python unittest; Playwright 32 pass locally; Lighthouse CI assertions passed locally. Not yet run on GitHub's runners.
+
+## Still open (needs Ayad)
+Second labeller, own error analysis, manual a11y check, copy and fact confirmations (NEEDS_AYAD 21, 22), real-trade statement (11). Merge to main after review; check the first CI run.
+
+## How to rerun things
+- Eval numbers: `PYTHONPATH=scripts python3 -m triage.eval_v2` then `cp data/eval/eval_v2.json src/data/eval-v2.json`.
+- Simulator and sequential checks: `python3 scripts/check_simulator.py`, `scripts/.venv/bin/python scripts/check_sequential.py`.
+- Accessibility: `npm run build && npx playwright test`. Lighthouse: `CHROME_PATH=<chrome> npx @lhci/cli@0.15.x autorun`.
