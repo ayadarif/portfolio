@@ -59,7 +59,7 @@ export default function Tool() {
         </div>
       </section>
 
-      <ol className="my-8 flex gap-2 text-sm" aria-label="Steps">
+      <ol className="my-8 flex list-none gap-2 p-0 text-sm" aria-label="Steps">
         {steps.map((s, i) => (
           <li key={s} className={`flex-1 border-t-2 pt-2 ${i === step ? "border-foreground font-medium" : i < step ? "border-zinc-400 text-zinc-500" : "border-zinc-200 text-zinc-400 dark:border-zinc-800"}`}>
             {i + 1}. {s}

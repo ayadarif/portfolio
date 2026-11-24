@@ -11,6 +11,13 @@ export default function SetupStep({ form, setForm, onNext }: { form: FormState; 
   const set = (k: keyof FormState) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>
     setForm({ ...form, [k]: e.target.value });
 
+  const b = Number(form.baseline), l = Number(form.minLift);
+  const trim = (n: number) => String(Number(n.toFixed(2)));
+  const liftExample =
+    form.baseline && form.minLift && b > 0 && l > 0
+      ? `Means ${trim(b)}% going to ${trim(form.liftMode === "relative" ? b * (1 + l / 100) : b + l)}%.`
+      : form.liftMode === "relative" ? "Example: a 10% lift on a 10% baseline means 10% going to 11%." : "Example: a 10 point lift on a 10% baseline means 10% going to 20%.";
+
   function calculate() {
     setCalcNote("");
     const base = Number(form.baseline) / 100;
@@ -68,21 +75,21 @@ export default function SetupStep({ form, setForm, onNext }: { form: FormState; 
           <Field label="Baseline rate (%)" hint="Control conversion today.">
             <input className={inputCls} inputMode="decimal" value={form.baseline} onChange={set("baseline")} placeholder="10" />
           </Field>
-          <Field label="Smallest lift you care about (%)">
+          <Field label="Smallest lift you care about (%) *" hint="Needed for the underpowered check. Leave blank and that check is skipped.">
             <input className={inputCls} inputMode="decimal" value={form.minLift} onChange={set("minLift")} placeholder="10" />
           </Field>
-          <Field label="That lift is">
+          <Field label="That lift is" hint={liftExample}>
             <select className={inputCls} value={form.liftMode} onChange={set("liftMode")}>
-              <option value="relative">relative (10% of 10% = 11%)</option>
-              <option value="absolute">absolute (10% to 20%)</option>
+              <option value="relative">Relative: % of the baseline</option>
+              <option value="absolute">Absolute: percentage points</option>
             </select>
           </Field>
         </div>
-        <div className="mt-4 flex flex-wrap items-center gap-3">
+        <div className="mt-4">
           <button type="button" className={btnGhost} onClick={calculate}>Calculate it for me</button>
-          {calcNote && <span className="text-sm text-zinc-600 dark:text-zinc-400">{calcNote}</span>}
+          {calcNote && <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">{calcNote}</p>}
         </div>
-        <p className="mt-3 text-xs text-zinc-500">The smallest lift also feeds the underpowered check on the readout. Leave it blank and that check is skipped.</p>
+        <p className="mt-3 text-xs text-zinc-500">* The smallest lift also drives &ldquo;Calculate it for me&rdquo; and the underpowered check on the readout.</p>
       </fieldset>
 
       <fieldset className="rounded-xl border border-zinc-200 p-4 dark:border-zinc-800">

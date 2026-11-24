@@ -7,7 +7,7 @@ export const inputCls =
 export function Field({ label, hint, children }: { label: string; hint?: string; children: ReactNode }) {
   return (
     <label className="block">
-      <span className="text-sm font-medium">{label}</span>
+      <span className="block text-sm font-medium">{label}</span>
       {children}
       {hint && <span className="mt-1 block text-xs text-zinc-500">{hint}</span>}
     </label>
