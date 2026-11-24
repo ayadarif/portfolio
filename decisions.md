@@ -42,3 +42,9 @@
 - Eval set: 100 reviews from inside the corpus, seed 20261125, quota 30/15/15/15/25 for 1 to 5 stars (not proportional, so 2 and 3 star reviews are not too thin to measure). Consequence: agreement on the eval set is not a population estimate; say so on the page.
 - The labelling sheet hides star rating and bank so they do not nudge Ayad's labels. Its order is shuffled.
 - Codebook slugs are fixed and shared by the model and by Ayad; tie-break rules and severity anchors are in docs/triage-codebook.md. When torn on severity, label lower.
+- Pipeline calls Claude Code headless (`claude -p`) per the spec: --safe-mode, no tools, no session saved, empty temp dir, stdin closed, JSON schema, model pinned to claude-sonnet-5-5. Output is read from the `structured_output` field. One smoke call showed an injected "ignore previous instructions" string inside <data> was ignored.
+- Python standard library only (unittest, csv, subprocess). No jsonschema or pandas, so the tool has no install step. The code validates answers itself (ids match, slugs in the list, severity 1 to 3, themes use known ids).
+- Reviews are fenced in <data> tags and the prompts say they are untrusted. Star ratings are not sent to the model, so labels come from the text alone.
+- Priority = share x average severity x 100, ranked per bank. Praise and other are counted but never ranked. A review's second category counts as well as its first.
+- Quotes are verified in code (verbatim, 200 characters or fewer, from a review labelled with that category, no fraud words, no titled names, no [PII] tags). security_fraud, praise and other get no excerpts.
+- Dev run (50 reviews, 4 live calls, 0 failures) passed before any larger run.

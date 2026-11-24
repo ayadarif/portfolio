@@ -42,7 +42,7 @@ Owner: Ayad Arif. Written Nov 24, 2026. Claude Code works through this file on i
 
 ### T4. Feedback triage: pipeline
 - Build the pipeline per spec: classify, theme, count and rank, excerpts. Use `claude -p` per the spec's safety flags. Mock the model in unit tests. Validate the real pipeline on a 50-review dev slice (2 to 3 calls) before any larger run.
-- Status:
+- Status: DONE 2026-11-24 (f6d3573); dev run on 50 reviews, 4 live calls, 0 failures
 
 ### T5. Feedback triage: full run
 - Run on the corpus minus the eval set. Cache all model outputs (gitignored). Produce the output JSON. Run the robustness checks (rank by count only; by severity 3 only).
