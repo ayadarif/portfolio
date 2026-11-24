@@ -41,7 +41,7 @@ export const caseStudies: CaseStudy[] = [
     results: [
       "3-month retention up 18%",
       "Registered users up 22%",
-      "CAC down 12%",
+      "Paid CAC down 12% (3 months before vs after launch)",
       "Became the top driver of guest-to-account conversion",
       "Automated triggers reached 25,000 users a month at 4 to 6% re-engagement and cut manual segmentation work by 80%",
     ],

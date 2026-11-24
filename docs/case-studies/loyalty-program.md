@@ -5,8 +5,11 @@ Status: notes for the case study draft and interview prep. Not for the site bull
 ## Clarifications
 - "3-month retention up 18%" is a relative change, not percentage points. Say "up 18% (relative)" when speaking or writing at length.
 
-## Why CAC fell (mechanism)
-Before the program, returning users often came back through paid Google and social campaigns, so we paid again for people we had already acquired. After the loyalty program, more returning users came back through direct and app channels instead of paid or referral channels, which cut acquisition cost.
+## What the 12% is
+Paid CAC: paid acquisition spend per customer acquired through paid channels. It compares the 3 months before launch with the 3 months after. Site bullet: "Paid CAC down 12% (3 months before vs after launch)".
+
+## Why paid CAC fell (mechanism)
+Returning users who used to come back through paid retargeting and search ads came back through the app or direct instead, so paid spend per acquired customer fell.
 
 ## Interview angle
-Be ready to say how you separated "returning users shifted channel" from "total spend changed", and what the 12% was measured against. (Ayad to fill in the method and the baseline period; not recorded here.)
+"Before/after comparison, not a controlled test; supported by the channel shift and the pilot result."
