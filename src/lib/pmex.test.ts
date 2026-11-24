@@ -276,4 +276,11 @@ describe("margin-call ladder", () => {
     expect(lad.blocks).toHaveLength(1);
     for (const r of lad.blocks[0].rows) expect(r.movePct).toBeLessThanOrEqual(5);
   });
+  it("with default equity the entry row is OK for awkward, non-round numbers (no float noise)", () => {
+    for (const [lots, entry, rate, margin] of [[1, 1234.5, 279.13, 7], [3, 1987.37, 281.77, 2.3], [7, 71.13, 283.01, 4.75]] as const) {
+      const r = marginLadder(gold({ lots, entry, usdPkr: rate, marginPct: margin })).blocks[0].rows[0];
+      expect(r.status).toBe("OK");
+    }
+    expect(marginLadder(tola({ entry: 1234.5, usdPkr: 279.13, marginPct: 7 })).blocks[0].rows[0].status).toBe("OK");
+  });
 });

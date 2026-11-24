@@ -6,13 +6,13 @@ Designed, specified and verified by Ayad; built with Claude Code.
 
 ![Home page](docs/img/home.png)
 
-A product manager's portfolio with three case studies from SastaTicket and four tools I specified and built with Claude Code. The point of the tools is that each one can be checked: the statistics match scipy and NumPy, the model's labels are scored against my own, and every number on the page comes from saved data or a test.
+A product manager's portfolio with three case studies from SastaTicket and four tools I specified and built with Claude Code. The point of the tools is that each one can be checked: the statistics match scipy and NumPy, the model's labels are scored against my own, and every number about the tools comes from saved data or a test. The career figures in the case studies are my own and are not backed by data in this repo.
 
 ## The tools
 
 ### Experiment Readout (`/experiment-readout`)
 ![Experiment Readout](docs/img/readout.png)
-**Problem.** Teams stop A/B tests when the number looks good, run uneven splits and pick metrics afterwards. **Audience.** PMs and analysts. **What it does.** Paste daily results; get checks (split, planned sample, power) and one verdict. Below the planned sample only a sequential range, valid under daily checking, can make an early call. A peeking simulator shows why: with no real difference, daily checking called a winner in 26% of simulated tests with the ordinary interval and 1% with the sequential band.
+**Problem.** Teams stop A/B tests when the number looks good, run uneven splits and pick metrics afterwards. **Audience.** PMs and analysts. **What it does.** Paste daily results; get checks (split, planned sample, power) and one verdict. Below the planned sample only a sequential range, valid under daily checking, can make an early call. A peeking simulator shows why: with no real difference, checking 24 times called a winner in 26% of 4,000 simulated tests with the ordinary interval and 1% with the sequential band.
 **Decisions.** Rule-based written readout, AI rewrite off (ADR 0005); confidence sequence rather than group sequential (ADR 0001). **Limits.** Binary conversion metrics only; one comparison at a time; the sequential band costs power. **Next.** Per-day sample-ratio checks, multi-variant tests, CUPED (needs per-user data).
 
 ### Feedback triage (`/feedback-triage`)

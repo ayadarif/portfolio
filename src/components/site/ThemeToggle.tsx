@@ -14,7 +14,8 @@ function apply(c: Choice) {
 
 const listeners = new Set<() => void>();
 const read = (): Choice => {
-  const v = localStorage.getItem(THEME_KEY);
+  let v: string | null = null;
+  try { v = localStorage.getItem(THEME_KEY); } catch { /* storage blocked: follow the system */ }
   return v === "light" || v === "dark" ? v : "system";
 };
 function subscribe(cb: () => void) {
@@ -30,7 +31,7 @@ export default function ThemeToggle() {
   const choice = useSyncExternalStore(subscribe, read, () => "system" as Choice);
 
   function pick(c: Choice) {
-    localStorage.setItem(THEME_KEY, c);
+    try { localStorage.setItem(THEME_KEY, c); } catch { /* storage blocked: the choice lasts for this page only */ }
     apply(c);
     listeners.forEach((l) => l());
   }

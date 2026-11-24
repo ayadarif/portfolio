@@ -251,7 +251,7 @@ export function marginLadder(p: Position, shocksPct: number[] = LADDER_FX_SHOCKS
       const equity = equity0 - move * k;
       const required = m * price * k;
       const ratio = equity / required;
-      const status: LadderStatus = equity <= alt * required ? "Auto-liquidated" : equity < required ? "Margin call" : "OK";
+      const status: LadderStatus = equity <= alt * required ? "Auto-liquidated" : equity < required * (1 - 1e-9) ? "Margin call" : "OK";
       rows.push({ ticks, price, movePct, equityPkr: equity, requiredMarginPkr: required, ratio, status, topUpPkr: Math.max(0, required - equity) });
     }
     return { fxShockPct: sh, usdPkr: rate, rows };

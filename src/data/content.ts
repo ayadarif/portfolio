@@ -52,7 +52,7 @@ export const intro = {
   numbers: [
     { value: "+18%", label: "3-month retention from a loyalty program (SastaTicket, relative)", href: "/#loyalty-program" },
     { value: "0.84 vs 0.41", label: "Kappa against my labels: triage pipeline against a keyword baseline", href: "/#feedback-triage" },
-    { value: "26% to 1%", label: "False winners under daily peeking, ordinary against sequential (simulation)", href: "/#experiment-readout" },
+    { value: "26% to 1%", label: "False winners when checking 24 times, ordinary against sequential (simulation)", href: "/#experiment-readout" },
   ],
   location: "Karachi, PKT (UTC+5). Works across GMT and CET hours.",
   summary:
@@ -136,7 +136,7 @@ export const caseStudies: CaseStudy[] = [
 export const projects: Project[] = [
   {
     slug: "experiment-readout",
-    headline: 'In 4,000 simulated A/B tests with no real difference, daily peeking called a winner in 26%; the sequential range, in 1%.',
+    headline: 'In 4,000 simulated A/B tests with no real difference, checking 24 times called a winner in 26%; the sequential range, in 1%.',
     tldr: ['Paste daily results; get checks for uneven splits, early peeking and underpowered tests, then one verdict.', 'Below the planned sample, only a sequential range that stays valid under daily checking can make an early call.', 'It will not call a result significant unless the p-value and the confidence range both support it.'],
     type: "Tool",
     year: "2026",

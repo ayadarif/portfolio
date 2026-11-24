@@ -52,4 +52,6 @@ def monte_carlo(sims=4000, per_arm=12000, looks=24, p=0.10, alpha=0.05, seed=202
 
 if __name__ == "__main__":
     print("grid points written:", grid())
-    print(json.dumps(monte_carlo(), indent=1))
+    mc = monte_carlo()
+    (HERE / "fixtures" / "sequential_mc.json").write_text(json.dumps(mc, indent=1))
+    print(json.dumps(mc, indent=1))

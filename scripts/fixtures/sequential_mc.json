@@ -1,0 +1,8 @@
+{
+ "sims": 4000,
+ "looks": 24,
+ "per_arm_planned": 12000,
+ "alpha": 0.05,
+ "naive_false_positive_any_look": 0.26225,
+ "sequential_false_positive_any_look": 0.0105
+}

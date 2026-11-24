@@ -203,7 +203,8 @@ def compute(peer_path: Path = D / "eval/peer_labelled.csv") -> dict:
     else:
         out["human_ceiling"] = {"status": "Second labeller in progress"}
     ay = Path(D / "eval/error_analysis.csv")
-    notes = [r for r in csv.DictReader(open(ay, encoding="utf-8", newline=""))] if ay.exists() else []
+    with open(ay, encoding="utf-8", newline="") as fh:
+        notes = list(csv.DictReader(fh)) if ay.exists() else []
     out["error_analysis"] = {"status": "Done" if notes and all(r["what_went_wrong_open_code"].strip() for r in notes) else "Error analysis by Ayad in progress", "rows": len(notes)}
     out["criteria_drift"] = "No codebook changes were made after seeing model output. Codebook v1 (2026-11-24) was fixed before labelling; the prompt hash is recorded in every run file."
     return round_tree(out)
