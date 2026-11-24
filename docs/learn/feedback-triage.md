@@ -1,0 +1,134 @@
+# Learn: Feedback triage pipeline
+
+For a PM who reads Python and some TypeScript. Open each file next to this doc. Everything here was checked against the sprint branch.
+
+## 0. The idea in one paragraph
+
+Reviews go in. A model labels each one (category, severity, one-line summary). Plain code then counts, ranks and checks the model's work. The page shows saved results; nothing on the site calls a model. The point is not that a model can label text (anyone can). The point is the parts around it: a fixed codebook, answers validated in code, a held-out set you labelled by hand, and ranking done by arithmetic you can audit.
+
+It is called a pipeline, not an agent, because the steps and their order are fixed. The model never decides what to do next.
+
+## 1. Files, one by one
+
+All under `scripts/triage/` unless stated.
+
+| File | What it does |
+|---|---|
+| `pii.py` | Regexes that replace emails, @handles, URLs, phone numbers, card numbers, runs of 9+ digits and long reference codes with tags like `[PHONE]`. Order matters: emails and URLs go first because they contain digits. It is pattern matching, so it misses things. |
+| `ingest.py` | Demo-specific. Reads three bank CSVs, keeps 2023 reviews of 20+ characters, samples 1,000 with a fixed seed (`random.Random(20261124)`), strips personal data, writes `data/corpus.csv`. |
+| `data_report.py` | Measures the sample: rating mix, length, a rough language heuristic. Output is in `docs/data-report.md`. |
+| `draw_eval.py` | Draws the 100 eval reviews, stratified by stars (quota 30/15/15/15/25), shuffled, stars and bank hidden, into `data/eval/to_label.csv`. Refuses to overwrite an existing sheet so labels can't be lost. |
+| `codebook.json` | The categories, tie-break rules, severity anchors. The prompt is built from this file, so the model and Ayad use the same rulebook. |
+| `prompts/*.md` | The three system prompts (classify, theme, excerpts). They tell the model the reviews are data, not instructions. |
+| `schemas.py` | JSON schemas sent to the model, plus the stricter checks the code runs on answers. |
+| `claude_runner.py` | Wraps `claude -p`. Pre-flight, safety flags, cache, retries. |
+| `steps.py` | The pipeline: `load_input`, `classify`, `rank`, `themes`, `excerpts`, `run_pipeline`. |
+| `__main__.py` | The command line (`run` and `report`). |
+| `report.py` | Builds the standalone HTML report from `triage.json`. Escapes all text. |
+| `scripts/tests/test_triage.py` | 26 tests with a fake model. |
+| `src/lib/triage.ts`, `src/components/triage/TriagePage.tsx`, `src/app/feedback-triage/page.tsx` | The website page. A server component that renders `src/data/feedback-triage.json`. |
+
+Two Python ideas you need once. A **callable** is anything you can call with parentheses; `ClaudeRunner` defines `__call__`, so the pipeline treats it like a function, and tests pass a plain function instead. **Dependency injection** is that trick: steps take `llm` as an argument, so tests never touch the real model.
+
+## 2. The safety wrapper (`claude_runner.py`)
+
+Why `claude -p` and not the API: the sprint rule is no paid API, and this runs on your claude.ai login.
+
+`preflight()` refuses to run if `ANTHROPIC_API_KEY` is set (that would silently bill the API) or if `claude auth status` does not show a claude.ai login. It also records the Claude Code version for the method block.
+
+Each call (`_once`) uses these flags, and each has a reason:
+
+| Flag | Why |
+|---|---|
+| `-p` | headless: one prompt in, answer out |
+| `--safe-mode` | loads no CLAUDE.md, hooks, MCP servers or plugins from your machine |
+| `--tools ""` | the model gets no tools, so a hostile review can't make it run anything |
+| `--model claude-sonnet-5-5` | pinned, so results are tied to a named model |
+| `--no-session-persistence` | no session files left behind |
+| `--output-format json` + `--json-schema` | the answer comes back as a JSON object in `structured_output` |
+| `cwd` = fresh empty temp dir | no project files in reach |
+| `stdin=DEVNULL` | no waiting for piped input |
+| `--bare` never | the sprint rule |
+
+**The cache.** The key is a SHA-256 hash of (model, system prompt, user prompt, schema). Same input, same file, no second call. Change a prompt and the key changes, so stale answers can't leak into new results. The cache folder is gitignored.
+
+**Retries.** If an answer fails validation, try again, up to 2 more times. After that the failure is logged in the method block and those reviews are listed as unclassified. The pipeline never fills a gap with a guess.
+
+## 3. Step by step (`steps.py`)
+
+### Ingest (`load_input`)
+Works on any CSV with a text column. Collapses whitespace, drops rows under 20 characters, strips personal data, optionally parses a rating, and samples down to `max_reviews`. Ratings are never sent to the model.
+
+### Classify (`classify`)
+25 reviews per call. The user message is each review as `[id] text` inside `<data>` tags. The model returns, per review: 1 or 2 category slugs, a severity 1 to 3, a one-line summary. `check_classify` then requires: ids match the batch exactly and in order, every slug is in the codebook, no duplicate categories, severity is a real 1, 2 or 3. A failed batch is retried; a batch that still fails leaves its reviews unclassified.
+
+Why 25: about 40 calls for 1,000 reviews. Smaller batches cost more calls; bigger ones risk the model dropping or merging items.
+
+### Count and rank (`rank`) is plain arithmetic
+Per bank and category:
+- **count**: reviews carrying the category in either slot.
+- **share** = count / reviews in that bank.
+- **average severity**: mean of the severity of those reviews.
+- **priority** = share x average severity x 100, read as "severity points per 100 reviews". A category raised by 10% of reviews at average severity 2.5 scores 25.
+- Praise and other are counted but never ranked.
+
+Worked example from the tests: 1 of 3 reviews in group A raises `login_access` at severity 3, so priority = (1/3) x 3 x 100 = 100.
+
+**Robustness (`robustness`)**: priority is my invention, so the tool checks whether the top 3 changes when you rank by raw count or by severity-3 reviews only. If it does change, the page says so instead of hiding it.
+
+### Themes (`themes`)
+For the top 5 categories overall, the model gets the one-line summaries (capped at 150, sampled with a seed) and returns up to 6 named themes with member ids. Code checks every id is real and in at most one theme, then counts theme sizes by bank itself.
+
+### Excerpts (`excerpts`)
+Per bank, the code picks up to 8 candidate reviews per category (highest severity first, short ones, no unsafe words). The model chooses 2 or 3 and returns a quote. **The code then verifies each quote**: whitespace-normalised, it must be a substring of the original review, 200 characters or fewer, from a review labelled with that category, free of fraud words, titled names (Mr Okoro) and `[TAG]` placeholders. Invented or edited quotes are dropped silently. `security_fraud`, `praise` and `other` get no excerpts at all.
+
+## 4. Decisions you should be able to defend
+
+1. **Open dataset, not scraping.** Apple's terms disallow automated access to its review feed; the Hugging Face dataset is Apache-2.0 and downloads with no login.
+2. **Banks chosen by review count** (UBA, Access, FBN), not the spec's default list. The spec said choose by count.
+3. **Year 2023**: 2024 has a handful of reviews per bank.
+4. **Eval set drawn from inside the corpus and held out** from every model run until the hand labels are committed. The commit time is the proof the labels came first.
+5. **Stars and bank hidden on the labelling sheet** so they don't nudge your labels.
+6. **Quota sampling for eval** (30/15/15/15/25), so 2 and 3 star reviews aren't too thin. The cost: eval agreement isn't a population estimate.
+7. **Standard library only**: no install step for anyone who wants to use the tool.
+8. **Code does the counting and quoting**, the model does the language. That split is the whole design.
+
+## 5. The website page
+
+`page.tsx` imports `src/data/feedback-triage.json` (a copy of the pipeline's `triage.json`) and passes it to `TriagePage`. In TypeScript the cast `data as unknown as TriageData` tells the compiler "trust me, this JSON has this shape"; the shape is declared in `src/lib/triage.ts`. The component is a server component: it renders to plain HTML at build time and ships no JavaScript. The click-to-open parts use the native `<details>` element, which needs none.
+
+Every headline is scoped ("Among N Google Play reviews from 2023, from an open research dataset"), and the page says the reviews are unverified. The accuracy section reads "Accuracy check in progress" until the eval is run; no number appears before that.
+
+## 6. Limits to be honest about
+
+- The model can mislabel; the eval measures how often (see the accuracy section once published).
+- Reviews are self-selected and the sample is 1,000 reviews, so small differences between banks are noise.
+- Priority is a made-up index. It is explained in words on the page and stress-tested by the robustness check.
+- Personal-data stripping is regex only.
+- Themes are built from one-line summaries, not full text.
+
+## 7. Quiz (10 questions)
+
+1. Why does `preflight()` refuse to run when `ANTHROPIC_API_KEY` is set?
+2. What does `--tools ""` protect against?
+3. What is in the cache key, and why does changing a prompt matter for it?
+4. A classify answer comes back with 24 of 25 ids. What happens?
+5. Define priority in words, and compute it for a category in 8% of reviews with average severity 2.5.
+6. Why does the tool check ranking by count and by severity 3 alone?
+7. A model returns a quote with one word changed. What does the code do, and why?
+8. Why are the stars and bank hidden on the labelling sheet?
+9. Why is the eval set not proportional to the star mix, and what does that limit?
+10. Why does the page say "Accuracy check in progress" instead of an estimate?
+
+## Answers
+
+1. It would switch billing to the paid API without you noticing. The sprint rule is to run on the claude.ai login.
+2. A hostile or odd review text can't trigger file reads, shell commands or web access, because the model has no tools.
+3. Model, system prompt, user prompt and schema, hashed. Changing a prompt changes the hash, so old answers made under the old prompt are never reused.
+4. The id check fails, the call is retried up to 2 times, and if it still fails the failure is logged and those reviews are listed as unclassified. Nothing is guessed.
+5. Share of reviews raising the category times its average severity times 100, i.e. severity points per 100 reviews. 0.08 x 2.5 x 100 = 20.
+6. Priority is a defined index, not a law. If the top 3 holds under simpler rankings, it's robust; if not, the page says so.
+7. It drops the quote. A quote must appear word for word in the original review, so invented or edited quotes never reach the page.
+8. They could nudge your labels (a 1 star review reads as more severe). You label from the text alone, as the model does.
+9. So 2 and 3 star reviews aren't too few to measure. It means the agreement figure describes this sampled set, not the whole corpus.
+10. No labels exist yet, so any number would be invented. The page never shows a number the code didn't produce.

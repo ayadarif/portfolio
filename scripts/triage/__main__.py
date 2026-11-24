@@ -11,6 +11,7 @@ from datetime import date
 from pathlib import Path
 
 from . import steps
+from .report import write_report
 from .claude_runner import ClaudeRunner, PipelineError, preflight
 
 
@@ -49,7 +50,8 @@ def cmd_run(a: argparse.Namespace) -> int:
     outdir = Path(a.out)
     outdir.mkdir(parents=True, exist_ok=True)
     (outdir / "triage.json").write_text(json.dumps(out, indent=2))
-    print(f"Wrote {outdir / 'triage.json'}  (live calls {runner.live_calls}, cache hits {runner.cache_hits}, failures {len(runner.failures)})")
+    write_report(outdir / "triage.json", outdir / "report.html", a.title)
+    print(f"Wrote {outdir / 'triage.json'} and report.html  (live calls {runner.live_calls}, cache hits {runner.cache_hits}, failures {len(runner.failures)})")
     return 1 if runner.failures else 0
 
 
@@ -69,12 +71,18 @@ def main(argv: "list | None" = None) -> int:
     r.add_argument("--method-extra", help="JSON file merged into the method block (dataset, licence, URL)")
     r.add_argument("--max-reviews", type=int, default=1000)
     r.add_argument("--limit", type=int, help="use a random subset of this many reviews (for dev runs)")
+    r.add_argument("--title", default="Feedback triage report")
     r.add_argument("--seed", type=int, default=1)
     r.add_argument("--theme-top", type=int, default=steps.TOP_THEME_CATEGORIES, help="theme only the top N categories (dev runs use 1)")
     r.add_argument("--excerpt-groups", type=int, help="excerpts for only the first N groups (dev runs use 1)")
     r.add_argument("--no-themes", action="store_true")
     r.add_argument("--no-excerpts", action="store_true")
     r.set_defaults(fn=cmd_run)
+    rp = sub.add_parser("report", help="rebuild report.html from an existing triage.json")
+    rp.add_argument("--json", required=True)
+    rp.add_argument("--out", required=True)
+    rp.add_argument("--title", default="Feedback triage report")
+    rp.set_defaults(fn=lambda a: (write_report(Path(a.json), Path(a.out), a.title), 0)[1])
     a = p.parse_args(argv)
     try:
         return a.fn(a)

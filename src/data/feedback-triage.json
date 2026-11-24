@@ -1,0 +1,981 @@
+{
+  "method": {
+    "dataset": "Bank-Review (Google Play reviews of Nigerian banks' apps), Federal University Lokoja",
+    "dataset_url": "https://huggingface.co/datasets/Federal-University-Lokoja/Bank-Review",
+    "dataset_licence": "Apache-2.0 (per the dataset card, checked 2026-11-24)",
+    "dataset_downloaded": "2026-11-24",
+    "dataset_note": "Reviews were collected by the dataset's authors, not by this project.",
+    "sample": "1,000 reviews, 2023, UBA, Access Bank and First Bank of Nigeria, seed 20261124; 100 held out for the accuracy check",
+    "text_col": "text",
+    "rating_col": "score",
+    "group_col": "bank",
+    "seed": 1,
+    "run_date": "2026-11-24",
+    "n_reviews_in": 900,
+    "n_classified": 900,
+    "n_unclassified": 0,
+    "model": "claude-sonnet-5-5",
+    "claude_code_version": "2.1.331 (Claude Code)",
+    "prompt_hash": "3dd5d5f6ac2d62ad",
+    "live_calls_this_run": 49,
+    "cache_hits_this_run": 0,
+    "failed_calls": [],
+    "priority_definition": "severity points per 100 reviews: share of reviews raising the category times its average severity (1 to 3) times 100"
+  },
+  "ranking": {
+    "Access Bank": {
+      "n_reviews": 302,
+      "categories": [
+        {
+          "category": "login_access",
+          "count": 39,
+          "share": 0.1291390728476821,
+          "avg_rating": 1.9230769230769231,
+          "avg_severity": 2.230769230769231,
+          "severity3_count": 12,
+          "priority": 28.807947019867548,
+          "ranked": true,
+          "rank": 1
+        },
+        {
+          "category": "app_stability",
+          "count": 45,
+          "share": 0.1490066225165563,
+          "avg_rating": 2.0444444444444443,
+          "avg_severity": 1.7555555555555555,
+          "severity3_count": 5,
+          "priority": 26.158940397350992,
+          "ranked": true,
+          "rank": 2
+        },
+        {
+          "category": "money_balance",
+          "count": 26,
+          "share": 0.08609271523178808,
+          "avg_rating": 2.0384615384615383,
+          "avg_severity": 2.3461538461538463,
+          "severity3_count": 9,
+          "priority": 20.198675496688743,
+          "ranked": true,
+          "rank": 3
+        },
+        {
+          "category": "transfers_payments",
+          "count": 19,
+          "share": 0.06291390728476821,
+          "avg_rating": 1.8421052631578947,
+          "avg_severity": 2.1578947368421053,
+          "severity3_count": 6,
+          "priority": 13.57615894039735,
+          "ranked": true,
+          "rank": 4
+        },
+        {
+          "category": "support",
+          "count": 17,
+          "share": 0.056291390728476824,
+          "avg_rating": 1.9411764705882353,
+          "avg_severity": 1.9411764705882353,
+          "severity3_count": 4,
+          "priority": 10.927152317880795,
+          "ranked": true,
+          "rank": 5
+        },
+        {
+          "category": "feature_request",
+          "count": 9,
+          "share": 0.029801324503311258,
+          "avg_rating": 2.2222222222222223,
+          "avg_severity": 1.8888888888888888,
+          "severity3_count": 2,
+          "priority": 5.629139072847682,
+          "ranked": true,
+          "rank": 6
+        },
+        {
+          "category": "ui_ux",
+          "count": 9,
+          "share": 0.029801324503311258,
+          "avg_rating": 2.5555555555555554,
+          "avg_severity": 1.7777777777777777,
+          "severity3_count": 1,
+          "priority": 5.298013245033112,
+          "ranked": true,
+          "rank": 7
+        },
+        {
+          "category": "fees_charges",
+          "count": 9,
+          "share": 0.029801324503311258,
+          "avg_rating": 2.3333333333333335,
+          "avg_severity": 1.3333333333333333,
+          "severity3_count": 0,
+          "priority": 3.973509933774834,
+          "ranked": true,
+          "rank": 8
+        },
+        {
+          "category": "security_fraud",
+          "count": 3,
+          "share": 0.009933774834437087,
+          "avg_rating": 1.0,
+          "avg_severity": 2.0,
+          "severity3_count": 0,
+          "priority": 1.9867549668874174,
+          "ranked": true,
+          "rank": 9
+        },
+        {
+          "category": "other",
+          "count": 10,
+          "share": 0.033112582781456956,
+          "avg_rating": 3.1,
+          "avg_severity": 1.0,
+          "severity3_count": 0,
+          "priority": 3.3112582781456954,
+          "ranked": false
+        },
+        {
+          "category": "praise",
+          "count": 177,
+          "share": 0.5860927152317881,
+          "avg_rating": 4.638418079096045,
+          "avg_severity": 1.0169491525423728,
+          "severity3_count": 0,
+          "priority": 59.602649006622514,
+          "ranked": false
+        }
+      ],
+      "robustness": {
+        "top3_priority": [
+          "login_access",
+          "app_stability",
+          "money_balance"
+        ],
+        "top3_count": [
+          "app_stability",
+          "login_access",
+          "money_balance"
+        ],
+        "top3_severity3": [
+          "login_access",
+          "money_balance",
+          "transfers_payments"
+        ],
+        "same_set_by_count": true,
+        "same_set_by_severity3": false,
+        "holds": false
+      }
+    },
+    "First Bank (FBN)": {
+      "n_reviews": 295,
+      "categories": [
+        {
+          "category": "app_stability",
+          "count": 94,
+          "share": 0.31864406779661014,
+          "avg_rating": 1.9148936170212767,
+          "avg_severity": 1.8617021276595744,
+          "severity3_count": 16,
+          "priority": 59.32203389830508,
+          "ranked": true,
+          "rank": 1
+        },
+        {
+          "category": "login_access",
+          "count": 56,
+          "share": 0.18983050847457628,
+          "avg_rating": 1.5714285714285714,
+          "avg_severity": 2.017857142857143,
+          "severity3_count": 8,
+          "priority": 38.30508474576271,
+          "ranked": true,
+          "rank": 2
+        },
+        {
+          "category": "transfers_payments",
+          "count": 40,
+          "share": 0.13559322033898305,
+          "avg_rating": 1.45,
+          "avg_severity": 2.375,
+          "severity3_count": 16,
+          "priority": 32.20338983050847,
+          "ranked": true,
+          "rank": 3
+        },
+        {
+          "category": "money_balance",
+          "count": 30,
+          "share": 0.1016949152542373,
+          "avg_rating": 1.3333333333333333,
+          "avg_severity": 2.7,
+          "severity3_count": 23,
+          "priority": 27.457627118644073,
+          "ranked": true,
+          "rank": 4
+        },
+        {
+          "category": "support",
+          "count": 23,
+          "share": 0.07796610169491526,
+          "avg_rating": 1.1304347826086956,
+          "avg_severity": 2.652173913043478,
+          "severity3_count": 18,
+          "priority": 20.677966101694913,
+          "ranked": true,
+          "rank": 5
+        },
+        {
+          "category": "feature_request",
+          "count": 38,
+          "share": 0.1288135593220339,
+          "avg_rating": 2.5,
+          "avg_severity": 1.1842105263157894,
+          "severity3_count": 0,
+          "priority": 15.254237288135592,
+          "ranked": true,
+          "rank": 6
+        },
+        {
+          "category": "ui_ux",
+          "count": 29,
+          "share": 0.09830508474576272,
+          "avg_rating": 2.103448275862069,
+          "avg_severity": 1.3793103448275863,
+          "severity3_count": 0,
+          "priority": 13.559322033898308,
+          "ranked": true,
+          "rank": 7
+        },
+        {
+          "category": "fees_charges",
+          "count": 3,
+          "share": 0.010169491525423728,
+          "avg_rating": 1.0,
+          "avg_severity": 2.0,
+          "severity3_count": 1,
+          "priority": 2.0338983050847457,
+          "ranked": true,
+          "rank": 8
+        },
+        {
+          "category": "security_fraud",
+          "count": 1,
+          "share": 0.003389830508474576,
+          "avg_rating": 1.0,
+          "avg_severity": 2.0,
+          "severity3_count": 0,
+          "priority": 0.6779661016949152,
+          "ranked": true,
+          "rank": 9
+        },
+        {
+          "category": "other",
+          "count": 37,
+          "share": 0.12542372881355932,
+          "avg_rating": 2.135135135135135,
+          "avg_severity": 1.0,
+          "severity3_count": 0,
+          "priority": 12.54237288135593,
+          "ranked": false
+        },
+        {
+          "category": "praise",
+          "count": 45,
+          "share": 0.15254237288135594,
+          "avg_rating": 4.6,
+          "avg_severity": 1.0,
+          "severity3_count": 0,
+          "priority": 15.254237288135593,
+          "ranked": false
+        }
+      ],
+      "robustness": {
+        "top3_priority": [
+          "app_stability",
+          "login_access",
+          "transfers_payments"
+        ],
+        "top3_count": [
+          "app_stability",
+          "login_access",
+          "transfers_payments"
+        ],
+        "top3_severity3": [
+          "money_balance",
+          "support",
+          "app_stability"
+        ],
+        "same_set_by_count": true,
+        "same_set_by_severity3": false,
+        "holds": false
+      }
+    },
+    "UBA": {
+      "n_reviews": 303,
+      "categories": [
+        {
+          "category": "transfers_payments",
+          "count": 37,
+          "share": 0.12211221122112212,
+          "avg_rating": 1.7027027027027026,
+          "avg_severity": 2.108108108108108,
+          "severity3_count": 7,
+          "priority": 25.742574257425744,
+          "ranked": true,
+          "rank": 1
+        },
+        {
+          "category": "app_stability",
+          "count": 50,
+          "share": 0.16501650165016502,
+          "avg_rating": 1.9,
+          "avg_severity": 1.46,
+          "severity3_count": 4,
+          "priority": 24.09240924092409,
+          "ranked": true,
+          "rank": 2
+        },
+        {
+          "category": "login_access",
+          "count": 25,
+          "share": 0.08250825082508251,
+          "avg_rating": 1.84,
+          "avg_severity": 2.28,
+          "severity3_count": 8,
+          "priority": 18.81188118811881,
+          "ranked": true,
+          "rank": 3
+        },
+        {
+          "category": "ui_ux",
+          "count": 38,
+          "share": 0.1254125412541254,
+          "avg_rating": 1.763157894736842,
+          "avg_severity": 1.4210526315789473,
+          "severity3_count": 2,
+          "priority": 17.82178217821782,
+          "ranked": true,
+          "rank": 4
+        },
+        {
+          "category": "money_balance",
+          "count": 21,
+          "share": 0.06930693069306931,
+          "avg_rating": 2.0476190476190474,
+          "avg_severity": 2.3333333333333335,
+          "severity3_count": 9,
+          "priority": 16.171617161716174,
+          "ranked": true,
+          "rank": 5
+        },
+        {
+          "category": "support",
+          "count": 11,
+          "share": 0.036303630363036306,
+          "avg_rating": 1.8181818181818181,
+          "avg_severity": 2.0,
+          "severity3_count": 4,
+          "priority": 7.2607260726072615,
+          "ranked": true,
+          "rank": 6
+        },
+        {
+          "category": "feature_request",
+          "count": 10,
+          "share": 0.033003300330033,
+          "avg_rating": 3.3,
+          "avg_severity": 1.1,
+          "severity3_count": 0,
+          "priority": 3.6303630363036308,
+          "ranked": true,
+          "rank": 7
+        },
+        {
+          "category": "fees_charges",
+          "count": 4,
+          "share": 0.013201320132013201,
+          "avg_rating": 3.5,
+          "avg_severity": 1.25,
+          "severity3_count": 0,
+          "priority": 1.65016501650165,
+          "ranked": true,
+          "rank": 8
+        },
+        {
+          "category": "security_fraud",
+          "count": 1,
+          "share": 0.0033003300330033004,
+          "avg_rating": 5.0,
+          "avg_severity": 1.0,
+          "severity3_count": 0,
+          "priority": 0.33003300330033003,
+          "ranked": true,
+          "rank": 9
+        },
+        {
+          "category": "other",
+          "count": 13,
+          "share": 0.0429042904290429,
+          "avg_rating": 2.3076923076923075,
+          "avg_severity": 1.0769230769230769,
+          "severity3_count": 0,
+          "priority": 4.62046204620462,
+          "ranked": false
+        },
+        {
+          "category": "praise",
+          "count": 159,
+          "share": 0.5247524752475248,
+          "avg_rating": 4.540880503144654,
+          "avg_severity": 1.0,
+          "severity3_count": 0,
+          "priority": 52.475247524752476,
+          "ranked": false
+        }
+      ],
+      "robustness": {
+        "top3_priority": [
+          "transfers_payments",
+          "app_stability",
+          "login_access"
+        ],
+        "top3_count": [
+          "app_stability",
+          "ui_ux",
+          "transfers_payments"
+        ],
+        "top3_severity3": [
+          "money_balance",
+          "login_access",
+          "transfers_payments"
+        ],
+        "same_set_by_count": false,
+        "same_set_by_severity3": false,
+        "holds": false
+      }
+    }
+  },
+  "themes": {
+    "app_stability": [
+      {
+        "name": "App won't open after latest update",
+        "description": "Customers report the app refuses to open, shows a white screen or spins forever, often right after an update or reinstall.",
+        "size": 28,
+        "by_group": {
+          "UBA": 2,
+          "Access Bank": 4,
+          "First Bank (FBN)": 22
+        }
+      },
+      {
+        "name": "Crashes or exits during transactions",
+        "description": "App closes, logs out or hangs mid-transaction, such as at PIN entry, payment, transfer or description entry.",
+        "size": 22,
+        "by_group": {
+          "UBA": 3,
+          "Access Bank": 12,
+          "First Bank (FBN)": 7
+        }
+      },
+      {
+        "name": "Network errors and no connection in app",
+        "description": "App reports poor, weak or unavailable network, blocking login, registration or account access while other apps work.",
+        "size": 22,
+        "by_group": {
+          "UBA": 5,
+          "Access Bank": 3,
+          "First Bank (FBN)": 14
+        }
+      },
+      {
+        "name": "Slow and laggy app performance",
+        "description": "Customers find the app slow to load, lagging or delayed, often saying a recent version is slower than before.",
+        "size": 17,
+        "by_group": {
+          "UBA": 9,
+          "Access Bank": 3,
+          "First Bank (FBN)": 5
+        }
+      },
+      {
+        "name": "Update problems and lost data",
+        "description": "After updating, accounts or beneficiaries vanish, updates loop or are unavailable, or version notices conflict with the store.",
+        "size": 11,
+        "by_group": {
+          "UBA": 3,
+          "Access Bank": 3,
+          "First Bank (FBN)": 5
+        }
+      },
+      {
+        "name": "Device-specific, install and setup failures",
+        "description": "App cannot be downloaded, installed or set up on certain phones, or fails at PIN or consent setup.",
+        "size": 8,
+        "by_group": {
+          "UBA": 1,
+          "Access Bank": 2,
+          "First Bank (FBN)": 5
+        }
+      }
+    ],
+    "login_access": [
+      {
+        "name": "Login fails after update or with errors",
+        "description": "Customers cannot log in, especially after an update, due to crashes, blank screens, errors, slow loading or rejected credentials.",
+        "size": 21,
+        "by_group": {
+          "UBA": 4,
+          "Access Bank": 5,
+          "First Bank (FBN)": 12
+        }
+      },
+      {
+        "name": "Cannot create or use transaction PIN",
+        "description": "Customers fail to create, set, reset or use a transaction/mobile PIN, with errors, invalid-PIN messages or missing forgot-PIN options.",
+        "size": 19,
+        "by_group": {
+          "Access Bank": 11,
+          "First Bank (FBN)": 6,
+          "UBA": 2
+        }
+      },
+      {
+        "name": "New phone: OTP or device activation fails",
+        "description": "After changing phones, customers cannot activate or re-register the device because OTP is not sent, card verification fails or the device is not found.",
+        "size": 16,
+        "by_group": {
+          "Access Bank": 5,
+          "First Bank (FBN)": 6,
+          "UBA": 5
+        }
+      },
+      {
+        "name": "Registration and sign-up fails",
+        "description": "New users cannot register or create an account due to crashes, network errors, account-exists or account-number errors, or card requirements.",
+        "size": 15,
+        "by_group": {
+          "UBA": 4,
+          "Access Bank": 3,
+          "First Bank (FBN)": 8
+        }
+      },
+      {
+        "name": "Device limit or device already exists",
+        "description": "Activation or login is blocked by maximum device limit, device-exists messages, or repeated activation prompts.",
+        "size": 9,
+        "by_group": {
+          "First Bank (FBN)": 6,
+          "Access Bank": 1,
+          "UBA": 2
+        }
+      },
+      {
+        "name": "Rooted, jailbroken or developer-mode blocks",
+        "description": "The app refuses to run, claiming the device is rooted, jailbroken, an emulator or has USB debugging enabled.",
+        "size": 5,
+        "by_group": {
+          "First Bank (FBN)": 5
+        }
+      }
+    ],
+    "transfers_payments": [
+      {
+        "name": "Other-bank transfers fail or blank after update",
+        "description": "Transfers to other banks fail, show blank lists or endless blank pages, especially since the recent app update.",
+        "size": 13,
+        "by_group": {
+          "UBA": 10,
+          "First Bank (FBN)": 2,
+          "Access Bank": 1
+        }
+      },
+      {
+        "name": "App crashes, hangs or logs out during transactions",
+        "description": "The app freezes, exits, logs out or will not open when customers start or authorise a transaction, such as at PIN entry.",
+        "size": 12,
+        "by_group": {
+          "UBA": 2,
+          "Access Bank": 7,
+          "First Bank (FBN)": 3
+        }
+      },
+      {
+        "name": "Debited but transfer failed or not credited",
+        "description": "Money is deducted from the sender for failed or pending transactions, with no credit to the recipient and slow or missing reversals.",
+        "size": 10,
+        "by_group": {
+          "UBA": 3,
+          "Access Bank": 2,
+          "First Bank (FBN)": 5
+        }
+      },
+      {
+        "name": "Debit account selector blank, blocking transfers",
+        "description": "Customers see an empty debit account field or blank page when starting a transaction, so they cannot pick an account or transfer.",
+        "size": 8,
+        "by_group": {
+          "First Bank (FBN)": 8
+        }
+      },
+      {
+        "name": "Transfer and daily limit confusion or reduction",
+        "description": "Customers hit unexplained transfer limits, a reduced 1 million daily cap, or a limit upgrade option that is unavailable.",
+        "size": 5,
+        "by_group": {
+          "UBA": 3,
+          "Access Bank": 2
+        }
+      },
+      {
+        "name": "Beneficiaries missing or cannot be confirmed",
+        "description": "Saved beneficiaries do not show, and adding or confirming beneficiaries fails or restarts the flow.",
+        "size": 2,
+        "by_group": {
+          "UBA": 1,
+          "First Bank (FBN)": 1
+        }
+      }
+    ],
+    "money_balance": [
+      {
+        "name": "Failed transfers debited but not reversed",
+        "description": "Transfers, purchases or bill payments fail or go undelivered yet the sender is debited without timely reversal.",
+        "size": 27,
+        "by_group": {
+          "UBA": 5,
+          "Access Bank": 7,
+          "First Bank (FBN)": 15
+        }
+      },
+      {
+        "name": "Transaction history missing or limited",
+        "description": "Customers cannot view, scroll or filter past transactions, with history capped or disappearing.",
+        "size": 12,
+        "by_group": {
+          "UBA": 1,
+          "Access Bank": 9,
+          "First Bank (FBN)": 2
+        }
+      },
+      {
+        "name": "Balance not visible after app update",
+        "description": "After the new version, balance or accounts are blank or missing, blocking transactions.",
+        "size": 11,
+        "by_group": {
+          "UBA": 8,
+          "Access Bank": 3
+        }
+      },
+      {
+        "name": "Unauthorized or unexplained debits and charges",
+        "description": "Customers report money removed without their knowledge, unexpected charges or repeated deductions.",
+        "size": 11,
+        "by_group": {
+          "UBA": 2,
+          "Access Bank": 6,
+          "First Bank (FBN)": 3
+        }
+      },
+      {
+        "name": "Incoming money not credited",
+        "description": "Transfers or disbursements sent to the customer have not arrived in their account.",
+        "size": 5,
+        "by_group": {
+          "UBA": 1,
+          "First Bank (FBN)": 4
+        }
+      },
+      {
+        "name": "Receipts wrong, missing or undownloadable",
+        "description": "Receipts cannot be downloaded or show wrong dates, and old receipts are hard to get.",
+        "size": 3,
+        "by_group": {
+          "First Bank (FBN)": 3
+        }
+      }
+    ],
+    "ui_ux": [
+      {
+        "name": "Dislike new interface, want old version",
+        "description": "Customers find the redesigned app worse, complex or not user friendly and ask for a fix or the previous version.",
+        "size": 17,
+        "by_group": {
+          "UBA": 13,
+          "Access Bank": 1,
+          "First Bank (FBN)": 3
+        }
+      },
+      {
+        "name": "Transfers and transactions fail after update",
+        "description": "Since the update, customers cannot complete transfers, other-bank transfers or payments, or the transfer screen fails to open.",
+        "size": 14,
+        "by_group": {
+          "UBA": 9,
+          "Access Bank": 2,
+          "First Bank (FBN)": 3
+        }
+      },
+      {
+        "name": "Slow, crashing or won't open or log in",
+        "description": "The app lags, crashes, shows blank screens or errors, or fails to open or log in after updates.",
+        "size": 14,
+        "by_group": {
+          "UBA": 8,
+          "Access Bank": 3,
+          "First Bank (FBN)": 3
+        }
+      },
+      {
+        "name": "Update prompts, T&C and login friction",
+        "description": "Repeated terms prompts, extra OTP steps, device or card login limits and confusing update notices annoy customers.",
+        "size": 9,
+        "by_group": {
+          "UBA": 1,
+          "Access Bank": 1,
+          "First Bank (FBN)": 7
+        }
+      },
+      {
+        "name": "Receipts and history missing or incomplete",
+        "description": "Receipts cannot be downloaded, are inaccurate or are unavailable for past transfers, and history is limited or lacks detail.",
+        "size": 8,
+        "by_group": {
+          "UBA": 1,
+          "First Bank (FBN)": 7
+        }
+      },
+      {
+        "name": "Account balance or accounts not displayed",
+        "description": "After updating, balances are unavailable or accounts and debit selectors show blank or wrong, blocking transactions.",
+        "size": 6,
+        "by_group": {
+          "UBA": 3,
+          "Access Bank": 1,
+          "First Bank (FBN)": 2
+        }
+      }
+    ]
+  },
+  "excerpts": {
+    "Access Bank": {
+      "login_access": [
+        {
+          "id": "r0536",
+          "quote": "I cant even login or access my money via any of the online channels"
+        },
+        {
+          "id": "r0630",
+          "quote": "Please creating a transition pin it very hard i have been trying for Days now it not working"
+        },
+        {
+          "id": "r0619",
+          "quote": "I did a factory reset on my phone and try to log in again and I was asked to change device and since then I hv bin trying to log in my pin kept saying disabled and timeout expired."
+        }
+      ],
+      "app_stability": [
+        {
+          "id": "r0540",
+          "quote": "It will keep you stranded and be loading forever and it won't open . I've deleted, updated and reinstall severally and still it won't work."
+        },
+        {
+          "id": "r0377",
+          "quote": "The App has been crashing for like a week now, whereby, whenever I wanna make any transactions, the App will just stopped when it's time to execute the final phase of the transaction"
+        },
+        {
+          "id": "r0613",
+          "quote": "App is longer opening. It crashes any time I tried opening."
+        }
+      ],
+      "money_balance": [
+        {
+          "id": "r0522",
+          "quote": "I sent money to my client and was debited but that person never received the money.... Pls what's wrong?"
+        },
+        {
+          "id": "r0355",
+          "quote": "Purchase won't be successful but you'll get debited by the bank"
+        },
+        {
+          "id": "r0503",
+          "quote": "I did a transfer on the 2nd & 6th and it failed but was debited"
+        }
+      ],
+      "transfers_payments": [
+        {
+          "id": "r0523",
+          "quote": "I have been experiencing difficulty in transferring money to other banks for the past two weeks. After inputting my pin on the app to transfer money, 'an error occurred' kept showing."
+        },
+        {
+          "id": "r0524",
+          "quote": "For 1 week now, I have not been able to carry out any transaction on the app. I am stranded."
+        },
+        {
+          "id": "r0618",
+          "quote": "Been trying to transfer since morning but it's not going through"
+        }
+      ],
+      "support": [
+        {
+          "id": "r0510",
+          "quote": "Live chat is never responded to."
+        },
+        {
+          "id": "r0469",
+          "quote": "Poor customer service. Both social media, live chat on mobileapp, Whatsapp and email. No respond."
+        },
+        {
+          "id": "r0512",
+          "quote": "great app but doesn't address complaints as regards reverse of funds during transactions."
+        }
+      ]
+    },
+    "First Bank (FBN)": {
+      "app_stability": [
+        {
+          "id": "r0839",
+          "quote": "The 2.9.6 update has broken the app. Unable to open the app now. Please, fix asap."
+        },
+        {
+          "id": "r0689",
+          "quote": "It has been two days after downloading the latest version of your app the app keeps on crashing."
+        },
+        {
+          "id": "r0876",
+          "quote": "For days now i have not been able to make transaction it keeps saying network failure while every other apps works perfectly."
+        }
+      ],
+      "login_access": [
+        {
+          "id": "r0953",
+          "quote": "I've been trying to input my pin for months, it's been telling me incorrect pin, please do something"
+        },
+        {
+          "id": "r0974",
+          "quote": "After updating , I can't access the app...."
+        },
+        {
+          "id": "r0749",
+          "quote": "once I change my phone I cannot activated it one my new phone"
+        }
+      ],
+      "transfers_payments": [
+        {
+          "id": "r0669",
+          "quote": "I have been trying to make a transfer for a week now and the account to debit has been coming up blank"
+        },
+        {
+          "id": "r0931",
+          "quote": "My app is not allowing me to do any transfers, it doesn't show the account to debit, it's been like this for a week"
+        },
+        {
+          "id": "r0817",
+          "quote": "if I want to transfer alot of times duplicate transaction so it means my money is stuck there"
+        }
+      ],
+      "money_balance": [
+        {
+          "id": "r0994",
+          "quote": "I transferred 1000 to another bank account and up till now I haven't received the money You guys should please refund my money"
+        },
+        {
+          "id": "r0914",
+          "quote": "I was debited and the cash did not reflect on the other account."
+        },
+        {
+          "id": "r0844",
+          "quote": "I got a failed debit for more than 2 months but they failed to reverse my money despite so much promised."
+        }
+      ],
+      "support": [
+        {
+          "id": "r0693",
+          "quote": "I transfer money and I was debited pls hlp reverse my money ooo"
+        },
+        {
+          "id": "r0844",
+          "quote": "I got a failed debit for more than 2 months but they failed to reverse my money despite so much promised."
+        },
+        {
+          "id": "r0815",
+          "quote": "I made a transaction I was Debited but the person I transferred the money to never received up till date. Please reverse my money and work on your app."
+        }
+      ]
+    },
+    "UBA": {
+      "transfers_payments": [
+        {
+          "id": "r0038",
+          "quote": "two transactions failed but money deducted"
+        },
+        {
+          "id": "r0330",
+          "quote": "Sometimes the App will debit you without crediting the other person."
+        },
+        {
+          "id": "r0133",
+          "quote": "I can't tranfer to other banks"
+        }
+      ],
+      "app_stability": [
+        {
+          "id": "r0280",
+          "quote": "for the past few days my app have refused to open"
+        },
+        {
+          "id": "r0069",
+          "quote": "This app didn't open for 3days now until today"
+        },
+        {
+          "id": "r0055",
+          "quote": "It hangs and get stuck at the money transfer page everytime!"
+        }
+      ],
+      "login_access": [
+        {
+          "id": "r0141",
+          "quote": "whenever i try to login the keeps telling me i have to activate the device, and after activating the device was successful , the app still keeps asking for activation"
+        },
+        {
+          "id": "r0030",
+          "quote": "I tap the start mobile banking button but nothing happens."
+        },
+        {
+          "id": "r0172",
+          "quote": "I got a new phone...been trying to sign in since 2 days having put in all my details but it's not working even with very good internet speed!"
+        }
+      ],
+      "ui_ux": [
+        {
+          "id": "r0258",
+          "quote": "I don't like this new version I can't even see my account balance"
+        },
+        {
+          "id": "r0196",
+          "quote": "I can't see my balance, it keeps showing me balance unavailable"
+        },
+        {
+          "id": "r0282",
+          "quote": "after updated the app I can't make any transaction again even to use card."
+        }
+      ],
+      "money_balance": [
+        {
+          "id": "r0038",
+          "quote": "two transactions failed but money deducted"
+        },
+        {
+          "id": "r0111",
+          "quote": "double transferring you money in just one click of send"
+        },
+        {
+          "id": "r0049",
+          "quote": "I can't see my balance"
+        }
+      ]
+    }
+  },
+  "eval": {
+    "status": "Accuracy check in progress"
+  }
+}

@@ -243,6 +243,21 @@ class EvalDrawTests(unittest.TestCase):
             self.assertEqual(sum(r["score"] == star for r in a), k)
 
 
+class ReportTests(unittest.TestCase):
+    def test_report_escapes_html_and_shows_unverified_note(self):
+        from triage.report import build_html
+        ranking = steps.rank(rows_fixture(), LABELS, CB)
+        data = {"method": {"n_classified": 5, "n_reviews_in": 5, "model": "m", "run_date": "d", "priority_definition": "p", "claude_code_version": "v",
+                           "prompt_hash": "h", "n_unclassified": 0, "dataset": "<script>alert(1)</script>"},
+                "ranking": ranking, "themes": {}, "excerpts": {"A": {"login_access": [{"id": "a1", "quote": "<b>x</b>"}]}}, "eval": {"status": "Accuracy check in progress"}}
+        page = build_html(data)
+        self.assertNotIn("<script>alert", page)
+        self.assertNotIn("<b>x</b>", page)
+        self.assertIn("unverified user reports", page)
+        self.assertIn("Accuracy check in progress", page)
+        self.assertNotIn("<script", page)
+
+
 class RunnerTests(unittest.TestCase):
     def test_refuses_when_api_key_is_set(self):
         with mock.patch.dict(os.environ, {"ANTHROPIC_API_KEY": "sk-test"}):
