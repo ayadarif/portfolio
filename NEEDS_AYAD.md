@@ -1,20 +1,20 @@
 # Needs Ayad
 
-Claude Code adds items here instead of stopping. Each item says what default was taken. Ayad checks this twice a day; answer by editing this file or telling Claude Code.
+Claude Code adds items here instead of stopping. Each item says what default was taken. Answer by editing this file or telling Claude Code.
 
-## Open (from the planning chat, Nov 24)
-1. Is "3-month retention up 18%" (loyalty case study) relative, or percentage points? How did the loyalty program cut CAC? Default: site copy unchanged.
-2. When did Free Cancellation launch? Did Free Date Changes and Delay Protection launch before Oct 2022? Default: copy says "still running when I left in 2026, about four years after launch".
-3. Five-Minute Brief: make it shareable in claude.ai, or drop it. Default: off the site.
-4. PMEX: which contracts you trade (regular or intraday) and which broker; any PMEX FX contracts. Default: gold oz, crude, Tola Gold; KTrade and SCS presets.
-5. Confirm this description is accurate: "Claude Code wrote most of the code; my part was the rules, the edge cases and the checks." Default: used in drafts only.
-6. Phone check of /experiment-readout: all three demos, the chart, the written readout, dark mode. Then tell Claude Code to remove the "not checked by eye" note from HANDOFF.md.
-7. LinkedIn: location Karachi, FP&A role listed, exact Daraz dates. (Outside the repo.)
-8. Optional: switch future commits to GitHub's noreply email.
+## Open
+10. (T3, blocks T7) Label the 100 eval reviews in data/eval/to_label.csv (in progress by Ayad; Claude Code must not touch that file). Steps: read docs/triage-codebook.md; fill my_category_1 (slug exactly), my_category_2 (optional), my_severity (1 to 3), notes; save as CSV with the same name and columns; tell Claude Code "labels done". Do not look at model output first.
+11. (T8) Real-trade check: still no broker statement. The skipped test stays skipped; the PMEX page shows a visible note that fees have not been checked against a real statement. When you have one (account numbers removed): contract, lots, entry and exit, USD/PKR rate, every charge line. Then say "statement ready".
 
-## Added by Claude Code
-9. (T2) Bank choice: the spec said choose by review count but named GTBank, Access, Zenith as default. By 2023 count the top three are UBA, Access, FBN, and I used those. GTBank and Zenith are not in the top six. Say if you want the named defaults instead (needs a re-run of ingest and T3; cheap now, costly after T4). Also: the page will name three real banks; reviews are the dataset authors' public Play Store data, Apache-2.0.
-10. (T3, BLOCKS T7) Label the 100 eval reviews. Steps: (a) read docs/triage-codebook.md first (5 minutes); (b) open data/eval/to_label.csv in Numbers or Excel; (c) for each row fill my_category_1 (required, use the slug exactly, e.g. login_access), my_category_2 (optional), my_severity (1, 2 or 3) and notes (optional, write doubts here); (d) do not look at model output; (e) export or save as CSV with the same name and columns, then tell Claude Code "labels done". Aim for 60 to 90 minutes. Do it before T4 output exists, ideally; the commit time of your labels is the proof they came first. Default taken: the sprint continues without them; T7 is skipped until they arrive.
-11. (T8) Real-trade check. Send one broker statement or contract note for one closed PMEX trade, with account numbers, name and CNIC removed (black them out or retype the lines). I need: contract, lots, entry and exit price, USD/PKR rate used, and every charge line (PMEX fee, SECP, IPF, commission, sales tax, any other). Then tell Claude Code "statement ready" and I fill the skipped test in src/lib/pmex.test.ts ("real-trade check") and compare to the model to the rupee. Default taken: the fee model is used as specced; the Rs 30 fee floor is read as per lot per side, which is unverified until this check.
-12. (T8) Which PMEX margin % and auto-liquidation % does your broker use right now? The page shows 2% (gold oz), 4.75% (crude) and 55% as editable defaults from Oct 2024 and Dec 2025 broker sheets. Default: unchanged, labelled with their dates.
-13. (T6) The page links to the tool README on GitHub `main`, which 404s until you merge `sprint`. Default: left as is.
+## Resolved (answered 2026-11-24)
+1. Retention 18% is relative; CAC mechanism recorded in docs/case-studies/loyalty-program.md (not in the site bullet).
+2. Free Cancellation role and scale-up wording updated on the site and in the content (role line, one sentence on scaling to all flights and routes, "nearly four years after the first version").
+3. Five-Minute Brief added to Projects as "Prototype (runs on claude.ai)" with the link and your description.
+4. PMEX contract defaults confirmed.
+5. Confirmed: "Claude Code wrote most of the code; my part was the rules, the edge cases and the checks." (Not used on the site yet.)
+6. Phone check of /experiment-readout done and clean; "not checked by eye" notes removed from HANDOFF.md.
+7. LinkedIn items: parked for later (outside the repo).
+8. Git author now uses the GitHub noreply email.
+9. Banks kept as UBA, Access, FBN; the triage page now says they are the three with the most reviews in the latest full year (2023).
+12. Margin and ALT defaults kept, labelled with their dates.
+13. README link to GitHub main: fine as is.

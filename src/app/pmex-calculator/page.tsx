@@ -15,6 +15,9 @@ export default function PmexCalculatorPage() {
       <p className="mt-2 leading-7 text-zinc-600 dark:text-zinc-400">
         What does one contract cost, what is a tick worth in rupees, where do I break even after fees and taxes, and how far can price move against me before the broker closes the position. It answers those before a trade. It does not predict prices or suggest trades. Runs in your browser; nothing is stored or sent.
       </p>
+      <p className="mt-4 rounded-lg border border-amber-500 p-3 text-sm">
+        Fees are modelled from published rate cards and have not yet been checked against a real broker statement.
+      </p>
       <div className="mt-8"><Calculator /></div>
     </main>
   );

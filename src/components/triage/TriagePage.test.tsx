@@ -18,6 +18,7 @@ describe("Feedback triage page (server render)", () => {
     expect(html).toContain("Accuracy check in progress");
     expect(html).not.toMatch(/agreement|kappa/i);
   });
+  it("explains the choice of banks", () => expect(html).toContain("most reviews in the latest full year"));
   it("credits the dataset, its licence and the authors", () => {
     expect(html).toContain("Apache-2.0");
     expect(html).toContain(d.method.dataset_url);

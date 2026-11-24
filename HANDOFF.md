@@ -24,10 +24,8 @@ See decisions.md. Ayad chose the stack; Claude chose the file layout (approved p
 - Experiment Readout UI (2026-11-24) at /experiment-readout: 3 steps (Setup, Results, Readout), 3 demos, verdict banner, 3 checks, stats table, SVG lift chart, placeholder for the written readout. Linked from Projects. 66 tests pass; build passes.
   - Files: src/lib/csv.ts (parser), readout.ts (form to numbers, one buildReadout call), demos.ts (seeded demos), src/components/readout/*. Chart is hand-written SVG (LiftChart.tsx), no chart library.
   - Regenerate fixtures after editing demos: node scripts/write_fixtures.ts (then npm test and the scipy check).
-  - NOT checked by eye: no browser was available in the session, so the layout (phone width, dark mode, chart) was only verified through type check, build and server-render tests. Open the live URL on your phone first.
 
 - Experiment Readout finish (2026-11-24): polish fixes (step numbers get list-none; clearer lift toggle with a live example; labels no longer run together; "Smallest lift" marked as needed for the underpowered check); rule-based written readout (src/lib/narrative.ts, shown under the verdict via WrittenReadout.tsx); AI rewrite layer built but OFF (src/app/api/rewrite/route.ts, src/lib/rewrite.ts, src/lib/validate-rewrite.ts; runs only if ANTHROPIC_API_KEY is set); "How this works" section (HowItWorks.tsx). 94 tests pass; build and lint pass. README and decisions.md updated.
-  - NOT checked by eye: no browser available again. Check on your phone: step labels, lift toggle hint, label spacing, readout paragraph, How this works.
   - Route checked with curl: no key gives {"enabled":false}; fake key gives ok:false (fallback); junk payload 400; oversize 413. A real rewrite has never been run (no key).
 - Review fix batch (2026-11-24): copy fixes in content.ts (intro, GrowthBook, Readout link via optional learnedLink, case study 3 wording, three new project entries); demo planned samples now match sampleSizePerVariant (clean win 12,242 at 11% lift, broken split 8,838 at 13%, early peek 40,286 at 6%; data unchanged, verdicts unchanged; guard test in readout.test.ts); README intro; no-paid-API decision; Open Graph metadata plus generated /opengraph-image (metadataBase is https://aaportfolio-delta.vercel.app, change it if a custom domain arrives). 97 tests pass; lint and build pass.
   - Early peek now also shows an amber "underpowered" check (MDE 0.71 pts vs 0.60 target). Intended; 7% target would remove it.
@@ -64,6 +62,6 @@ Working through docs/ROADMAP.md on branch `sprint`. Push only with `git push ori
 - Known nits left: duplicate quote across two categories in one bank; ALT_SOURCE constant unused; PII regex misses grouped 11-digit IDs; themes shown across banks, not per bank (by_group is in the JSON); pipeline shown as a numbered list, not a diagram; README link 404s until merge.
 
 ## Next
-1. Ayad: read NEEDS_AYAD.md (13 items). Biggest: label the 100 eval reviews (item 10), bank choice (item 9), real-trade statement (item 11).
+1. Ayad is labelling data/eval/to_label.csv (do not touch it). Open: item 10 only. Real-trade statement (item 11) still outstanding; the PMEX page carries a visible note until then.
 2. After labels are committed: T7 (run the model twice on the 100, keyword baseline, publish numbers on the page, log disagreements in decisions.md).
-3. Phone check of /feedback-triage and /pmex-calculator on the Vercel preview (nothing was viewed in a browser).
+3. Phone check of /feedback-triage and /pmex-calculator on the Vercel preview. Ayad confirmed /experiment-readout looks clean on a phone (2026-11-24); the two new pages were not viewed in a browser.

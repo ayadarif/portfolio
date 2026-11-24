@@ -11,7 +11,7 @@ export default function TriagePage({ data }: { data: TriageData }) {
     <>
       <p className="mt-2 leading-7 text-zinc-600 dark:text-zinc-400">
         Among {m.n_classified.toLocaleString("en-US")} Google Play reviews from {year}, from an open research dataset. These are unverified
-        user reports, sorted by a model and counted by code. Each number below describes this sample of reviews, not the bank.
+        user reports, sorted by a model and counted by code. Each number below describes this sample of reviews, not the bank. The three banks are the ones with the most reviews in the latest full year (2023).
       </p>
 
       <section className="mt-10">
