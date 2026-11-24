@@ -48,3 +48,12 @@
 - Priority = share x average severity x 100, ranked per bank. Praise and other are counted but never ranked. A review's second category counts as well as its first.
 - Quotes are verified in code (verbatim, 200 characters or fewer, from a review labelled with that category, no fraud words, no titled names, no [PII] tags). security_fraud, praise and other get no excerpts.
 - Dev run (50 reviews, 4 live calls, 0 failures) passed before any larger run.
+- PMEX calculator: all maths in src/lib/pmex.ts, glue in pmex-calc.ts, every contract, fee and preset in src/data/pmex-data.ts with a source URL, date and status per row. Defaults per the spec (gold oz, crude, Tola Gold; KTrade and SCS presets; ALT 55%).
+- Liquidation distance is solved exactly (required margin is recomputed at the new price, as brokers do), so gold at 2% margin and a 55% ALT gives 0.910% for a long and 0.890% for a short, not the 0.9% rule of thumb. Fees are not part of it.
+- With no account size, equity is taken to equal the initial margin (that is what the spec's 0.9% example assumes). With an account size, more cash means more room.
+- The Rs 30 PMEX fee floor is applied per lot per side. The spec does not say lot or order; this is unverified and flagged for the real-trade check.
+- Short is disabled for long-only contracts (Tola Gold, Milli Tola Gold) in the maths, not just the form, and the Tola move table stops at the 5% daily limit.
+- Position sizing is phrased as maximum lots under the user's inputs and always carries the gap-past-a-stop warning. Margin buffer defaults to 50% of the account, editable.
+- The calculator makes no network calls and stores nothing. Example prices and USD/PKR on load are labelled as examples.
+- Full run (2026-11-24): 900 reviews (corpus minus the 100 held out), 49 live calls, 0 failed. Three theme calls needed retries because the model returned ids it was not given; the id check caught them and the retries passed. Output is data/run/triage.json; the site reads a copy at src/data/feedback-triage.json.
+- Robustness: the top 3 by priority matches the top 3 by count alone for Access and FBN but not UBA, and matches the top 3 by severity 3 reviews alone for no bank. The page says this per bank instead of calling the ranking settled.

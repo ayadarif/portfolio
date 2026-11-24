@@ -51,3 +51,5 @@ __pycache__/
 # raw and cached data (large, regenerable)
 /data/raw/
 /data/cache/
+/data/dev/
+/data/run.log
