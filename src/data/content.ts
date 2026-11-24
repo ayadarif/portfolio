@@ -93,8 +93,16 @@ export const projects: Project[] = [
   {
     name: "Feedback triage pipeline",
     description:
-      "A one-off AI pipeline, run with Claude Code, that sorts customer reviews into ranked themes, with its accuracy checked against my own labels.",
-    status: "Planned",
+      "A fixed pipeline, run with Claude Code, that sorts 900 public Google Play reviews of three Nigerian banking apps into categories and severities, then ranks them with plain code. Quotes are checked word for word against the source. The accuracy check against my own labels is in progress. The tool also runs on any feedback CSV.",
+    status: "Live",
+    href: "/feedback-triage",
+  },
+  {
+    name: "PMEX contract calculator",
+    description:
+      "Margin, tick value in rupees, break-even after fees and taxes, and how far price can move against you before the broker closes the position, for PMEX gold, crude and Brent contracts. A risk tool: it never predicts prices or suggests trades.",
+    status: "Live",
+    href: "/pmex-calculator",
   },
 ];
 
