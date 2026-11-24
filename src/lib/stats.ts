@@ -351,8 +351,8 @@ export function verdict(srm: SrmResult, early: { status: Status }, cmp: Comparis
   if (srm.status === "red") return "Fix the data first";
   if (early.status === "red") {
     // Below the planned sample the ordinary p-value is not allowed to decide. The sequential band is: it stays valid under daily peeking.
-    if (seq && seq.low > 0) return "Early win (valid sequential call)";
-    if (seq && seq.high < 0) return "Stop: it's hurting";
+    if (seq && cmp.se > 0 && seq.low > 0) return "Early win (valid sequential call)";
+    if (seq && cmp.se > 0 && seq.high < 0) return "Stop: it's hurting";
     return "Keep running";
   }
   const alpha = 1 - cmp.confidence;

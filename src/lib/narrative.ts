@@ -53,7 +53,7 @@ export function buildNarrative(setup: Setup, r: Readout): string[] {
     out.push(
       `This is an early call, and it is a valid one: the planned ${int(setup.plannedPerVariant)} users per version have not been reached (the smaller has ${int(smaller)}), ` +
         `but the sequential range (${seqRange}) is entirely above zero, and that range holds up even if you check every day. ` +
-        `Early calls tend to overstate the size of the effect, so expect the final lift to be smaller than ${points(cmp.absLift)} points.`,
+        `Early calls tend to overstate the size of the effect, so the final lift may well be smaller than ${points(cmp.absLift)} points.`,
     );
   } else if (v === "Stop: it's hurting") {
     out.push(
@@ -82,7 +82,9 @@ export function buildNarrative(setup: Setup, r: Readout): string[] {
   if (impact && setup.monthlyUsers !== null && v !== "Fix the data first") {
     const k = setup.monthlyUsers;
     out.push(
-      `If shipped, expect roughly ${signedInt(cmp.absLift * k)} conversions a month (range ${signedInt(cmp.absLiftLow * k)} to ${signedInt(cmp.absLiftHigh * k)}), worth about ${money(impact.mid)}.`,
+      earlyCall
+        ? `If it holds, expect roughly ${signedInt(cmp.absLift * k)} conversions a month, but only the sequential range is valid this early: ${signedInt(r.seq.low * k)} to ${signedInt(r.seq.high * k)} a month.`
+        : `If shipped, expect roughly ${signedInt(cmp.absLift * k)} conversions a month (range ${signedInt(cmp.absLiftLow * k)} to ${signedInt(cmp.absLiftHigh * k)}), worth about ${money(impact.mid)}.`,
     );
   }
 
