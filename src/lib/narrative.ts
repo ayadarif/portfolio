@@ -27,11 +27,13 @@ export function buildNarrative(setup: Setup, r: Readout): string[] {
   const out: string[] = [];
   const range = `${points(cmp.absLiftLow)} to ${points(cmp.absLiftHigh)} percentage points`;
   const smaller = Math.min(totals.a.users, totals.b.users);
+  const earlyCall = v === "Early win (valid sequential call)" || v === "Stop: it's hurting";
+  const seqRange = `${points(r.seq.low)} to ${points(r.seq.high)} percentage points`;
 
   // 1. What happened.
   const rel = cmp.relLift === null ? "" : `${spct(cmp.relLift, 1)} relative, `;
   out.push(
-    `${v === "Keep running" ? "So far, the" : "The"} new version converted at ${pct(cmp.treatment.rate)} against ${pct(cmp.control.rate)} for the original ` +
+    `${v === "Keep running" || earlyCall ? "So far, the" : "The"} new version converted at ${pct(cmp.treatment.rate)} against ${pct(cmp.control.rate)} for the original ` +
       `(${rel}${points(cmp.absLift)} percentage points), based on ${int(totals.a.users)} and ${int(totals.b.users)} users.`,
   );
 
@@ -47,6 +49,18 @@ export function buildNarrative(setup: Setup, r: Readout): string[] {
     if (sig.positive) s += ` The gap already clears the ${conf}% bar (${pText(cmp.pValue)}), but results checked before the planned sample often fade, so wait.`;
     else if (!sig.negative) s += ` The likely true lift is anywhere from ${range}, which is too wide to call.`;
     out.push(s);
+  } else if (v === "Early win (valid sequential call)") {
+    out.push(
+      `This is an early call, and it is a valid one: the planned ${int(setup.plannedPerVariant)} users per version have not been reached (the smaller has ${int(smaller)}), ` +
+        `but the sequential range (${seqRange}) is entirely above zero, and that range holds up even if you check every day. ` +
+        `Early calls tend to overstate the size of the effect, so expect the final lift to be smaller than ${points(cmp.absLift)} points.`,
+    );
+  } else if (v === "Stop: it's hurting") {
+    out.push(
+      `This is an early call, and it is a valid one: the planned ${int(setup.plannedPerVariant)} users per version have not been reached (the smaller has ${int(smaller)}), ` +
+        `but the sequential range (${seqRange}) is entirely below zero, and that range holds up even if you check every day. ` +
+        `Early calls tend to overstate the size of the effect, so the true harm may be smaller than ${points(cmp.absLift)} points.`,
+    );
   } else if (v === "Ship it") {
     out.push(`You can be fairly confident: the likely true lift is ${range} (${conf}% confidence), the whole range is above zero, and the result is statistically significant (${pText(cmp.pValue)}).`);
   } else if (v === "Don't ship: it hurt") {
@@ -57,7 +71,7 @@ export function buildNarrative(setup: Setup, r: Readout): string[] {
 
   // 3. Caveats (only the ones not already covered above).
   const caveats: string[] = [];
-  if (early.status === "red" && v !== "Keep running") caveats.push(`The test is also short of its planned sample by ${int(early.shortfall)} users.`);
+  if (early.status === "red" && v !== "Keep running" && !earlyCall) caveats.push(`The test is also short of its planned sample by ${int(early.shortfall)} users.`);
   if (power.status === "amber" && power.targetAbs !== null) {
     caveats.push(`This sample could only detect lifts of ${plainPoints(mde)} or more and you cared about ${plainPoints(power.targetAbs)}, so a flat result says little.`);
   }
@@ -75,6 +89,8 @@ export function buildNarrative(setup: Setup, r: Readout): string[] {
   // 5. What to do next.
   if (v === "Fix the data first") out.push("Find out why users were not split as planned, fix it, and rerun the test; do not act on this result.");
   else if (v === "Keep running") out.push(`Keep the test running until both versions reach ${int(setup.plannedPerVariant)} users, then read it again.`);
+  else if (v === "Early win (valid sequential call)") out.push(`You may act now, or keep running to ${int(setup.plannedPerVariant)} users per version for a tighter estimate of the size of the win.`);
+  else if (v === "Stop: it's hurting") out.push("Stop the test, and work out why it lowered the metric before trying again.");
   else if (v === "Ship it") out.push("Roll it out, and watch the metric after launch to confirm the gain holds.");
   else if (v === "Don't ship: it hurt") out.push("Do not ship this version; work out why it lowered the metric before trying again.");
   else if (power.status === "amber") out.push("Do not read this as proof the change does nothing: run a bigger or longer test, or accept that lifts this small are not worth chasing.");
@@ -104,7 +120,7 @@ export function rewritePayload(setup: Setup, r: Readout, sentences: string[]): R
   const k = setup.monthlyUsers;
   return {
     verdict: r.verdict,
-    significant: sig.significant,
+    significant: sig.significant && !(r.verdict === "Early win (valid sequential call)" || r.verdict === "Stop: it's hurting"),
     trendingNegative: r.verdict === "Keep running" && sig.negative,
     numbers: {
       controlRatePct: r4(cmp.control.rate * 100),

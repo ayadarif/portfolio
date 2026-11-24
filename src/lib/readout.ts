@@ -3,7 +3,7 @@
 import {
   aggregate, businessImpact, calledTooEarly, compareVariants, cumulativeSeries, minDetectableEffect, sampleRatioMismatch,
   underpowered, verdict, type Comparison, type CumulativePoint, type Impact, type LiftMode, type ResultRow, type SrmResult,
-  type Status, type Totals, type Verdict,
+  sequentialBand, type SequentialBand, type Status, type Totals, type Verdict,
 } from "./stats";
 
 // What the person typed. Everything is a string because that is what an input box holds.
@@ -81,6 +81,7 @@ export interface Readout {
   mde: number; // absolute, rate points as a fraction
   impact: Impact | null;
   series: CumulativePoint[];
+  seq: SequentialBand;
   verdict: Verdict;
 }
 
@@ -94,11 +95,12 @@ export function buildReadout(setup: Setup, rows: ResultRow[]): Readout {
   // The lift you cared about, in rate points. Relative lifts are applied to your stated baseline, else the observed control rate.
   const targetAbs = setup.minLift === null ? null : setup.liftMode === "absolute" ? setup.minLift : (setup.baseline ?? cmp.control.rate) * setup.minLift;
   const power = { status: targetAbs === null ? ("unset" as const) : underpowered(mde, targetAbs).status, targetAbs };
+  const seq = sequentialBand(cmp, a.users, b.users, setup.plannedPerVariant);
   const impact =
     setup.monthlyUsers !== null && setup.valuePerConversion !== null
       ? businessImpact(cmp.absLift, cmp.absLiftLow, cmp.absLiftHigh, setup.monthlyUsers, setup.valuePerConversion)
       : null;
-  return { totals, cmp, srm, early, power, mde, impact, series: cumulativeSeries(rows, setup.confidence), verdict: verdict(srm, early, cmp) };
+  return { totals, cmp, srm, early, power, mde, impact, series: cumulativeSeries(rows, setup.confidence, setup.plannedPerVariant), seq, verdict: verdict(srm, early, cmp, seq) };
 }
 
 export function rowsToCsv(rows: ResultRow[]): string {

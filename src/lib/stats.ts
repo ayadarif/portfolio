@@ -107,6 +107,7 @@ export interface Comparison {
   relLift: number | null; // absLift / A rate; null when A converts at 0
   relLiftLow: number | null;
   relLiftHigh: number | null;
+  se: number; // unpooled standard error of the lift (rate points as a fraction); the sequential interval reuses it
   zScore: number;
   pValue: number;
   confidence: number;
@@ -144,6 +145,7 @@ export function compareVariants(a: Arm, b: Arm, confidence = 0.95): Comparison {
     relLift: hasBase ? diff / control.rate : null,
     relLiftLow: hasBase ? absLow / control.rate : null,
     relLiftHigh: hasBase ? absHigh / control.rate : null,
+    se: seUnpooled,
     zScore,
     pValue,
     confidence,
@@ -270,6 +272,35 @@ export function aggregate(rows: ResultRow[]): Totals {
   return { controlName, treatmentName, a: sums.get(controlName)!, b: sums.get(treatmentName)! };
 }
 
+// ---------- Sequential (anytime-valid) interval ----------
+
+// A confidence sequence is a band you may look at every day without inflating the false-alarm rate.
+// Formula as documented by GrowthBook (normal-mixture confidence sequence):
+//   half-width = se * sqrt( 2 (N rho^2 + 1) / (N rho^2) * ln( sqrt(N rho^2 + 1) / alpha ) )
+//   rho^2      = ( -2 ln(alpha) + ln( -2 ln(alpha) + 1 ) ) / N*
+// N = users in both arms so far; N* = the total sample at which you plan to decide (the band is tightest there).
+// se is the unpooled standard error of the lift, the same one the ordinary interval uses.
+export function sequentialHalfWidth(se: number, nTotal: number, nStar: number, alpha: number): number {
+  const a = -2 * Math.log(alpha);
+  const rho2 = (a + Math.log(a + 1)) / nStar;
+  const nr = nTotal * rho2;
+  return se * Math.sqrt(((2 * (nr + 1)) / nr) * Math.log(Math.sqrt(nr + 1) / alpha));
+}
+
+// N* = twice the planned per-arm sample, i.e. the total users across both arms when the plan says to decide.
+export function plannedTotal(plannedPerVariant: number): number {
+  return 2 * plannedPerVariant;
+}
+
+export interface SequentialBand { low: number; high: number }
+
+export function sequentialBand(cmp: Comparison, usersA: number, usersB: number, plannedPerVariant: number): SequentialBand {
+  const h = sequentialHalfWidth(cmp.se, usersA + usersB, plannedTotal(plannedPerVariant), 1 - cmp.confidence);
+  return { low: cmp.absLift - h, high: cmp.absLift + h };
+}
+
+// ---------- Cumulative series ----------
+
 export interface CumulativePoint {
   date: string;
   usersA: number;
@@ -277,11 +308,13 @@ export interface CumulativePoint {
   absLift: number;
   absLiftLow: number;
   absLiftHigh: number;
+  seqLow?: number; // sequential band, present when a planned sample was given
+  seqHigh?: number;
 }
 
 // Cumulative lift by day: re-runs the comparison on all data up to each date, so you can see the CI band narrow (or the lift drift).
 // Days before both arms have users and some conversions are skipped, since the maths is meaningless there.
-export function cumulativeSeries(rows: ResultRow[], confidence = 0.95): CumulativePoint[] {
+export function cumulativeSeries(rows: ResultRow[], confidence = 0.95, plannedPerVariant?: number): CumulativePoint[] {
   const dated = rows.filter((r) => r.date);
   if (dated.length === 0) return [];
   const { controlName } = aggregate(rows);
@@ -297,7 +330,9 @@ export function cumulativeSeries(rows: ResultRow[], confidence = 0.95): Cumulati
     }
     if (a.users > 0 && b.users > 0 && a.conversions + b.conversions > 0) {
       const c = compareVariants(a, b, confidence);
-      out.push({ date: d, usersA: a.users, usersB: b.users, absLift: c.absLift, absLiftLow: c.absLiftLow, absLiftHigh: c.absLiftHigh });
+      const band = plannedPerVariant ? sequentialBand(c, a.users, b.users, plannedPerVariant) : null;
+      out.push({ date: d, usersA: a.users, usersB: b.users, absLift: c.absLift, absLiftLow: c.absLiftLow, absLiftHigh: c.absLiftHigh,
+        ...(band ? { seqLow: band.low, seqHigh: band.high } : {}) });
     }
   }
   return out;
@@ -305,15 +340,21 @@ export function cumulativeSeries(rows: ResultRow[], confidence = 0.95): Cumulati
 
 // ---------- Verdict ----------
 
-export type Verdict = "Fix the data first" | "Keep running" | "Ship it" | "Don't ship: it hurt" | "No clear winner";
+export type Verdict = "Fix the data first" | "Keep running" | "Early win (valid sequential call)" | "Stop: it's hurting" | "Ship it" | "Don't ship: it hurt" | "No clear winner";
 
 // Exactly one verdict; the first rule that matches wins, and the order is the logic:
 // 1. broken split -> nothing else can be trusted; 2. below planned sample -> the plan says keep going (even a scary
 // early loss, because peeking inflates false alarms); 3/4. a real win or loss needs BOTH p below alpha and a CI that
 // excludes zero; 5. everything else is no clear winner.
-export function verdict(srm: SrmResult, early: { status: Status }, cmp: Comparison): Verdict {
+// Below the planned sample (rule 2) the verdict can still be an early call, but only if the sequential band excludes zero.
+export function verdict(srm: SrmResult, early: { status: Status }, cmp: Comparison, seq?: SequentialBand): Verdict {
   if (srm.status === "red") return "Fix the data first";
-  if (early.status === "red") return "Keep running";
+  if (early.status === "red") {
+    // Below the planned sample the ordinary p-value is not allowed to decide. The sequential band is: it stays valid under daily peeking.
+    if (seq && seq.low > 0) return "Early win (valid sequential call)";
+    if (seq && seq.high < 0) return "Stop: it's hurting";
+    return "Keep running";
+  }
   const alpha = 1 - cmp.confidence;
   const significant = cmp.pValue < alpha;
   if (significant && cmp.absLiftLow > 0) return "Ship it";

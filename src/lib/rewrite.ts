@@ -5,7 +5,7 @@ import type { Verdict } from "./stats";
 import { validateRewrite } from "./validate-rewrite";
 
 export const MODEL = "claude-sonnet-5-5";
-const VERDICTS: Verdict[] = ["Fix the data first", "Keep running", "Ship it", "Don't ship: it hurt", "No clear winner"];
+const VERDICTS: Verdict[] = ["Fix the data first", "Keep running", "Early win (valid sequential call)", "Stop: it's hurting", "Ship it", "Don't ship: it hurt", "No clear winner"];
 
 // The request body comes from the browser, so check its shape before trusting it.
 export function parsePayload(x: unknown): RewritePayload | null {

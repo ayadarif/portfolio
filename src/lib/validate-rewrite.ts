@@ -41,6 +41,8 @@ interface Rule { forbidden: RegExp[]; required: RegExp[]; allowNegShip: boolean;
 const rules: Record<Verdict, Rule> = {
   "Ship it": { forbidden: [/keep (?:the test )?running/, /no clear winner/, /fix the data/, /split is broken/, /stop the test/], required: [], allowNegShip: false, allowPosShip: true },
   "Don't ship: it hurt": { forbidden: [/no clear winner/, /fix the data/, /keep (?:the test )?running/], required: [], allowNegShip: true, allowPosShip: false },
+  "Early win (valid sequential call)": { forbidden: [/no clear winner/, /fix the data/, /test is (?:complete|finished|done)/], required: [/early/], allowNegShip: false, allowPosShip: true },
+  "Stop: it's hurting": { forbidden: [/no clear winner/, /fix the data/, /test is (?:complete|finished|done)/], required: [/early|stop/], allowNegShip: true, allowPosShip: false },
   "Keep running": { forbidden: [/no clear winner/, /fix the data/, /test is (?:complete|finished|done)/], required: [/running|wait|full sample|planned/], allowNegShip: true, allowPosShip: false },
   "Fix the data first": { forbidden: [/keep (?:the test )?running/], required: [/split|assign|data/], allowNegShip: true, allowPosShip: false },
   "No clear winner": { forbidden: [/fix the data/, /keep (?:the test )?running/], required: [], allowNegShip: true, allowPosShip: false },

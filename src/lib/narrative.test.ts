@@ -60,7 +60,7 @@ describe("rule-based readout", () => {
     expect(text.join(" ")).toContain("−");
   });
   it("Keep running + significantly negative adds the trending negative line", () => {
-    const { r, text } = run(two([5000, 600], [5000, 480]), { plannedN: "20000" });
+    const { r, text } = run(two([5000, 600], [5000, 480]), { plannedN: "1000000" });
     expect(r.verdict).toBe("Keep running");
     expect(significance(r.cmp).negative).toBe(true);
     expect(text).toContain(TRENDING_NEGATIVE);

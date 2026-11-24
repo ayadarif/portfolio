@@ -160,6 +160,14 @@ Run `npm test`. Files and what they prove:
 
 Independent check: `scripts/check_stats.py` recomputes the same numbers with scipy (run in `scripts/.venv`). The tests and the script share `scripts/fixtures/datasets.json`, which is generated from `src/lib/demos.ts`.
 
+## 6b. Early calls: the sequential band (added in phase 2)
+
+Plain terms. A normal confidence interval is only honest if you look once, at the planned sample. Look every day and you will eventually catch a "win" that is luck: in my simulation of tests with no real difference, 26% were declared winners at some point. A confidence sequence is a wider band built so that it stays honest however often you look. If that band is entirely above zero before the planned sample, the Readout says "Early win (valid sequential call)". Entirely below: "Stop: it's hurting". Otherwise: "Keep running".
+
+Moving parts. N* is the total sample (both arms) where the band is tightest; I set it to twice the planned per-arm sample, so it is tightest where the plan says to decide. The band reuses the standard error the tool already computes. Cost: it is wider than the ordinary interval, so it needs a bigger effect to call early. Early calls also overstate the effect, because you stopped on a lucky high; every early verdict says so.
+
+Honest trade-off. Group sequential tests (fixed looks, alpha spending) keep more power when the sample estimate is good (Spotify: 0.90 to 0.93 against about 0.72). I chose the confidence sequence because it needs no look schedule. Code: `sequentialHalfWidth` in src/lib/stats.ts. Check: `scripts/check_sequential.py`.
+
 ## 7. Quiz (10 questions)
 
 1. Why does the lift CI use unpooled variance while the p-value uses pooled?
@@ -172,6 +180,10 @@ Independent check: `scripts/check_stats.py` recomputes the same numbers with sci
 8. Why is the narrative rule-based first, with AI only as an optional rewrite?
 9. A rewrite says "this change is not significant" when p = 0.3. Does the validator accept it? Why?
 10. Why does the browser not call `/api/rewrite` by default, and what changes that?
+11. A test is at 40% of its planned sample and the ordinary interval excludes zero. Is that an early win? What decides it?
+12. Why is the sequential band wider than the ordinary one, and what does that buy?
+13. Why does every early call say the effect is probably overstated?
+14. When would you pick a group sequential test instead?
 
 ## Answers
 
@@ -185,3 +197,7 @@ Independent check: `scripts/check_stats.py` recomputes the same numbers with sci
 8. So the tool works and stays honest with no AI. Rules guarantee "significant" is only printed when the stats support it. The AI could only change wording, and the validator checks it.
 9. No. Any "significan..." is rejected when the stats do not support significance, even negated. Stricter than needed on purpose.
 10. A call would send a summary to the server on every readout, contradicting the "nothing leaves your browser" claim. It only fires if the build flag `NEXT_PUBLIC_REWRITE_ENABLED` is `"true"`, and even then the route needs an API key, which the no-paid-API decision rules out.
+11. No. Below the plan the ordinary interval is not allowed to decide. Only the sequential band excluding zero makes it an early win.
+12. It has to hold at every look, not one. That costs width; it buys a false alarm rate that stays near alpha (1.05% against 26.2% in my simulation).
+13. You only stop early when the data has run high, so the stopped estimate is biased upward (Statsig warns of the same).
+14. When the looks are fixed and known in advance and the sample size estimate is good: it keeps more power.

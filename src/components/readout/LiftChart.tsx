@@ -26,9 +26,10 @@ export default function LiftChart({ series, plannedPerVariant }: { series: Cumul
   }, []);
 
   const n = series.length;
-  const pts = series.map((p) => ({ ...p, low: p.absLiftLow * 100, high: p.absLiftHigh * 100, mid: p.absLift * 100 }));
-  let yMin = Math.min(0, ...pts.map((p) => p.low));
-  let yMax = Math.max(0, ...pts.map((p) => p.high));
+  const pts = series.map((p) => ({ ...p, low: p.absLiftLow * 100, high: p.absLiftHigh * 100, mid: p.absLift * 100, sLow: (p.seqLow ?? p.absLiftLow) * 100, sHigh: (p.seqHigh ?? p.absLiftHigh) * 100 }));
+  const hasSeq = series.some((p) => p.seqLow !== undefined);
+  let yMin = Math.min(0, ...pts.map((p) => Math.min(p.low, p.sLow)));
+  let yMax = Math.max(0, ...pts.map((p) => Math.max(p.high, p.sHigh)));
   const pad = (yMax - yMin) * 0.08 || 1;
   yMin -= pad;
   yMax += pad;
@@ -40,6 +41,8 @@ export default function LiftChart({ series, plannedPerVariant }: { series: Cumul
 
   const band =
     pts.map((p, i) => `${x(i)},${y(p.high)}`).join(" ") + " " + [...pts].map((p, i) => ({ p, i })).reverse().map(({ p, i }) => `${x(i)},${y(p.low)}`).join(" ");
+  const seqHi = pts.map((p, i) => `${i ? "L" : "M"}${x(i)},${y(p.sHigh)}`).join(" ");
+  const seqLo = pts.map((p, i) => `${i ? "L" : "M"}${x(i)},${y(p.sLow)}`).join(" ");
   const line = pts.map((p, i) => `${i ? "L" : "M"}${x(i)},${y(p.mid)}`).join(" ");
 
   // First day on which both arms have the planned sample; the plan says "decide here, not before".
@@ -60,9 +63,10 @@ export default function LiftChart({ series, plannedPerVariant }: { series: Cumul
 
   return (
     <div ref={box} className="w-full">
-      <p className="min-h-10 text-sm text-zinc-600 dark:text-zinc-400" aria-live="polite">
+      <p className="min-h-16 text-sm text-zinc-600 dark:text-zinc-400" aria-live="polite">
         <span className="font-medium text-foreground">{shortDate(cur.date)}:</span> lift {spts(cur.mid / 100)}, range {spts(cur.low / 100)} to {spts(cur.high / 100)}
         {cur.low > 0 || cur.high < 0 ? " (range excludes zero)" : " (range includes zero)"}
+        {hasSeq && <>; sequential range {spts(cur.sLow / 100)} to {spts(cur.sHigh / 100)}{cur.sLow > 0 || cur.sHigh < 0 ? " (excludes zero)" : " (includes zero)"}</>}
       </p>
       <svg
         width={w}
@@ -90,6 +94,12 @@ export default function LiftChart({ series, plannedPerVariant }: { series: Cumul
             <text x={x(planIdx) - 4} y={M.top + 10} textAnchor="end" className="fill-emerald-700 text-[11px] dark:fill-emerald-400">planned sample reached</text>
           </g>
         )}
+        {hasSeq && (
+          <g className="stroke-indigo-700 dark:stroke-indigo-300" fill="none" strokeWidth={1.5} strokeDasharray="5 3">
+            <path d={seqHi} />
+            <path d={seqLo} />
+          </g>
+        )}
         <path d={line} fill="none" className="stroke-sky-600 dark:stroke-sky-400" strokeWidth={2} />
         {pts.map((p, i) =>
           p.low > 0 || p.high < 0 ? <circle key={p.date} cx={x(i)} cy={y(p.mid)} r={3.5} className="fill-amber-500" /> : null,
@@ -106,7 +116,7 @@ export default function LiftChart({ series, plannedPerVariant }: { series: Cumul
         <circle cx={x(shown)} cy={y(cur.mid)} r={4.5} className="fill-sky-600 stroke-white dark:fill-sky-400 dark:stroke-zinc-900" strokeWidth={2} />
       </svg>
       <p className="mt-2 text-xs text-zinc-500">
-        Line: lift if you had stopped that day. Shaded: confidence range. <span className="text-amber-600">Amber dots</span>: days a peeking team would have seen a &quot;significant&quot; result.
+        Line: lift if you had stopped that day. Shaded: ordinary confidence range. {hasSeq && <><span className="text-indigo-700 dark:text-indigo-300">Dashed lines</span>: sequential range, valid however often you check. </>}<span className="text-amber-600">Amber dots</span>: days a peeking team would have seen a &quot;significant&quot; result.
         Tap or hover for values.
       </p>
     </div>

@@ -9,7 +9,9 @@ import { int, pct, pval, signedInt, spct, spts } from "./format";
 const banner: Record<Verdict, { cls: string; line: string }> = {
   "Ship it": { cls: "border-emerald-300 bg-emerald-50 text-emerald-900 dark:border-emerald-800 dark:bg-emerald-950 dark:text-emerald-100", line: "Full sample reached, split is healthy, and the whole confidence range is above zero." },
   "Don't ship: it hurt": { cls: "border-red-300 bg-red-50 text-red-900 dark:border-red-900 dark:bg-red-950 dark:text-red-100", line: "Full sample reached and the whole confidence range is below zero." },
-  "Keep running": { cls: "border-amber-300 bg-amber-50 text-amber-900 dark:border-amber-800 dark:bg-amber-950 dark:text-amber-100", line: "The plan says wait for the full sample. Early numbers, good or bad, are unreliable." },
+  "Early win (valid sequential call)": { cls: "border-emerald-300 bg-emerald-50 text-emerald-900 dark:border-emerald-800 dark:bg-emerald-950 dark:text-emerald-100", line: "Before the planned sample, but the sequential range is above zero and stays valid under daily checking. Early calls tend to overstate the effect size." },
+  "Stop: it's hurting": { cls: "border-red-300 bg-red-50 text-red-900 dark:border-red-900 dark:bg-red-950 dark:text-red-100", line: "Before the planned sample, but the sequential range is below zero and stays valid under daily checking. Early calls tend to overstate the effect size." },
+  "Keep running": { cls: "border-amber-300 bg-amber-50 text-amber-900 dark:border-amber-800 dark:bg-amber-950 dark:text-amber-100", line: "The plan says wait for the full sample. The sequential range still includes zero, so there is no valid early call yet." },
   "Fix the data first": { cls: "border-red-300 bg-red-50 text-red-900 dark:border-red-900 dark:bg-red-950 dark:text-red-100", line: "The split is broken, so no number below can be trusted until that is fixed." },
   "No clear winner": { cls: "border-zinc-300 bg-zinc-100 text-zinc-900 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100", line: "The test is complete but cannot tell the variants apart." },
 };
