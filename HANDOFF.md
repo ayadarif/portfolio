@@ -45,3 +45,13 @@ See decisions.md. Ayad chose the stack; Claude chose the file layout (approved p
 
 ## Preferences
 Plain explanations, one concept at a time, short replies, no em dashes, ask before pushing.
+
+
+---
+# Sprint mode (started 2026-11-24)
+Working through docs/ROADMAP.md on branch `sprint`. Push only with `git push origin sprint`. Items needing Ayad are in NEEDS_AYAD.md (each with the default taken).
+
+## Sprint status
+- T0 to T3 DONE (see ROADMAP.md for hashes). T1 learning doc: docs/learn/experiment-readout.md. T2: corpus data/corpus.csv (1,000 reviews, UBA/Access/FBN, 2023), docs/data-report.md. T3: docs/triage-codebook.md, data/eval/to_label.csv (waiting on Ayad's labels, NEEDS_AYAD item 10).
+- T4 in progress: pipeline in scripts/triage/. Plan: codebook.json drives the prompt; claude_runner.py wraps `claude -p --safe-mode --tools "" --model claude-sonnet-5-5 --no-session-persistence --output-format json --json-schema ...` run from a temp dir with stdin closed; result is in the `structured_output` field. Responses cached in data/cache (gitignored). Steps: classify (25 per call), theme (per top category), rank (code), excerpts (per bank, verified verbatim in code). Eval ids excluded from every run. Tests use unittest with a mocked model (`python3 -m unittest discover -s scripts/tests`).
+- Findings: Claude Code 2.1.331 has `--safe-mode`; no `--system-prompt-file` (system prompt passed as an argument). One smoke call confirmed a prompt-injection string inside <data> was ignored.
