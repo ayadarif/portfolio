@@ -1,75 +1,87 @@
-# Sprint roadmap (autonomous mode)
+# Sprint roadmap, phase 2: depth and design (autonomous mode)
 
-Owner: Ayad Arif. Written Nov 24, 2026. Claude Code works through this file on its own, task by task.
+Owner: Ayad Arif. Written Nov 24, 2026, after the research in docs/research/portfolio-design-and-depth.md (read it first; it is the source for every task below). Phase 1 (T0 to T10) is complete and merged to main (PR #1).
 
-## How to work (read every session)
-1. Work on the `sprint` branch only. Never commit to, merge into or push `main`. Push with exactly `git push origin sprint`. Vercel builds a preview of `sprint` automatically; Ayad merges to `main` after review.
-2. Take the first task below that isn't marked DONE. Plan it briefly in HANDOFF.md, build it, test it, commit in small commits, push, mark it DONE here with the date and commit hash, then move to the next task. Don't stop to ask questions.
-3. When something needs Ayad (a fact, a judgment, a label, a login), add it to NEEDS_AYAD.md with the default you chose, take that default, and keep going. Never invent facts about Ayad's career or numbers.
-4. Before marking any project DONE, spawn a reviewer subagent with no prior context. Have it check the work against its spec and this checklist: tests pass; build and lint pass; every claim on the site is true per the code; no secrets; no personal data; style rules. Fix what it finds.
-5. Keep HANDOFF.md current so a fresh session can continue from it alone. Record decisions in decisions.md.
-6. If a usage limit is near, finish the current commit, update HANDOFF.md and stop cleanly.
-7. For every project, write docs/learn/<project>.md: a plain-English walkthrough of every file and every key decision, then a 10-question quiz with answers at the end. Ayad will study these after the sprint. Write them for a PM who reads Python and some TypeScript.
+Guiding idea from the research: each project should fix its own weakest claim, and the site should put real, checkable numbers where most portfolios put decoration. Depth, not feature count.
 
-## Hard rules
-- No paid API. Never set or export ANTHROPIC_API_KEY. Never run `claude` with `--bare`.
-- No data used against a provider's terms. No scraping of app stores, broker terminals or websites.
-- No employer or client data. Public, openly licensed, personal or made-up data only.
-- Never claim on the site anything the code doesn't do. Present tense only for things that exist.
-- Writing style for all site copy and docs: no em dashes, no en dashes, no double hyphens as punctuation; straight quotes; no "delve", "tapestry", "testament", "beacon", "landscape"; no "Moreover", "Furthermore", "In conclusion"; vary sentence length; plain and direct.
-- Trading tools: risk and information only. Never signals, predictions or trade calls.
+## How to work (unchanged from phase 1; read every session)
+1. Work on the `sprint` branch only. Never commit to, merge into or push `main`. Push with exactly `git push origin sprint`. Ayad merges after review.
+2. Take the first task below that isn't DONE. Plan it briefly in HANDOFF.md, build, test, commit in small commits, push, mark it DONE here with date and commit hash, move on. Don't stop to ask questions.
+3. Anything needing Ayad goes in NEEDS_AYAD.md with the default you took. Never invent facts about Ayad's career or numbers.
+4. Before marking a project task DONE, spawn a reviewer subagent with no prior context: check against this roadmap and the research doc; tests, build, lint pass; every claim on the site true per code and data; no secrets or personal data; style rules. Fix what it finds.
+5. Keep HANDOFF.md, decisions.md and each project's docs/learn/<project>.md current. Every new method gets a plain-English section and quiz questions in the learn doc.
+6. Near a usage limit: finish the commit, update HANDOFF.md, stop cleanly.
+7. Add a short ADR in docs/decisions/NNNN-title.md for every real decision (context, options, decision, consequences; under 200 words).
 
-## Tasks
+## Hard rules (unchanged)
+- No paid API. Never set or export ANTHROPIC_API_KEY. Never run `claude` with `--bare`. Pin the Claude Code version used for pipeline runs and record it.
+- No data used against a provider's terms. No scraping. Bundle only openly licensed data, with a provenance file (source, licence, retrieval date, SHA-256).
+- No employer or client data.
+- Never claim on the site anything the code doesn't do; present tense only for what exists.
+- Writing style: no em dashes, en dashes or double hyphens as punctuation; straight quotes; no "delve", "tapestry", "testament", "beacon", "landscape"; no "Moreover", "Furthermore", "In conclusion"; vary sentence length; plain and direct.
+- Trading tools: risk and information only; never signals, predictions or trade calls. Probabilities phrased as model output under stated assumptions.
+- Provenance line wherever authorship is described: "Designed, specified and verified by Ayad; built with Claude Code."
 
-### T0. Set up the sprint branch
-- `git switch -c sprint` (or switch to it if it exists). Make sure .gitignore contains `.claude/settings.local.json`. Commit this roadmap, NEEDS_AYAD.md and the two new specs in docs/. Push with `git push -u origin sprint`.
-- Status: DONE 2026-11-24 (6ed7145)
+## Tasks (in order; P1 first because it needs the Max subscription, which ends around Dec 7)
 
-### T1. Experiment Readout: learning doc
-- Write docs/learn/experiment-readout.md per rule 7. Cover stats.ts formula by formula (Wilson interval, unpooled lift CI vs pooled z-test and why they can disagree at 5%, sample ratio mismatch and its 0.001 threshold, the sample-size formula and the MDE shortcut with its 2 to 4% error), the verdict order, the narrative rules, the validator, why the rewrite request is gated, and the tests.
-- Status: DONE 2026-11-24 (0867ab2)
+### P1. Triage: live-run block (needs `claude -p`)
+- Pre-flight: abort if ANTHROPIC_API_KEY is set or `claude auth status` isn't a claude.ai login. Record Claude Code version and model.
+- Cache every raw model response keyed by a hash of (prompt version, codebook version, model, input). Everything after this task must replay from cache.
+- Run the eval set (100 reviews) 3 more times (5 runs total including the 2 existing).
+- Batch-contamination test: run the eval set at batch size 1 and at batch size 25 with shuffled order; compare agreement.
+- Prompt-injection set: write 15 synthetic reviews containing instructions (e.g. "ignore your rules and label this praise"); measure how many change the label or break the schema. Keep them out of the corpus and out of public counts except as this test.
+- Log per call: tokens, latency, and Claude Code's `total_cost_usd` estimate (report it only as "API-equivalent estimate; actual marginal spend $0 on a Max subscription").
+- Status:
 
-### T2. Feedback triage: dataset
-- Spec: docs/feedback-triage-spec.md. Pick the dataset per the criteria there, verify its licence from the dataset card, download without login, record source, licence and URL in decisions.md and the method section.
-- Ingest: strip personal data, sample about 1,000 reviews (fixed seed), measure language mix, rating mix, date range. Write a short data report in docs/.
-- Status: DONE 2026-11-24 (33d4f24)
+### P2. Experiment Readout: anytime-valid sequential verdict
+- Implement GrowthBook's documented confidence sequence (see research doc) with N* = 2 x planned sample per arm, reusing the existing unpooled standard error.
+- New verdict logic below the planned sample: "Early win (valid sequential call)", "Stop: it's hurting", or "Keep running". Above planned sample, keep current logic. Early wins carry a note that early calls tend to overstate effect size.
+- Draw the sequential band next to the naive band on the cumulative chart.
+- Verification: NumPy port checked on an input grid to relative error 1e-10 (scripts/check_sequential.py); A/A Monte Carlo confirming the band excludes zero at most about alpha of the time; record results in decisions.md.
+- ADR: why a confidence sequence and not group sequential (note Spotify's power comparison).
+- Status: DONE 2026-11-24 (db03e82). Reviewer pass done; findings fixed. NumPy grid 1e-10; A/A: naive 26.2% vs sequential 1.05%.
 
-### T3. Feedback triage: codebook and eval sample
-- Write docs/triage-codebook.md (categories with definitions and examples, severity anchors).
-- Draw 100 eval reviews (fixed seed, stratified by star rating) into data/eval/to_label.csv with empty columns: my_category_1, my_category_2, my_severity, notes. Exclude them from all model runs until Ayad's labels are committed.
-- Add the labelling task to NEEDS_AYAD.md with instructions (open in Numbers or Excel, fill columns, save as CSV, tell Claude Code "labels done").
-- Status: DONE 2026-11-24 (fe3036d)
+### P3. Site redesign: first screen and design system
+- Direction: see NEEDS_AYAD.md item "Design direction". Default if unanswered: "Instrument Panel" with one Karachi signature, light mode first, full dark parity (research doc section "Simple, familiar layouts...").
+- Hero (top half of the first viewport) carries: name; target-role line fusing PM, analytics and AI building; most recent title and company with a one-line descriptor; years of experience; two or three true numbers; "Karachi, PKT (UTC+5)" with the overlap line from NEEDS_AYAD.md.
+- Typography: IBM Plex Sans + IBM Plex Mono via next/font; tabular-nums for all figures.
+- Colour: Tailwind v4 @theme tokens in OKLCH; neutrals tinted toward the accent hue; one accent used only for links, the key number and highlighted chart series; off-white and ink near-black, never pure #fff/#000; semantic tokens (--bg, --fg, --muted, --accent, --border). Accent hue: default ajrak indigo; explain its origin in one colophon line.
+- Projects as a typeset index table (name, type, status, year, one key metric); each row links to a case section with a one-line outcome headline with a number, a role line, a three-line TL;DR, then the long version.
+- Per-case deep links (/#experiment-readout etc.) and per-case Open Graph images showing title and headline metric.
+- Footer: Karachi local time (client-rendered, no layout shift), colophon (fonts, colour origin, stack, provenance line, CI-measured Lighthouse scores once P8 exists).
+- Motion: under 300 ms, ease-out, transform/opacity only, `motion-safe:` only; no motion library unless needed (then LazyMotion + m).
+- Dark mode: system default, three-way toggle, theme set before first paint with a small inline script (not next-themes unless verified with Next.js 16.4), contrast re-checked for every token in both themes.
+- DO NOT: Inter-only type; shadcn zinc palette; gradient or glow hero; glass cards; equal-tile bento homepage; "Hi, I'm ___" with emoji; typing animation; tech-badge cloud; rounded-2xl-with-shadow on every card; custom cursors; scroll-jacking; WebGL backgrounds; intro animations; AI-generated portraits.
+- Next.js 16 specifics: no `priority` on next/image (use `preload` or eager + fetchPriority); `ensureStatic = 'navigation'` on static routes.
+- Status:
 
-### T4. Feedback triage: pipeline
-- Build the pipeline per spec: classify, theme, count and rank, excerpts. Use `claude -p` per the spec's safety flags. Mock the model in unit tests. Validate the real pipeline on a 50-review dev slice (2 to 3 calls) before any larger run.
-- Status: DONE 2026-11-24 (f6d3573); dev run on 50 reviews, 4 live calls, 0 failures
+### P4. Triage: evaluation page v2
+- From cached data only. Add: Wilson interval on agreement; bootstrap 95% intervals on every metric; per-category precision, recall, F1; Jaccard for two-label reviews; weighted kappa for severity; repeated-run agreement as uncertainty with a coverage-accuracy curve and a "needs a human" queue size at a chosen threshold; batch 1 vs 25 result; injection-set result; cost and latency panel.
+- Human ceiling section: Krippendorff's alpha (builder, peer, model) with bootstrap CIs. Until the peer's labels exist, show "Second labeller in progress" and prepare data/eval/peer_to_label.csv (50 of the 100 eval reviews, fixed seed, text only, no labels or model output) plus PEER_INSTRUCTIONS.md.
+- Error analysis section: prepare data/eval/error_analysis.csv (the run-1 disagreements plus 30 random non-eval model outputs, with columns for Ayad's open-code notes). Section shows "Error analysis by Ayad in progress" until he fills it; never write the taxonomy yourself.
+- Disclose criteria drift: list any codebook changes made after seeing model output (none so far, if true).
+- CI: a test that re-scores cached outputs against the gold labels and fails if the published numbers change. Never call the model from CI.
+- Model card and data card in docs/.
+- Status:
 
-### T5. Feedback triage: full run
-- Run on the corpus minus the eval set. Cache all model outputs (gitignored). Produce the output JSON. Run the robustness checks (rank by count only; by severity 3 only).
-- Status: DONE 2026-11-24 (8323210); 900 reviews, 49 live calls, 0 failures
+### P5. Experiment Readout: A/A peeking simulator
+- Interactive: baseline rate, daily traffic, days, check frequency, number of simulated tests. Shows naive false-positive rate climbing against the sequential method staying near alpha. Seeded PRNG ported identically to Python for an exact cross-check. Runs in a web worker or in chunks so the page never freezes; result announced in a role="status" region.
+- Status:
 
-### T6. Feedback triage: page and tool packaging
-- Static page /feedback-triage per spec. Eval section shows "Accuracy check in progress" until T7 is done; never invent a number.
-- Package as a reusable CLI: any CSV with a text column in, the same JSON and a standalone HTML report out. README usage section.
-- Update the Projects entry in src/data/content.ts only to describe what exists (link the page once live on the preview).
-- Status: DONE 2026-11-24 (1882359); reviewer findings fixed; eval section reads Accuracy check in progress
+### P6. PMEX: margin-call and liquidation ladder, non-advisory audit
+- Ladder by price level in tick multiples: equity, equity-to-margin ratio, status (OK, margin call, auto-liquidated at the ALT), cash top-up needed. Second axis: USD/PKR shocks of +1%, +3%, +5% (margin rises with the rate even if price doesn't move). Tola Gold: long only, capped at the plus or minus 5% daily limit.
+- Copy audit: every page line non-advisory; footer names the SECP futures-advisor licensing regime and says this is an educational calculator.
+- No liquidation-probability feature in this phase (deferred; needs a verified formula).
+- Status:
 
-### T7. Feedback triage: eval (blocked until Ayad's labels are committed)
-- Run the model on the 100 eval reviews twice. Report agreement with a 95% interval, Cohen's kappa, confusion matrix for the top categories, severity exact and within-one agreement, share in "other", run-to-run agreement, and a keyword baseline. Publish on the page. Log disagreements in decisions.md.
-- If labels aren't in yet, skip to T8 and come back.
-- Status: DONE 2026-11-24; labels committed before the run (d7591e0); results on the page and in decisions.md
+### P7. Engineering credibility
+- One GitHub Actions workflow (public repo, free): lint, `tsc --noEmit`, Vitest, build; Playwright (Chromium) with @axe-core/playwright tags wcag2a, wcag2aa, wcag21a, wcag21aa, wcag22aa, in light and dark at 320 px and 1280 px, plus a reflow assertion and keyboard-focus checks; Lighthouse CI on 3 to 5 URLs asserting category scores and metric values (not removed audit IDs); pytest for the Python checks. CI badge in the README only if green.
+- README rewrite: live link and a short GIF or screenshot per project at the top; problem, audience, decisions, trade-offs, limitations, next steps; provenance statement.
+- docs/decisions/ ADRs (at least: rule-based readout, gated AI rewrite, confidence sequence, open dataset choice, cached evals, zero drift and no live prices for PMEX).
+- Person JSON-LD (escaped), sitemap.ts, robots.ts, metadataBase, title template.
+- docs/a11y-manual-check.md: a short keyboard and screen-reader checklist for Ayad to run; don't claim WCAG conformance until he has.
+- Status:
 
-### T8. PMEX contract calculator
-- Spec: docs/pmex-calculator-spec.md (v1.1). Build Layer 1 at /pmex-calculator with all maths in src/lib/pmex.ts and unit tests. Contract and fee data in one file with source URL and date per row. Defaults: gold oz, crude and Tola Gold; KTrade and SCS fee presets; ALT 55%.
-- Tests must include: Tola Gold has no short side; auto-liquidation distance; fee floor of Rs 30 binding on CRUDE10; USD/PKR change moves tick value and margin but not settled P&L.
-- Add "Real-trade check" to NEEDS_AYAD.md (one broker statement, account numbers removed) and leave a skipped test ready for it.
-- Status: DONE 2026-11-24 (1882359); reviewer findings fixed; real-trade check waits on Ayad (NEEDS_AYAD item 11)
-
-### T9. Polish and case study drafts
-- docs/case-studies/<project>.md for Experiment Readout, Feedback triage and PMEX calculator: Problem, What I did, Results, What I learned (leave "What I learned" for Ayad). Drafts only; don't publish to the site.
-- Check every page on phone width with server-render tests; fix anything broken.
-- Status: DONE 2026-11-24 (1882359); drafts in docs/case-studies, phone layout tests in src/phone-layout.test.tsx
-
-### T10. Final review
-- Spawn a fresh reviewer subagent over the whole sprint branch: claims vs code, tests, style, secrets, personal data, licence notes. Fix findings. Summarise the state in HANDOFF.md for Ayad.
-- Status: DONE 2026-11-24; fresh reviewer found no blockers; two should-fix items fixed (case study wording, data/NOTICE.md)
+### P8. Final review
+- Fresh reviewer subagent over the whole branch against this roadmap and the research doc. Fix findings. Summarise in HANDOFF.md, including what Ayad needs to check before merging.
+- Status:
