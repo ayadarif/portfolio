@@ -44,3 +44,6 @@ next-env.d.ts
 # python venv for scripts/check_stats.py
 /scripts/.venv/
 __pycache__/
+
+# Claude Code local settings
+.claude/settings.local.json
