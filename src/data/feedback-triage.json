@@ -20,7 +20,8 @@
     "live_calls_this_run": 49,
     "cache_hits_this_run": 0,
     "failed_calls": [],
-    "priority_definition": "severity points per 100 reviews: share of reviews raising the category times its average severity (1 to 3) times 100"
+    "priority_definition": "severity points per 100 reviews: share of reviews raising the category times its average severity (1 to 3) times 100",
+    "year": "2023"
   },
   "ranking": {
     "Access Bank": {

@@ -37,6 +37,7 @@ export interface TriageData {
     dataset_downloaded: string;
     dataset_note: string;
     sample: string;
+    year: string;
     run_date: string;
     n_reviews_in: number;
     n_classified: number;

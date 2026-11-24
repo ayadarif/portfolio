@@ -15,7 +15,7 @@ export default function Calculator() {
   function pickContract(id: string) {
     const next = getContract(id);
     const intraday = f.intraday && next.intradayAllowed;
-    setF({ ...defaultForm(id), intraday, side: next.longOnly ? "long" : f.side, marginPct: defaultMarginFor(id, intraday), broker: f.broker, usdPkr: f.usdPkr,
+    setF({ ...defaultForm(id), intraday, side: next.longOnly ? "long" : f.side, marginPct: defaultMarginFor(id, intraday), broker: brokerPresets.find((b) => b.id === f.broker)?.perLot[id] !== undefined || f.broker === "custom" ? f.broker : "custom", customCommission: f.customCommission, usdPkr: f.usdPkr,
       altPct: f.altPct, accountPkr: f.accountPkr, maxRiskPct: f.maxRiskPct, marginBufferPct: f.marginBufferPct, salesTaxOnPmexFee: f.salesTaxOnPmexFee, frontEndFee: f.frontEndFee, sgf: f.sgf });
   }
 
@@ -80,7 +80,7 @@ export default function Calculator() {
         <Field label="Share of account kept free of margin (%)"><input className={inputCls} inputMode="decimal" value={f.marginBufferPct} onChange={(e) => set("marginBufferPct", e.target.value)} /></Field>
       </form>
 
-      {out.ok ? <Results r={out.r} /> : <p role="alert" className="mt-6 rounded-lg border border-amber-500 p-3 text-sm">{out.error}</p>}
+      <div aria-live="polite">{out.ok ? <Results r={out.r} /> : <p className="mt-6 rounded-lg border border-amber-500 p-3 text-sm">{out.error}</p>}</div>
 
       <section className="mt-12 border-t border-zinc-200 pt-6 text-sm text-zinc-600 dark:border-zinc-800 dark:text-zinc-400">
         <h2 className="text-base font-semibold text-foreground">Sources, status and limits</h2>

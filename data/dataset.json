@@ -4,5 +4,6 @@
   "dataset_licence": "Apache-2.0 (per the dataset card, checked 2026-11-24)",
   "dataset_downloaded": "2026-11-24",
   "dataset_note": "Reviews were collected by the dataset's authors, not by this project.",
-  "sample": "1,000 reviews, 2023, UBA, Access Bank and First Bank of Nigeria, seed 20261124; 100 held out for the accuracy check"
+  "sample": "1,000 reviews, 2023, UBA, Access Bank and First Bank of Nigeria, seed 20261124; 100 held out for the accuracy check",
+  "year": "2023"
 }

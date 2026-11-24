@@ -46,6 +46,20 @@ describe("results rendering", () => {
   it("states that USD/PKR does not change settled P&L", () => expect(results()).toContain("does not change"));
 });
 
+describe("input guards", () => {
+  it("rejects exponent, hex, fractional and huge lots, and bad accounts", () => {
+    for (const lots of ["1e308", "0x10", "0.5", "-1", "1000000"]) expect(calculate({ ...defaultForm(), lots }).ok, lots).toBe(false);
+    expect(calculate({ ...defaultForm(), entry: "1e308" }).ok).toBe(false);
+    expect(calculate({ ...defaultForm(), accountPkr: "-5" }).ok).toBe(false);
+    expect(calculate({ ...defaultForm(), lots: "1,000" }).ok).toBe(true);
+  });
+  it("Tola Gold shows the maintenance note", () => {
+    const out = calculate(defaultForm("tola"));
+    if (!out.ok) throw new Error(out.error);
+    expect(renderToStaticMarkup(<Results r={out.r} />)).toContain("15% maintenance margin");
+  });
+});
+
 describe("form logic", () => {
   it("a short on Tola Gold returns a clear error, not a number", () => {
     const out = calculate({ ...defaultForm("tola"), side: "short" });

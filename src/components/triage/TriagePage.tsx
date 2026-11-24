@@ -6,7 +6,7 @@ const td = "px-2 py-2 align-top";
 export default function TriagePage({ data }: { data: TriageData }) {
   const m = data.method;
   const groups = Object.entries(data.ranking);
-  const year = m.sample.match(/\b(20\d\d)\b/)?.[1] ?? "";
+  const year = m.year;
   return (
     <>
       <p className="mt-2 leading-7 text-zinc-600 dark:text-zinc-400">
@@ -48,7 +48,10 @@ export default function TriagePage({ data }: { data: TriageData }) {
       {groups.map(([g, info]) => (
         <section key={g} className="mt-12">
           <h2 className="text-xl font-semibold">{g}</h2>
-          <p className="text-sm text-zinc-500">{info.n_reviews.toLocaleString("en-US")} reviews classified</p>
+          <p className="text-sm text-zinc-500">
+            {info.n_reviews.toLocaleString("en-US")} reviews classified. A review can raise two categories, so shares can add up to more than 100%.
+            Not ranked: praise {sharePct(info.categories.find((c) => c.category === "praise")?.share ?? 0)}, other {sharePct(info.categories.find((c) => c.category === "other")?.share ?? 0)}.
+          </p>
           <div className="mt-3 overflow-x-auto">
             <table className="w-full min-w-[34rem] text-sm">
               <thead>
@@ -74,7 +77,7 @@ export default function TriagePage({ data }: { data: TriageData }) {
             <details key={cat} className="mt-2 rounded-lg border border-zinc-200 px-3 py-2 dark:border-zinc-800">
               <summary className="cursor-pointer text-sm font-medium">{categoryLabel(cat)}: example quotes</summary>
               <ul className="mt-2 space-y-2 text-sm text-zinc-600 dark:text-zinc-400">
-                {quotes.map((q) => <li key={q.id}>&quot;{q.quote}&quot;</li>)}
+                {quotes.map((q) => <li key={q.id} className="break-words">&quot;{q.quote}&quot;</li>)}
               </ul>
             </details>
           ))}
@@ -85,7 +88,7 @@ export default function TriagePage({ data }: { data: TriageData }) {
         <section className="mt-12">
           <h2 className="text-xl font-semibold">Themes inside the biggest categories</h2>
           <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-            The model grouped one-line summaries into named themes. Sizes are counts of reviews in that theme across the three banks; a review can be left out of every theme.
+            The model grouped one-line summaries into named themes. Sizes are counts of reviews in that theme across the three banks. The model saw at most 150 summaries per category, so sizes cover that sample, not every review in the category, and a review can be left out of every theme.
           </p>
           {Object.entries(data.themes).map(([cat, ts]) => (
             <details key={cat} className="mt-3 rounded-lg border border-zinc-200 px-3 py-2 dark:border-zinc-800">
@@ -94,7 +97,7 @@ export default function TriagePage({ data }: { data: TriageData }) {
                 {ts.map((t) => (
                   <li key={t.name}>
                     <span className="font-medium">{t.name}</span> ({t.size}){" "}
-                    <span className="text-zinc-600 dark:text-zinc-400">{t.description}</span>
+                    <span className="break-words text-zinc-600 dark:text-zinc-400">{t.description}</span>
                   </li>
                 ))}
               </ul>

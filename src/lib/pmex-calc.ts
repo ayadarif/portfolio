@@ -44,7 +44,8 @@ export function defaultMarginFor(contractId: string, intraday: boolean): string 
   return String(Math.round(m * 1000) / 1000);
 }
 
-const num = (s: string) => (s.trim() === "" ? NaN : Number(s.replace(/,/g, "")));
+// Plain decimals only: "1e308" and "0x10" are rejected (they would parse as numbers but are never what someone meant).
+const num = (s: string) => { const t = s.trim().replace(/,/g, ""); return /^\d*\.?\d+$|^\d+\.$/.test(t) ? Number(t) : NaN; };
 
 // The broker commission to use, or an error asking for it.
 export function commissionFor(f: CalcForm): number {
@@ -61,6 +62,7 @@ export function commissionFor(f: CalcForm): number {
 export function toPosition(f: CalcForm): Position {
   const c = getContract(f.contractId);
   const equity = num(f.accountPkr);
+  if (f.accountPkr.trim() !== "" && !(equity > 0)) throw new InputError("Account equity must be a positive number, or leave it empty.");
   const p: Position = {
     contract: c, side: f.side, lots: num(f.lots), entry: num(f.entry), usdPkr: c.quote === "USD" ? num(f.usdPkr) : 1,
     marginPct: num(f.marginPct), altPct: num(f.altPct), brokerPerLotPkr: commissionFor(f),

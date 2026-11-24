@@ -21,9 +21,10 @@ EXCERPTS_PER_CATEGORY = 3
 EXCERPT_CANDIDATES = 8
 EXCERPT_CATEGORIES_PER_GROUP = 5
 MAX_QUOTE = 200
+MIN_QUOTE = 15
 
 # Excerpts we never publish: fraud or theft claims, and people named with a title.
-UNSAFE_QUOTE = re.compile(r"\b(fraud\w*|scam\w*|thie[fv]\w*|stole\w*|steal\w*|419|yahoo\s*boys?)\b|\b(?:mr|mrs|miss|ms|dr)\.?\s+[A-Z][a-z]+|\[[A-Z]+\]", re.I)
+UNSAFE_QUOTE = re.compile(r"\b(fraud\w*|scam\w*|thie[fv]\w*|stole\w*|steal\w*|419|yahoo\s*boys?)\b|(?-i:\b(?:Mr|Mrs|Miss|Ms|Dr)\.?\s+[A-Z][a-z]+)|\[[A-Z]+\]", re.I)
 
 
 # ---------- Codebook and prompts ----------
@@ -71,13 +72,19 @@ def load_input(path: Path, text_col: str, rating_col: "str | None" = None, group
         if len(text) < min_chars:
             continue
         text, _ = strip_pii(text)
+        text = text.replace("</data>", "").replace("<data>", "")  # a review must not be able to close the data fence
         rating = r.get(rating_col) if rating_col else None
         try:
             rating = float(rating) if rating not in (None, "") else None
         except ValueError:
             rating = None
+        if rating is not None and rating != rating:  # "nan" parses to a float NaN; treat as missing
+            rating = None
         rows.append({"id": (r.get(id_col) if id_col else None) or f"r{n:05d}", "group": (r.get(group_col) or "all") if group_col else "all",
                      "rating": rating, "text": text})
+    ids = [r["id"] for r in rows]
+    if len(set(ids)) != len(ids) or any("]" in i or "\n" in i for i in ids):
+        raise ValueError("Review ids must be unique and must not contain ] or a newline.")
     if len(rows) > max_reviews:
         rows = sorted(random.Random(seed).sample(rows, max_reviews), key=lambda r: r["id"])
     return rows
@@ -197,7 +204,7 @@ def _norm(s: str) -> str:
 def verify_quote(quote: str, review: dict, category: str, labels: dict) -> bool:
     """A quote is kept only if it is verbatim, short, safe, and from a review labelled with that category."""
     q = _norm(quote)
-    return bool(q) and len(q) <= MAX_QUOTE and q in _norm(review["text"]) and category in labels[review["id"]]["categories"] and not UNSAFE_QUOTE.search(q)
+    return MIN_QUOTE <= len(q) <= MAX_QUOTE and q in _norm(review["text"]) and category in labels[review["id"]]["categories"] and not UNSAFE_QUOTE.search(q)
 
 
 def excerpts(rows: list, labels: dict, ranking: dict, cb: dict, llm: Callable, log: Callable = print, max_groups: "int | None" = None) -> dict:

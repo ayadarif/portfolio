@@ -1,6 +1,6 @@
 import type { CalcResult } from "@/lib/pmex-calc";
 
-const rs = (n: number, d = 0) => `${n < 0 ? "-" : ""}Rs ${Math.abs(n).toLocaleString("en-US", { minimumFractionDigits: d, maximumFractionDigits: d })}`;
+const rs = (n: number, d = 0) => `${n < -0.5 * 10 ** -d ? "-" : ""}Rs ${Math.abs(n).toLocaleString("en-US", { minimumFractionDigits: d, maximumFractionDigits: d })}`;
 const num = (n: number, d = 2) => n.toLocaleString("en-US", { minimumFractionDigits: d, maximumFractionDigits: d });
 const card = "rounded-xl border border-zinc-200 p-4 dark:border-zinc-800";
 
@@ -24,6 +24,12 @@ export default function Results({ r }: { r: CalcResult }) {
           The adverse move that takes equity of {rs(r.liq.equityPkr)} down to {p.altPct}% of required margin ({rs(r.liq.thresholdPkr)}). Price at that point: {num(r.liq.price)}. Approximate; the broker&apos;s own calculation decides.
         </p>
       </section>
+
+      {c.maintenancePct !== undefined && (
+        <p className="rounded-lg bg-zinc-100 p-3 text-sm dark:bg-zinc-900">
+          PMEX states a {c.maintenancePct}% maintenance margin for {c.name}. This calculator uses your broker&apos;s auto-liquidation threshold instead, and the distance above can be larger than the {c.dailyLimitPct}% daily limit, so a single day may not reach it.
+        </p>
+      )}
 
       <section className="grid gap-4 sm:grid-cols-2">
         <div className={card}>

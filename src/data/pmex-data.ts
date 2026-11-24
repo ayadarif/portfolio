@@ -44,8 +44,8 @@ export const contracts: Contract[] = [
   {
     id: "milli_tola", name: "Milli Tola Gold", unit: "0.001 tola", size: 0.001, quote: "PKR", priceUnit: "PKR/tola", tick: 1,
     marginPct: 25, longOnly: true, intradayAllowed: false, dailyLimitPct: 5, feeKind: "flat", flatFeePkr: 0.5,
-    notes: "Long only. Flat PMEX fee of Rs 0.50 per lot per side. Daily limit assumed to match Tola Gold.",
-    source: "PMEX Milli Tola spec and fee notification No. 24", url: "https://pmex.com.pk/wp-content/uploads/2024/10/PMEX-Mili-Tola-Gold-Futures-Contract.pdf", asOf: "2024-10", status: "primary",
+    notes: "Long only. Flat PMEX fee of Rs 0.50 per lot per side (SECP and IPF applied on top; not confirmed). Daily limit assumed to match Tola Gold.",
+    source: "PMEX Milli Tola spec and fee notification No. 24 (daily limit assumed)", url: "https://pmex.com.pk/wp-content/uploads/2024/10/PMEX-Mili-Tola-Gold-Futures-Contract.pdf", asOf: "2024-10", status: "assumed",
   },
   {
     id: "go1oz", name: "Gold 1 oz (GO1OZ)", unit: "1 troy oz", size: 1, quote: "USD", priceUnit: "USD/oz", tick: 0.1,
@@ -66,8 +66,8 @@ export const contracts: Contract[] = [
   {
     id: "micro_gold", name: "Micro Gold", unit: "0.01 troy oz", size: 0.01, quote: "USD", priceUnit: "USD/oz", tick: 0.1,
     marginPct: 2, longOnly: false, intradayAllowed: true, feeKind: "flat", flatFeePkr: 1,
-    notes: "Flat PMEX fee of Rs 1 per lot per side. Margin default assumed equal to the other gold contracts; check with your broker.",
-    source: "PMEX fee notification No. 24 (May 2024)", url: "https://pmex.com.pk/wp-content/uploads/2024/05/PMEX-Notification-No.24-Fee-reduction-in-Milli-Micro-Gold-Futures-Contracts.pdf", asOf: "2024-05", status: "primary",
+    notes: "Flat PMEX fee of Rs 1 per lot per side (SECP and IPF are applied on top of it; the spec does not say they are). Margin default assumed equal to the other gold contracts; check with your broker.",
+    source: "PMEX fee notification No. 24 (May 2024); margin assumed", url: "https://pmex.com.pk/wp-content/uploads/2024/05/PMEX-Notification-No.24-Fee-reduction-in-Milli-Micro-Gold-Futures-Contracts.pdf", asOf: "2024-05", status: "assumed",
   },
   {
     id: "crude10", name: "Crude Oil 10 bbl (CRUDE10)", unit: "10 barrels", size: 10, quote: "USD", priceUnit: "USD/bbl", tick: 0.01,

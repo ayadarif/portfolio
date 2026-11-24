@@ -77,8 +77,11 @@ class ClaudeRunner:
         key = cache_key(system, user, schema, self.model)
         path = self.cache_dir / f"{key}.json"
         if path.exists():
-            cached = json.loads(path.read_text())
-            if validate(cached) is None:
+            try:
+                cached = json.loads(path.read_text())
+            except ValueError:
+                cached = None  # truncated or corrupt cache file: treat as a miss
+            if cached is not None and validate(cached) is None:
                 self.cache_hits += 1
                 return cached
         last = ""
@@ -89,7 +92,9 @@ class ClaudeRunner:
             except (PipelineError, ValueError, subprocess.SubprocessError) as e:
                 out, err = None, str(e)
             if err is None:
-                path.write_text(json.dumps(out))
+                tmp = path.with_suffix(".tmp")
+                tmp.write_text(json.dumps(out))
+                os.replace(tmp, path)  # atomic, so a crash never leaves half a file
                 return out
             last = err
             self.log(f"  {label}: attempt {attempt + 1} invalid ({err[:120]})")

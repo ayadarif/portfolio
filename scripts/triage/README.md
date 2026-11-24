@@ -37,7 +37,7 @@ No API key and no per-call bill. It runs `claude -p` on your own Claude Code pla
 ## Limits
 
 - Categories are built for consumer finance apps (`codebook.json`). Pass your own with `--codebook`; keep the same keys.
-- The model can be wrong. The demo's accuracy against hand labels is reported on the project page; your data has not been checked that way.
+- The model can be wrong. The demo's accuracy against hand labels will be reported on the project page once I have labelled the eval set; your data has not been checked that way.
 - Reviews are treated as untrusted text. The prompts fence them as data and say so, and a test call with an injected instruction was ignored, but that is one test, not a guarantee.
 - Personal-data stripping is pattern matching. It will miss things. Do not run private customer data through it unless you are comfortable with it going through Claude Code.
 - Themes come from one-line summaries, not the full text, and are capped at 150 summaries per category.

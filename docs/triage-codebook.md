@@ -27,6 +27,7 @@ Label what the reviewer wrote, not what you think the cause is. Ignore the star 
 4. Mixed praise and complaint ("good app but crashes"): the complaint is the category; add `praise` only as a second category if it is a real part of the review.
 5. Only one problem, one category. Use the second slot only when the review clearly raises a second, separate issue.
 6. Unreadable, gibberish or decorative text: `other`, severity 1.
+7. Ignore the star rating (the model never sees it, and your sheet hides it). Label what the reviewer wrote.
 
 ## Severity anchors
 

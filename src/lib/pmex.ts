@@ -31,9 +31,9 @@ export class InputError extends Error {}
 
 export function validate(p: Position): void {
   const c = p.contract;
-  if (!(p.lots > 0) || !Number.isFinite(p.lots)) throw new InputError("Lots must be above zero.");
-  if (!(p.entry > 0)) throw new InputError("Entry price must be above zero.");
-  if (c.quote === "USD" && !(p.usdPkr > 0)) throw new InputError("Enter the USD/PKR rate.");
+  if (!Number.isInteger(p.lots) || p.lots < 1 || p.lots > 100000) throw new InputError("Lots must be a whole number from 1 to 100,000.");
+  if (!(p.entry > 0) || p.entry > 1e9) throw new InputError("Entry price must be above zero and below 1,000,000,000.");
+  if (c.quote === "USD" && !(p.usdPkr > 0 && p.usdPkr < 100000)) throw new InputError("Enter the USD/PKR rate.");
   if (!(p.marginPct > 0 && p.marginPct <= 100)) throw new InputError("Margin must be between 0 and 100 percent.");
   if (!(p.altPct > 0 && p.altPct < 100)) throw new InputError("Auto-liquidation threshold must be between 0 and 100 percent.");
   if (p.brokerPerLotPkr < 0) throw new InputError("Broker commission cannot be negative.");
@@ -271,7 +271,7 @@ export function settledPnlPkr(p: Position, exit: number, rateAtSettlement: numbe
 // ---------- Plain English summary ----------
 
 export function summary(p: Position, be: BreakEven, liq: Liquidation): string[] {
-  const r = (n: number) => `Rs ${Math.round(n).toLocaleString("en-US")}`;
+  const r = (n: number) => `Rs ${Math.abs(n) < 1 ? n.toFixed(3) : Math.round(n).toLocaleString("en-US")}`;
   const margin = initialMarginPkr(p);
   const tv = tickValue(p);
   return [
