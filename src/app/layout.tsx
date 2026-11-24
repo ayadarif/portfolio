@@ -12,9 +12,14 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const title = "Ayad Arif | Product Manager";
+const description = "Portfolio of a product manager: case studies and AI projects.";
+
 export const metadata: Metadata = {
-  title: "Ayad Arif | Product Manager",
-  description: "Portfolio of a product manager: case studies and AI projects.",
+  metadataBase: new URL("https://aaportfolio-delta.vercel.app"), // makes the og:image URL absolute, which LinkedIn needs
+  title,
+  description,
+  openGraph: { title, description, siteName: "Ayad Arif", type: "website" },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
