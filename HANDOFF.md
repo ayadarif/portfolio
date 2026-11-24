@@ -49,9 +49,25 @@ Plain explanations, one concept at a time, short replies, no em dashes, ask befo
 
 ---
 # Sprint mode (started 2026-11-24)
-Working through docs/ROADMAP.md on branch `sprint`. Push only with `git push origin sprint`. Items needing Ayad are in NEEDS_AYAD.md (each with the default taken).
+Working through docs/ROADMAP.md on branch `sprint`. Push only with `git push origin sprint`. Things needing Ayad are in NEEDS_AYAD.md, each with the default taken. Statuses and commit hashes are in ROADMAP.md.
 
 ## Sprint status
-- T0 to T3 DONE (see ROADMAP.md for hashes). T1 learning doc: docs/learn/experiment-readout.md. T2: corpus data/corpus.csv (1,000 reviews, UBA/Access/FBN, 2023), docs/data-report.md. T3: docs/triage-codebook.md, data/eval/to_label.csv (waiting on Ayad's labels, NEEDS_AYAD item 10).
-- T4 in progress: pipeline in scripts/triage/. Plan: codebook.json drives the prompt; claude_runner.py wraps `claude -p --safe-mode --tools "" --model claude-sonnet-5-5 --no-session-persistence --output-format json --json-schema ...` run from a temp dir with stdin closed; result is in the `structured_output` field. Responses cached in data/cache (gitignored). Steps: classify (25 per call), theme (per top category), rank (code), excerpts (per bank, verified verbatim in code). Eval ids excluded from every run. Tests use unittest with a mocked model (`python3 -m unittest discover -s scripts/tests`).
-- Findings: Claude Code 2.1.331 has `--safe-mode`; no `--system-prompt-file` (system prompt passed as an argument). One smoke call confirmed a prompt-injection string inside <data> was ignored.
+- T0 to T3 DONE. T4 and T5 DONE (pipeline, then full run: 900 reviews, 49 live calls, 0 failures). T6 and T8 BUILT, reviewer pass in progress. T7 SKIPPED until Ayad's labels are committed (NEEDS_AYAD item 10). T9 and T10 not started.
+- Feedback triage:
+  - Corpus data/corpus.csv (1,000 reviews, 2023, UBA, Access, FBN; seed 20261124). Eval sheet data/eval/to_label.csv (100, stars and bank hidden). Output data/run/triage.json (+ report.html); the site reads src/data/feedback-triage.json (a copy; re-copy after any re-run).
+  - Code in scripts/triage/ (stdlib only). Run: `PYTHONPATH=scripts python3 -m triage run --input data/corpus.csv --text-col text --rating-col score --group-col bank --id-col id --exclude-ids data/eval/to_label.csv --method-extra data/dataset.json --out data/run --cache data/cache`. Cache is gitignored (data/cache on Ayad's Mac), so a re-run costs nothing for cached batches.
+  - Tests: `PYTHONPATH=scripts python3 -m unittest discover -s scripts/tests` (mocked model) and `npx vitest run`.
+  - Claude Code 2.1.331: `claude -p --safe-mode --tools "" --model claude-sonnet-5-5 --no-session-persistence --output-format json --json-schema ...`; answer is in `structured_output`. No `--system-prompt-file`.
+  - Page says "Accuracy check in progress"; T7 replaces that with real numbers only after labels exist. Do not draw conclusions from a rerun of the model on the eval set before labels are committed.
+- PMEX calculator: src/lib/pmex.ts (maths), pmex-calc.ts (form glue), src/data/pmex-data.ts (all numbers with sources), page /pmex-calculator. 32 maths tests plus render tests. Real-trade check test is skipped and waits for a statement (NEEDS_AYAD item 11). Fee floor Rs 30 read as per lot per side (unverified).
+- Learning docs written: docs/learn/experiment-readout.md, feedback-triage.md, pmex-calculator.md (each ends with a 10 question quiz and answers). Ayad should study these and expect to be quizzed.
+- Site: Projects list now has Experiment Readout, Feedback triage pipeline, PMEX contract calculator (all marked Live on the preview). Nothing is merged to main.
+
+## Next
+1. Fix whatever the two reviewer subagents report (T6, T8), then mark T6 and T8 DONE.
+2. T9: case study drafts in docs/case-studies/, phone width render checks.
+3. T10: final fresh-reviewer pass, then summarise for Ayad here.
+4. When Ayad commits labels: T7 (eval run on the 100, twice; keyword baseline; publish on the page).
+
+## Not verified by eye
+No browser was used in this sprint. Layouts were checked by type check, build and server-render tests only. Ayad should open /feedback-triage and /pmex-calculator on a phone from the Vercel preview of `sprint`.
