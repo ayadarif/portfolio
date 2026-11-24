@@ -93,7 +93,7 @@ export const projects: Project[] = [
   {
     name: "Feedback triage pipeline",
     description:
-      "A fixed pipeline, run with Claude Code, that sorts 900 public Google Play reviews of three Nigerian banking apps into categories and severities, then ranks them with plain code. Quotes are checked word for word against the source. The accuracy check against my own labels is in progress. The tool also runs on any feedback CSV.",
+      "A fixed pipeline, run with Claude Code, that sorts 900 public Google Play reviews of three Nigerian banking apps into categories and severities, then ranks them with plain code. Quotes are checked word for word against the source. On 100 held-out reviews, its first category matched mine 87 times (kappa 0.84), against 50 for a keyword baseline. The tool also runs on any feedback CSV.",
     status: "Live",
     href: "/feedback-triage",
   },

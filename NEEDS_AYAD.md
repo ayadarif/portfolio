@@ -3,10 +3,10 @@
 Claude Code adds items here instead of stopping. Each item says what default was taken. Answer by editing this file or telling Claude Code.
 
 ## Open
-(Added by Claude Code, T7) Method line "Labels by Ayad; an AI assistant helped draft the notes, not the labels." is on the triage page exactly as you wrote it. I could not check it; confirm it is accurate.
 11. (T8) Real-trade check: still no broker statement. The skipped test stays skipped; the PMEX page shows a visible note that fees have not been checked against a real statement. When you have one (account numbers removed): contract, lots, entry and exit, USD/PKR rate, every charge line. Then say "statement ready".
 
 ## Resolved (answered 2026-11-24)
+14. Method line "Labels by Ayad; an AI assistant helped draft the notes, not the labels." confirmed accurate by Ayad; it stays on the triage page.
 10. Eval labels done and committed (d7591e0). T7 run; results are on the triage page and in decisions.md.
 1. Retention 18% is relative; CAC mechanism recorded in docs/case-studies/loyalty-program.md (not in the site bullet).
 2. Free Cancellation role and scale-up wording updated on the site and in the content (role line, one sentence on scaling to all flights and routes, "nearly four years after the first version").
