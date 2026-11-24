@@ -1,9 +1,8 @@
 import { describe, expect, it } from "vitest";
 import { renderToStaticMarkup } from "react-dom/server";
 import Hero from "@/components/Hero";
-import CaseStudies from "@/components/CaseStudies";
-import Projects from "@/components/Projects";
-import Contact from "@/components/Contact";
+import IndexTable from "@/components/IndexTable";
+import WorkSections from "@/components/WorkSections";
 import Tool from "@/components/readout/Tool";
 import Calculator from "@/components/pmex/Calculator";
 import Results from "@/components/pmex/Results";
@@ -25,7 +24,7 @@ const calc = calculate(defaultForm());
 if (!calc.ok) throw new Error(calc.error);
 
 const pages: Record<string, string> = {
-  home: renderToStaticMarkup(<><Hero /><CaseStudies /><Projects /><Contact /></>),
+  home: renderToStaticMarkup(<><Hero /><IndexTable /><WorkSections /></>),
   readout: renderToStaticMarkup(<Tool />),
   readoutResults: renderToStaticMarkup(<Readout r={buildReadout(setup.setup, demo.rows)} setup={setup.setup} />),
   calculator: renderToStaticMarkup(<Calculator />),

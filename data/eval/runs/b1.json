@@ -1,0 +1,1744 @@
+{
+ "tag": "b1",
+ "description": "100 eval reviews, batch size 1, original order",
+ "saved_at_utc": "2026-11-24T11:14:58+00:00",
+ "claude_code_version": "2.1.331 (Claude Code)",
+ "model": "claude-sonnet-5-5",
+ "auth_method": "claude.ai",
+ "prompt_hash": "3dd5d5f6ac2d62ad",
+ "order": [
+  "r0937",
+  "r0284",
+  "r0929",
+  "r0894",
+  "r0998",
+  "r0846",
+  "r0565",
+  "r0051",
+  "r0547",
+  "r0902",
+  "r0727",
+  "r0880",
+  "r0264",
+  "r0295",
+  "r0662",
+  "r0698",
+  "r0064",
+  "r0294",
+  "r0143",
+  "r0558",
+  "r0908",
+  "r0199",
+  "r0551",
+  "r0436",
+  "r0090",
+  "r0532",
+  "r0885",
+  "r0926",
+  "r0158",
+  "r0331",
+  "r0918",
+  "r0420",
+  "r0546",
+  "r0610",
+  "r0404",
+  "r0227",
+  "r0338",
+  "r0036",
+  "r0487",
+  "r0771",
+  "r0102",
+  "r0977",
+  "r0838",
+  "r0082",
+  "r0154",
+  "r0776",
+  "r0624",
+  "r0754",
+  "r0852",
+  "r0722",
+  "r0134",
+  "r0517",
+  "r0025",
+  "r0734",
+  "r0887",
+  "r0307",
+  "r0975",
+  "r0334",
+  "r0519",
+  "r0497",
+  "r0435",
+  "r0884",
+  "r0443",
+  "r0583",
+  "r0476",
+  "r0803",
+  "r0213",
+  "r0664",
+  "r0375",
+  "r0590",
+  "r0430",
+  "r0100",
+  "r0834",
+  "r0417",
+  "r0019",
+  "r0736",
+  "r0833",
+  "r0302",
+  "r0984",
+  "r0675",
+  "r0555",
+  "r0678",
+  "r0935",
+  "r0020",
+  "r0895",
+  "r0726",
+  "r0462",
+  "r0311",
+  "r0099",
+  "r0886",
+  "r0039",
+  "r0945",
+  "r0251",
+  "r0093",
+  "r0316",
+  "r0797",
+  "r0688",
+  "r0347",
+  "r0478",
+  "r0421"
+ ],
+ "labels": {
+  "r0937": {
+   "categories": [
+    "app_stability"
+   ],
+   "severity": 2,
+   "summary": "Customer says the app is not working at all, with no further detail on what fails."
+  },
+  "r0284": {
+   "categories": [
+    "app_stability"
+   ],
+   "severity": 1,
+   "summary": "Customer is unsatisfied and calls the app's reliability poor, without naming a specific failure."
+  },
+  "r0929": {
+   "categories": [
+    "login_access"
+   ],
+   "severity": 2,
+   "summary": "Customer has reinstalled the app multiple times but still cannot sign in, and says their phone works fine with other apps."
+  },
+  "r0894": {
+   "categories": [
+    "app_stability"
+   ],
+   "severity": 1,
+   "summary": "App keeps closing by itself since the current version, though it worked acceptably before; customer is annoyed."
+  },
+  "r0998": {
+   "categories": [
+    "app_stability",
+    "feature_request"
+   ],
+   "severity": 2,
+   "summary": "After the latest update the app keeps crashing and is unusable; customer asks to downgrade to the previous version and criticises testing."
+  },
+  "r0846": {
+   "categories": [
+    "app_stability"
+   ],
+   "severity": 2,
+   "summary": "After the latest update the app keeps crashing when opened, so the customer cannot use it."
+  },
+  "r0565": {
+   "categories": [
+    "login_access"
+   ],
+   "severity": 3,
+   "summary": "Customer has been unable to log in to the app for almost 24 hours."
+  },
+  "r0051": {
+   "categories": [
+    "money_balance",
+    "transfers_payments"
+   ],
+   "severity": 2,
+   "summary": "Customer cannot see their account balance and is also unable to make a transfer."
+  },
+  "r0547": {
+   "categories": [
+    "other"
+   ],
+   "severity": 1,
+   "summary": "Customer says the iOS app and services are terrible, with no specific problem described."
+  },
+  "r0902": {
+   "categories": [
+    "app_stability"
+   ],
+   "severity": 2,
+   "summary": "Customer says the app never opens and the overall experience is terrible, so they cannot use it."
+  },
+  "r0727": {
+   "categories": [
+    "app_stability",
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Customer finds the app a nice experience but says network errors sometimes occur.\u201d"
+  },
+  "r0880": {
+   "categories": [
+    "other"
+   ],
+   "severity": 1,
+   "summary": "Customer says generally terrible experience with no specific problem or detail given."
+  },
+  "r0264": {
+   "categories": [
+    "ui_ux"
+   ],
+   "severity": 1,
+   "summary": "Customer prefers the old version of the app, finding it more interesting than the current design."
+  },
+  "r0295": {
+   "categories": [
+    "app_stability",
+    "money_balance"
+   ],
+   "severity": 1,
+   "summary": "Transaction history won't load and the app sometimes won't open, making it hard to transact; customer finds it annoying."
+  },
+  "r0662": {
+   "categories": [
+    "support",
+    "ui_ux"
+   ],
+   "severity": 1,
+   "summary": "Customer cannot report an issue in the app since updating it, so the report feature seems missing or broken."
+  },
+  "r0698": {
+   "categories": [
+    "app_stability"
+   ],
+   "severity": 1,
+   "summary": "Customer says they have had difficulty opening the app recently."
+  },
+  "r0064": {
+   "categories": [
+    "app_stability"
+   ],
+   "severity": 1,
+   "summary": "Customer says the app works only on some days and is unreliable on others, calling it garbage."
+  },
+  "r0294": {
+   "categories": [
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Customer says using the app has been nice and the experience is cool."
+  },
+  "r0143": {
+   "categories": [
+    "support",
+    "login_access"
+   ],
+   "severity": 2,
+   "summary": "Customer praises the app but says they can no longer access the way to log a complaint."
+  },
+  "r0558": {
+   "categories": [
+    "fees_charges"
+   ],
+   "severity": 1,
+   "summary": "Customer complains that deductions for electronic charges are excessive."
+  },
+  "r0908": {
+   "categories": [
+    "other"
+   ],
+   "severity": 1,
+   "summary": "Customer says the app is the worst and disappointing, asks for improvement, but gives no specific problem."
+  },
+  "r0199": {
+   "categories": [
+    "money_balance",
+    "transfers_payments"
+   ],
+   "severity": 3,
+   "summary": "Since Friday the app shows wrong balance: POS declines for insufficient funds despite money in salary account, and transfers fail, at month end."
+  },
+  "r0551": {
+   "categories": [
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Customer praises the app as the best, fast and safe."
+  },
+  "r0436": {
+   "categories": [
+    "transfers_payments",
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Customer likes the app but their expired ATM card is rejected when they try to use it with the app.]"
+  },
+  "r0090": {
+   "categories": [
+    "transfers_payments"
+   ],
+   "severity": 2,
+   "summary": "Customer reports being unable to make transfers on the banking app."
+  },
+  "r0532": {
+   "categories": [
+    "other"
+   ],
+   "severity": 1,
+   "summary": "Garbled, vague comment calling the app the best in the world, with no specific content or issue raised."
+  },
+  "r0885": {
+   "categories": [
+    "feature_request"
+   ],
+   "severity": 1,
+   "summary": "Customer is generally satisfied but asks for an option to hide or mask the account balance, calling it very important."
+  },
+  "r0926": {
+   "categories": [
+    "other"
+   ],
+   "severity": 1,
+   "summary": "Vague comment saying something is very important for the update, with no concrete issue or feedback given."
+  },
+  "r0158": {
+   "categories": [
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Customer says the app is very good and easy to use."
+  },
+  "r0331": {
+   "categories": [
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Customer found the first use cumbersome but says the app became friendly with later use."
+  },
+  "r0918": {
+   "categories": [
+    "money_balance",
+    "app_stability"
+   ],
+   "severity": 3,
+   "summary": "Customer says the app won't open for days, and a withdrawal via a linked microfinance bank debited their account without the transfer completing or crediting."
+  },
+  "r0420": {
+   "categories": [
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Customer says the app is the best among all competitors, with no problem raised."
+  },
+  "r0546": {
+   "categories": [
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Customer says it is the best mobile app ever and expresses strong love for it."
+  },
+  "r0610": {
+   "categories": [
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Customer says this is their go-to banking app whenever they need to make transactions."
+  },
+  "r0404": {
+   "categories": [
+    "other"
+   ],
+   "severity": 1,
+   "summary": "Customer says the app has given them a lot of trouble, with no specific problem described."
+  },
+  "r0227": {
+   "categories": [
+    "app_stability",
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Customer likes the app's convenience but notes slow responses unless network is strong, unlike other banks' apps, and asks for improvement."
+  },
+  "r0338": {
+   "categories": [
+    "app_stability"
+   ],
+   "severity": 1,
+   "summary": "Customer says the app is very unreliable, repeatedly going up and down, and cannot be relied on for banking."
+  },
+  "r0036": {
+   "categories": [
+    "login_access"
+   ],
+   "severity": 3,
+   "summary": "Customer has been unable to log in to the app for several days."
+  },
+  "r0487": {
+   "categories": [
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Customer says the app makes something easier, a vague positive comment with no problem raised."
+  },
+  "r0771": {
+   "categories": [
+    "other"
+   ],
+   "severity": 1,
+   "summary": "Customer says they don't understand it, with no detail on what is confusing or which feature is affected."
+  },
+  "r0102": {
+   "categories": [
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Customer says the app is helpful but sometimes frustrating, without naming any specific problem."
+  },
+  "r0977": {
+   "categories": [
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Customer says it is a fine app and gives compliments to the bank."
+  },
+  "r0838": {
+   "categories": [
+    "other"
+   ],
+   "severity": 1,
+   "summary": "Customer says the app is very annoying without giving any specific problem or detail."
+  },
+  "r0082": {
+   "categories": [
+    "support"
+   ],
+   "severity": 1,
+   "summary": "Customer says their issue was not resolved smoothly, with no detail on what the problem was."
+  },
+  "r0154": {
+   "categories": [
+    "transfers_payments",
+    "app_stability"
+   ],
+   "severity": 1,
+   "summary": "Bank name sometimes fails to load when starting a transfer; customer must leave the app and sign in again to fix it."
+  },
+  "r0776": {
+   "categories": [
+    "login_access"
+   ],
+   "severity": 2,
+   "summary": "Customer is confused by a message saying their mobile number is deactivated and does not understand what it means or how to proceed."
+  },
+  "r0624": {
+   "categories": [
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Customer says the app is really good, with no problems raised."
+  },
+  "r0754": {
+   "categories": [
+    "login_access"
+   ],
+   "severity": 3,
+   "summary": "Customer has been unable to log in for days after getting a new phone because the app does not accept their mpin."
+  },
+  "r0852": {
+   "categories": [
+    "feature_request",
+    "login_access"
+   ],
+   "severity": 1,
+   "summary": "Customer says they cannot increase their transaction limit in the app without obtaining a token, which they find restrictive."
+  },
+  "r0722": {
+   "categories": [
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Customer says the app is working fine for now and serving its purpose."
+  },
+  "r0134": {
+   "categories": [
+    "transfers_payments"
+   ],
+   "severity": 2,
+   "summary": "Card and app payments for goods are blocked by a wrongly shown daily withdrawal limit message although no withdrawals were made; customer is very frustrated."
+  },
+  "r0517": {
+   "categories": [
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Customer says the app is very fast and safe."
+  },
+  "r0025": {
+   "categories": [
+    "login_access"
+   ],
+   "severity": 2,
+   "summary": "Customer reports the mobile app has a big problem letting them log into their account, despite having invested a large sum with the bank."
+  },
+  "r0734": {
+   "categories": [
+    "other"
+   ],
+   "severity": 1,
+   "summary": "Customer calls it the worst application ever, with no specific problem described."
+  },
+  "r0887": {
+   "categories": [
+    "app_stability",
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Customer finds the app good and easy to use but says occasional network issues are frustrating."
+  },
+  "r0307": {
+   "categories": [
+    "ui_ux"
+   ],
+   "severity": 1,
+   "summary": "Customer likes the app but asks for the update process to be made easier."
+  },
+  "r0975": {
+   "categories": [
+    "app_stability"
+   ],
+   "severity": 1,
+   "summary": "Customer asks why the application is not working, giving no further detail about the failure."
+  },
+  "r0334": {
+   "categories": [
+    "feature_request"
+   ],
+   "severity": 1,
+   "summary": "Customer asks whether the app can send naira abroad to Rwanda (RWF) or Kenya (KES) accounts."
+  },
+  "r0519": {
+   "categories": [
+    "app_stability",
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Customer likes the app but says it is slow to open."
+  },
+  "r0497": {
+   "categories": [
+    "money_balance",
+    "transfers_payments"
+   ],
+   "severity": 3,
+   "summary": "Customer was debited for transfers that recipients say they never received, and the transaction history is empty or cleared."
+  },
+  "r0435": {
+   "categories": [
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Customer says the app is nice and cool, with no problems raised."
+  },
+  "r0884": {
+   "categories": [
+    "app_stability"
+   ],
+   "severity": 2,
+   "summary": "Customer reports the bank app is not opening again and asks what the problem is."
+  },
+  "r0443": {
+   "categories": [
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Customer says the app is easy to access and encourages the company to keep it up."
+  },
+  "r0583": {
+   "categories": [
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Customer calls the app the greatest of all time, giving short positive praise without raising any problem."
+  },
+  "r0476": {
+   "categories": [
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Customer praises the app as useful and thanks staff at two named branches for good service during hard times."
+  },
+  "r0803": {
+   "categories": [
+    "app_stability"
+   ],
+   "severity": 1,
+   "summary": "Customer says the banking app is full of errors and finds this embarrassing, without naming a specific failure."
+  },
+  "r0213": {
+   "categories": [
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Customer says the app is fast and very easy to use and encourages the team to keep it up."
+  },
+  "r0664": {
+   "categories": [
+    "other"
+   ],
+   "severity": 1,
+   "summary": "Customer asks for the service to improve, saying it is sometimes frustrating, without naming any specific problem."
+  },
+  "r0375": {
+   "categories": [
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Customer praises the e-banking service as efficient and fast."
+  },
+  "r0590": {
+   "categories": [
+    "other"
+   ],
+   "severity": 1,
+   "summary": "Customer pleads for help because they cannot upgrade, without saying what is being upgraded or what fails."
+  },
+  "r0430": {
+   "categories": [
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Customer says the app performs well and encourages the company to keep going."
+  },
+  "r0100": {
+   "categories": [
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Customer gives brief positive praise, calling the app splendid and amazing, with no problem raised."
+  },
+  "r0834": {
+   "categories": [
+    "app_stability"
+   ],
+   "severity": 2,
+   "summary": "App suddenly shows a network request failed error and still does so after reinstalling, so the customer cannot use it."
+  },
+  "r0417": {
+   "categories": [
+    "app_stability",
+    "support"
+   ],
+   "severity": 1,
+   "summary": "Customer is frustrated that loans are unavailable because of ongoing maintenance, questions how long it will last, and felt the bank's initial explanation was unconvincing."
+  },
+  "r0019": {
+   "categories": [
+    "app_stability"
+   ],
+   "severity": 1,
+   "summary": "Customer likes the bank app overall but asks for improvement to network reliability or connectivity."
+  },
+  "r0736": {
+   "categories": [
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Customer says the app is nice and very easy to use."
+  },
+  "r0833": {
+   "categories": [
+    "feature_request",
+    "ui_ux"
+   ],
+   "severity": 1,
+   "summary": "Customer says transfer receipts can't be accessed from transaction history unless saved immediately after the transfer, and asks for an app update."
+  },
+  "r0302": {
+   "categories": [
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Customer says the app works easily and thanks the bank, asking them to keep it working well."
+  },
+  "r0984": {
+   "categories": [
+    "transfers_payments"
+   ],
+   "severity": 3,
+   "summary": "Customer has been unable to make transfers with the app for the past four days and asks why."
+  },
+  "r0675": {
+   "categories": [
+    "ui_ux"
+   ],
+   "severity": 1,
+   "summary": "Customer says the app looks outdated, like old 1980s software, and asks for an update to modernise it."
+  },
+  "r0555": {
+   "categories": [
+    "money_balance",
+    "support"
+   ],
+   "severity": 3,
+   "summary": "Transfers often error at the end yet the account is debited, complaints take long to resolve, and the app wrongly reports success."
+  },
+  "r0678": {
+   "categories": [
+    "other"
+   ],
+   "severity": 1,
+   "summary": "Vague, incomplete comment saying something called 'first' is not working; no clear feature or failure identified."
+  },
+  "r0935": {
+   "categories": [
+    "feature_request"
+   ],
+   "severity": 1,
+   "summary": "Customer likes the app but asks for a toggle to hide the account balance so it isn't visible when showing the screen to others."
+  },
+  "r0020": {
+   "categories": [
+    "app_stability",
+    "ui_ux"
+   ],
+   "severity": 1,
+   "summary": "Customer says the app is very slow with poor connection and prefers the old version over the current one."
+  },
+  "r0895": {
+   "categories": [
+    "transfers_payments",
+    "app_stability"
+   ],
+   "severity": 2,
+   "summary": "Customer says the app refuses to open and transactions never succeed, and calls the bank's service poor."
+  },
+  "r0726": {
+   "categories": [
+    "money_balance",
+    "transfers_payments"
+   ],
+   "severity": 3,
+   "summary": "Customer sent four 20,000 transfers via USSD to another bank, was debited each time, but the recipient only got three credits; one is missing."
+  },
+  "r0462": {
+   "categories": [
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Customer finds the app credible, secure and easy to use."
+  },
+  "r0311": {
+   "categories": [
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Customer says the app is fast and perfect, likes it, and recommends others try it."
+  },
+  "r0099": {
+   "categories": [
+    "security_fraud"
+   ],
+   "severity": 1,
+   "summary": "Customer likes the app but says the bank should improve its security, without describing a specific incident."
+  },
+  "r0886": {
+   "categories": [
+    "login_access",
+    "app_stability"
+   ],
+   "severity": 2,
+   "summary": "App suddenly shows a deactivated message and cannot be used; reinstalling does not fix it."
+  },
+  "r0039": {
+   "categories": [
+    "app_stability"
+   ],
+   "severity": 2,
+   "summary": "Customer says the app works one day then fails for about three days, and wants the bank to fix the recurring problems quickly."
+  },
+  "r0945": {
+   "categories": [
+    "other"
+   ],
+   "severity": 1,
+   "summary": "Vague, near-meaningless comment about a good beginning and better end, with no specific content about the app."
+  },
+  "r0251": {
+   "categories": [
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Customer says the bank is better than all other banks, with no problem raised."
+  },
+  "r0093": {
+   "categories": [
+    "money_balance",
+    "feature_request"
+   ],
+   "severity": 1,
+   "summary": "Customer says transaction records don't update daily, so transactions can't be traced, and receipts can't be regenerated after closing the success screen."
+  },
+  "r0316": {
+   "categories": [
+    "other"
+   ],
+   "severity": 1,
+   "summary": "Customer says the app is good but needs some unspecified improvement, with no concrete issue named."
+  },
+  "r0797": {
+   "categories": [
+    "app_stability",
+    "login_access"
+   ],
+   "severity": 1,
+   "summary": "Customer calls the app unstable compared with a competitor's app and says logging in to transact is very difficult and unreliable."
+  },
+  "r0688": {
+   "categories": [
+    "transfers_payments",
+    "ui_ux"
+   ],
+   "severity": 2,
+   "summary": "Since updating, the account to debit shows blank, so the customer cannot transfer or do anything in the app."
+  },
+  "r0347": {
+   "categories": [
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Customer says the app is very fast with no network delay and expresses happiness."
+  },
+  "r0478": {
+   "categories": [
+    "praise"
+   ],
+   "severity": 1,
+   "summary": "Customer says this is the best mobile app, with no problem raised."
+  },
+  "r0421": {
+   "categories": [
+    "support"
+   ],
+   "severity": 1,
+   "summary": "Customer says they were given service at a specific branch, with no clear problem or praise stated."
+  }
+ },
+ "live_calls": 100,
+ "cache_hits": 0,
+ "failures": [],
+ "calls": [
+  {
+   "label": "classify 1/100",
+   "latency_s": 2.66,
+   "input_tokens": 2,
+   "output_tokens": 105,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 641,
+   "total_cost_usd_estimate": 0.0037871
+  },
+  {
+   "label": "classify 2/100",
+   "latency_s": 2.74,
+   "input_tokens": 2,
+   "output_tokens": 114,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 655,
+   "total_cost_usd_estimate": 0.0039331
+  },
+  {
+   "label": "classify 3/100",
+   "latency_s": 2.73,
+   "input_tokens": 2,
+   "output_tokens": 119,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 696,
+   "total_cost_usd_estimate": 0.0041471
+  },
+  {
+   "label": "classify 4/100",
+   "latency_s": 2.52,
+   "input_tokens": 2,
+   "output_tokens": 115,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 667,
+   "total_cost_usd_estimate": 0.0039911
+  },
+  {
+   "label": "classify 5/100",
+   "latency_s": 2.72,
+   "input_tokens": 2,
+   "output_tokens": 128,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 722,
+   "total_cost_usd_estimate": 0.0043411
+  },
+  {
+   "label": "classify 6/100",
+   "latency_s": 2.65,
+   "input_tokens": 2,
+   "output_tokens": 110,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 655,
+   "total_cost_usd_estimate": 0.0038931
+  },
+  {
+   "label": "classify 7/100",
+   "latency_s": 2.66,
+   "input_tokens": 2,
+   "output_tokens": 104,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 652,
+   "total_cost_usd_estimate": 0.0038211
+  },
+  {
+   "label": "classify 8/100",
+   "latency_s": 2.6,
+   "input_tokens": 2,
+   "output_tokens": 113,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 648,
+   "total_cost_usd_estimate": 0.0038951000000000003
+  },
+  {
+   "label": "classify 9/100",
+   "latency_s": 2.76,
+   "input_tokens": 2,
+   "output_tokens": 104,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 655,
+   "total_cost_usd_estimate": 0.0038331
+  },
+  {
+   "label": "classify 10/100",
+   "latency_s": 2.66,
+   "input_tokens": 2,
+   "output_tokens": 111,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 667,
+   "total_cost_usd_estimate": 0.0039511
+  },
+  {
+   "label": "classify 11/100",
+   "latency_s": 2.72,
+   "input_tokens": 2,
+   "output_tokens": 112,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 652,
+   "total_cost_usd_estimate": 0.0039011000000000002
+  },
+  {
+   "label": "classify 12/100",
+   "latency_s": 2.69,
+   "input_tokens": 2,
+   "output_tokens": 102,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 649,
+   "total_cost_usd_estimate": 0.0037891
+  },
+  {
+   "label": "classify 13/100",
+   "latency_s": 2.61,
+   "input_tokens": 2,
+   "output_tokens": 110,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 644,
+   "total_cost_usd_estimate": 0.0038491000000000003
+  },
+  {
+   "label": "classify 14/100",
+   "latency_s": 2.87,
+   "input_tokens": 2,
+   "output_tokens": 125,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 675,
+   "total_cost_usd_estimate": 0.0041231
+  },
+  {
+   "label": "classify 15/100",
+   "latency_s": 2.6,
+   "input_tokens": 2,
+   "output_tokens": 118,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 654,
+   "total_cost_usd_estimate": 0.0039691
+  },
+  {
+   "label": "classify 16/100",
+   "latency_s": 2.41,
+   "input_tokens": 2,
+   "output_tokens": 101,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 649,
+   "total_cost_usd_estimate": 0.0037790999999999996
+  },
+  {
+   "label": "classify 17/100",
+   "latency_s": 2.63,
+   "input_tokens": 2,
+   "output_tokens": 110,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 664,
+   "total_cost_usd_estimate": 0.0039291
+  },
+  {
+   "label": "classify 18/100",
+   "latency_s": 2.65,
+   "input_tokens": 2,
+   "output_tokens": 100,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 650,
+   "total_cost_usd_estimate": 0.0037730999999999997
+  },
+  {
+   "label": "classify 19/100",
+   "latency_s": 2.66,
+   "input_tokens": 2,
+   "output_tokens": 113,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 656,
+   "total_cost_usd_estimate": 0.0039271
+  },
+  {
+   "label": "classify 20/100",
+   "latency_s": 2.37,
+   "input_tokens": 2,
+   "output_tokens": 104,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 650,
+   "total_cost_usd_estimate": 0.0038131
+  },
+  {
+   "label": "classify 21/100",
+   "latency_s": 2.62,
+   "input_tokens": 2,
+   "output_tokens": 112,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 657,
+   "total_cost_usd_estimate": 0.0039211
+  },
+  {
+   "label": "classify 22/100",
+   "latency_s": 2.69,
+   "input_tokens": 2,
+   "output_tokens": 135,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 738,
+   "total_cost_usd_estimate": 0.0044751
+  },
+  {
+   "label": "classify 23/100",
+   "latency_s": 2.41,
+   "input_tokens": 2,
+   "output_tokens": 98,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 643,
+   "total_cost_usd_estimate": 0.0037251000000000003
+  },
+  {
+   "label": "classify 24/100",
+   "latency_s": 2.67,
+   "input_tokens": 2,
+   "output_tokens": 125,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 673,
+   "total_cost_usd_estimate": 0.0041151
+  },
+  {
+   "label": "classify 25/100",
+   "latency_s": 2.72,
+   "input_tokens": 2,
+   "output_tokens": 104,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 648,
+   "total_cost_usd_estimate": 0.0038051
+  },
+  {
+   "label": "classify 26/100",
+   "latency_s": 2.5,
+   "input_tokens": 2,
+   "output_tokens": 110,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 648,
+   "total_cost_usd_estimate": 0.0038651000000000002
+  },
+  {
+   "label": "classify 27/100",
+   "latency_s": 2.81,
+   "input_tokens": 2,
+   "output_tokens": 116,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 664,
+   "total_cost_usd_estimate": 0.0039891
+  },
+  {
+   "label": "classify 28/100",
+   "latency_s": 2.55,
+   "input_tokens": 2,
+   "output_tokens": 108,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 644,
+   "total_cost_usd_estimate": 0.0038291
+  },
+  {
+   "label": "classify 29/100",
+   "latency_s": 2.53,
+   "input_tokens": 2,
+   "output_tokens": 96,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 643,
+   "total_cost_usd_estimate": 0.0037051000000000002
+  },
+  {
+   "label": "classify 30/100",
+   "latency_s": 2.46,
+   "input_tokens": 2,
+   "output_tokens": 105,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 655,
+   "total_cost_usd_estimate": 0.0038431000000000003
+  },
+  {
+   "label": "classify 31/100",
+   "latency_s": 2.68,
+   "input_tokens": 2,
+   "output_tokens": 133,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 803,
+   "total_cost_usd_estimate": 0.0047151
+  },
+  {
+   "label": "classify 32/100",
+   "latency_s": 2.45,
+   "input_tokens": 2,
+   "output_tokens": 103,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 640,
+   "total_cost_usd_estimate": 0.0037631
+  },
+  {
+   "label": "classify 33/100",
+   "latency_s": 2.4,
+   "input_tokens": 2,
+   "output_tokens": 105,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 655,
+   "total_cost_usd_estimate": 0.0038431000000000003
+  },
+  {
+   "label": "classify 34/100",
+   "latency_s": 3.8,
+   "input_tokens": 2,
+   "output_tokens": 105,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 653,
+   "total_cost_usd_estimate": 0.0038351
+  },
+  {
+   "label": "classify 35/100",
+   "latency_s": 2.61,
+   "input_tokens": 2,
+   "output_tokens": 106,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 642,
+   "total_cost_usd_estimate": 0.0038011
+  },
+  {
+   "label": "classify 36/100",
+   "latency_s": 2.45,
+   "input_tokens": 2,
+   "output_tokens": 129,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 751,
+   "total_cost_usd_estimate": 0.0044671
+  },
+  {
+   "label": "classify 37/100",
+   "latency_s": 2.63,
+   "input_tokens": 2,
+   "output_tokens": 118,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 687,
+   "total_cost_usd_estimate": 0.0041011
+  },
+  {
+   "label": "classify 38/100",
+   "latency_s": 2.44,
+   "input_tokens": 2,
+   "output_tokens": 99,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 642,
+   "total_cost_usd_estimate": 0.0037311
+  },
+  {
+   "label": "classify 39/100",
+   "latency_s": 2.43,
+   "input_tokens": 2,
+   "output_tokens": 107,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 640,
+   "total_cost_usd_estimate": 0.0038031000000000002
+  },
+  {
+   "label": "classify 40/100",
+   "latency_s": 2.63,
+   "input_tokens": 2,
+   "output_tokens": 109,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 640,
+   "total_cost_usd_estimate": 0.0038231000000000003
+  },
+  {
+   "label": "classify 41/100",
+   "latency_s": 4.47,
+   "input_tokens": 4,
+   "output_tokens": 222,
+   "cache_read_tokens": 4034,
+   "cache_creation_tokens": 998,
+   "total_cost_usd_estimate": 0.006623400000000001
+  },
+  {
+   "label": "classify 42/100",
+   "latency_s": 2.44,
+   "input_tokens": 2,
+   "output_tokens": 102,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 645,
+   "total_cost_usd_estimate": 0.0037730999999999997
+  },
+  {
+   "label": "classify 43/100",
+   "latency_s": 2.58,
+   "input_tokens": 2,
+   "output_tokens": 103,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 642,
+   "total_cost_usd_estimate": 0.0037711
+  },
+  {
+   "label": "classify 44/100",
+   "latency_s": 2.43,
+   "input_tokens": 2,
+   "output_tokens": 109,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 649,
+   "total_cost_usd_estimate": 0.0038591
+  },
+  {
+   "label": "classify 45/100",
+   "latency_s": 2.69,
+   "input_tokens": 2,
+   "output_tokens": 128,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 669,
+   "total_cost_usd_estimate": 0.0041291
+  },
+  {
+   "label": "classify 46/100",
+   "latency_s": 2.5,
+   "input_tokens": 2,
+   "output_tokens": 125,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 656,
+   "total_cost_usd_estimate": 0.0040471
+  },
+  {
+   "label": "classify 47/100",
+   "latency_s": 2.44,
+   "input_tokens": 2,
+   "output_tokens": 98,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 640,
+   "total_cost_usd_estimate": 0.0037131000000000004
+  },
+  {
+   "label": "classify 48/100",
+   "latency_s": 2.71,
+   "input_tokens": 2,
+   "output_tokens": 113,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 688,
+   "total_cost_usd_estimate": 0.0040551
+  },
+  {
+   "label": "classify 49/100",
+   "latency_s": 2.61,
+   "input_tokens": 2,
+   "output_tokens": 122,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 651,
+   "total_cost_usd_estimate": 0.0039971
+  },
+  {
+   "label": "classify 50/100",
+   "latency_s": 2.45,
+   "input_tokens": 2,
+   "output_tokens": 101,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 647,
+   "total_cost_usd_estimate": 0.0037711000000000003
+  },
+  {
+   "label": "classify 51/100",
+   "latency_s": 2.89,
+   "input_tokens": 2,
+   "output_tokens": 135,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 707,
+   "total_cost_usd_estimate": 0.0043511
+  },
+  {
+   "label": "classify 52/100",
+   "latency_s": 2.58,
+   "input_tokens": 2,
+   "output_tokens": 95,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 641,
+   "total_cost_usd_estimate": 0.0036871
+  },
+  {
+   "label": "classify 53/100",
+   "latency_s": 2.65,
+   "input_tokens": 2,
+   "output_tokens": 119,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 668,
+   "total_cost_usd_estimate": 0.0040351
+  },
+  {
+   "label": "classify 54/100",
+   "latency_s": 2.45,
+   "input_tokens": 2,
+   "output_tokens": 101,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 641,
+   "total_cost_usd_estimate": 0.0037470999999999997
+  },
+  {
+   "label": "classify 55/100",
+   "latency_s": 2.48,
+   "input_tokens": 2,
+   "output_tokens": 113,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 657,
+   "total_cost_usd_estimate": 0.0039311
+  },
+  {
+   "label": "classify 56/100",
+   "latency_s": 3.91,
+   "input_tokens": 4,
+   "output_tokens": 217,
+   "cache_read_tokens": 4037,
+   "cache_creation_tokens": 1001,
+   "total_cost_usd_estimate": 0.0065857
+  },
+  {
+   "label": "classify 57/100",
+   "latency_s": 2.5,
+   "input_tokens": 2,
+   "output_tokens": 106,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 644,
+   "total_cost_usd_estimate": 0.0038091
+  },
+  {
+   "label": "classify 58/100",
+   "latency_s": 2.8,
+   "input_tokens": 2,
+   "output_tokens": 123,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 666,
+   "total_cost_usd_estimate": 0.004067100000000001
+  },
+  {
+   "label": "classify 59/100",
+   "latency_s": 2.62,
+   "input_tokens": 2,
+   "output_tokens": 103,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 646,
+   "total_cost_usd_estimate": 0.0037871
+  },
+  {
+   "label": "classify 60/100",
+   "latency_s": 2.72,
+   "input_tokens": 2,
+   "output_tokens": 123,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 692,
+   "total_cost_usd_estimate": 0.0041711000000000005
+  },
+  {
+   "label": "classify 61/100",
+   "latency_s": 2.36,
+   "input_tokens": 2,
+   "output_tokens": 101,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 643,
+   "total_cost_usd_estimate": 0.0037551
+  },
+  {
+   "label": "classify 62/100",
+   "latency_s": 2.63,
+   "input_tokens": 2,
+   "output_tokens": 107,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 653,
+   "total_cost_usd_estimate": 0.0038551
+  },
+  {
+   "label": "classify 63/100",
+   "latency_s": 2.67,
+   "input_tokens": 2,
+   "output_tokens": 104,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 642,
+   "total_cost_usd_estimate": 0.0037811
+  },
+  {
+   "label": "classify 64/100",
+   "latency_s": 2.47,
+   "input_tokens": 2,
+   "output_tokens": 110,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 654,
+   "total_cost_usd_estimate": 0.0038891
+  },
+  {
+   "label": "classify 65/100",
+   "latency_s": 2.37,
+   "input_tokens": 2,
+   "output_tokens": 110,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 704,
+   "total_cost_usd_estimate": 0.0040891
+  },
+  {
+   "label": "classify 66/100",
+   "latency_s": 2.49,
+   "input_tokens": 2,
+   "output_tokens": 115,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 657,
+   "total_cost_usd_estimate": 0.0039511
+  },
+  {
+   "label": "classify 67/100",
+   "latency_s": 2.46,
+   "input_tokens": 2,
+   "output_tokens": 108,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 649,
+   "total_cost_usd_estimate": 0.0038491
+  },
+  {
+   "label": "classify 68/100",
+   "latency_s": 2.58,
+   "input_tokens": 2,
+   "output_tokens": 114,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 653,
+   "total_cost_usd_estimate": 0.0039251
+  },
+  {
+   "label": "classify 69/100",
+   "latency_s": 2.33,
+   "input_tokens": 2,
+   "output_tokens": 100,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 653,
+   "total_cost_usd_estimate": 0.0037851000000000004
+  },
+  {
+   "label": "classify 70/100",
+   "latency_s": 2.39,
+   "input_tokens": 2,
+   "output_tokens": 113,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 657,
+   "total_cost_usd_estimate": 0.0039311
+  },
+  {
+   "label": "classify 71/100",
+   "latency_s": 2.4,
+   "input_tokens": 2,
+   "output_tokens": 101,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 648,
+   "total_cost_usd_estimate": 0.0037751
+  },
+  {
+   "label": "classify 72/100",
+   "latency_s": 2.38,
+   "input_tokens": 2,
+   "output_tokens": 112,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 643,
+   "total_cost_usd_estimate": 0.0038651
+  },
+  {
+   "label": "classify 73/100",
+   "latency_s": 2.59,
+   "input_tokens": 2,
+   "output_tokens": 117,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 694,
+   "total_cost_usd_estimate": 0.0041191
+  },
+  {
+   "label": "classify 74/100",
+   "latency_s": 2.64,
+   "input_tokens": 2,
+   "output_tokens": 139,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 705,
+   "total_cost_usd_estimate": 0.0043831
+  },
+  {
+   "label": "classify 75/100",
+   "latency_s": 2.86,
+   "input_tokens": 2,
+   "output_tokens": 116,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 647,
+   "total_cost_usd_estimate": 0.0039211
+  },
+  {
+   "label": "classify 76/100",
+   "latency_s": 2.52,
+   "input_tokens": 2,
+   "output_tokens": 97,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 645,
+   "total_cost_usd_estimate": 0.0037231
+  },
+  {
+   "label": "classify 77/100",
+   "latency_s": 2.81,
+   "input_tokens": 2,
+   "output_tokens": 131,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 669,
+   "total_cost_usd_estimate": 0.004159100000000001
+  },
+  {
+   "label": "classify 78/100",
+   "latency_s": 2.62,
+   "input_tokens": 2,
+   "output_tokens": 108,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 651,
+   "total_cost_usd_estimate": 0.0038571
+  },
+  {
+   "label": "classify 79/100",
+   "latency_s": 2.38,
+   "input_tokens": 2,
+   "output_tokens": 110,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 656,
+   "total_cost_usd_estimate": 0.0038971
+  },
+  {
+   "label": "classify 80/100",
+   "latency_s": 2.77,
+   "input_tokens": 2,
+   "output_tokens": 122,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 652,
+   "total_cost_usd_estimate": 0.0040011000000000005
+  },
+  {
+   "label": "classify 81/100",
+   "latency_s": 2.54,
+   "input_tokens": 2,
+   "output_tokens": 123,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 710,
+   "total_cost_usd_estimate": 0.0042431000000000005
+  },
+  {
+   "label": "classify 82/100",
+   "latency_s": 2.75,
+   "input_tokens": 2,
+   "output_tokens": 113,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 641,
+   "total_cost_usd_estimate": 0.0038671
+  },
+  {
+   "label": "classify 83/100",
+   "latency_s": 2.67,
+   "input_tokens": 2,
+   "output_tokens": 121,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 700,
+   "total_cost_usd_estimate": 0.0041831
+  },
+  {
+   "label": "classify 84/100",
+   "latency_s": 2.44,
+   "input_tokens": 2,
+   "output_tokens": 117,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 658,
+   "total_cost_usd_estimate": 0.0039751
+  },
+  {
+   "label": "classify 85/100",
+   "latency_s": 2.67,
+   "input_tokens": 2,
+   "output_tokens": 122,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 677,
+   "total_cost_usd_estimate": 0.0041011
+  },
+  {
+   "label": "classify 86/100",
+   "latency_s": 2.73,
+   "input_tokens": 2,
+   "output_tokens": 135,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 698,
+   "total_cost_usd_estimate": 0.0043151000000000005
+  },
+  {
+   "label": "classify 87/100",
+   "latency_s": 2.33,
+   "input_tokens": 2,
+   "output_tokens": 99,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 646,
+   "total_cost_usd_estimate": 0.0037470999999999997
+  },
+  {
+   "label": "classify 88/100",
+   "latency_s": 2.56,
+   "input_tokens": 2,
+   "output_tokens": 107,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 654,
+   "total_cost_usd_estimate": 0.0038591
+  },
+  {
+   "label": "classify 89/100",
+   "latency_s": 2.62,
+   "input_tokens": 2,
+   "output_tokens": 111,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 651,
+   "total_cost_usd_estimate": 0.0038871
+  },
+  {
+   "label": "classify 90/100",
+   "latency_s": 4.44,
+   "input_tokens": 4,
+   "output_tokens": 231,
+   "cache_read_tokens": 4073,
+   "cache_creation_tokens": 1037,
+   "total_cost_usd_estimate": 0.0068733
+  },
+  {
+   "label": "classify 91/100",
+   "latency_s": 2.53,
+   "input_tokens": 2,
+   "output_tokens": 119,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 676,
+   "total_cost_usd_estimate": 0.0040671
+  },
+  {
+   "label": "classify 92/100",
+   "latency_s": 2.63,
+   "input_tokens": 2,
+   "output_tokens": 111,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 642,
+   "total_cost_usd_estimate": 0.0038511
+  },
+  {
+   "label": "classify 93/100",
+   "latency_s": 2.33,
+   "input_tokens": 2,
+   "output_tokens": 103,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 650,
+   "total_cost_usd_estimate": 0.0038031
+  },
+  {
+   "label": "classify 94/100",
+   "latency_s": 2.7,
+   "input_tokens": 2,
+   "output_tokens": 131,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 715,
+   "total_cost_usd_estimate": 0.004343100000000001
+  },
+  {
+   "label": "classify 95/100",
+   "latency_s": 2.47,
+   "input_tokens": 2,
+   "output_tokens": 109,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 645,
+   "total_cost_usd_estimate": 0.0038431
+  },
+  {
+   "label": "classify 96/100",
+   "latency_s": 2.58,
+   "input_tokens": 2,
+   "output_tokens": 125,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 712,
+   "total_cost_usd_estimate": 0.0042711
+  },
+  {
+   "label": "classify 97/100",
+   "latency_s": 2.48,
+   "input_tokens": 2,
+   "output_tokens": 124,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 689,
+   "total_cost_usd_estimate": 0.0041691
+  },
+  {
+   "label": "classify 98/100",
+   "latency_s": 2.44,
+   "input_tokens": 2,
+   "output_tokens": 105,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 648,
+   "total_cost_usd_estimate": 0.0038151
+  },
+  {
+   "label": "classify 99/100",
+   "latency_s": 2.42,
+   "input_tokens": 2,
+   "output_tokens": 101,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 641,
+   "total_cost_usd_estimate": 0.0037470999999999997
+  },
+  {
+   "label": "classify 100/100",
+   "latency_s": 2.44,
+   "input_tokens": 2,
+   "output_tokens": 112,
+   "cache_read_tokens": 1691,
+   "cache_creation_tokens": 653,
+   "total_cost_usd_estimate": 0.0039051
+  }
+ ],
+ "cost_note": "total_cost_usd_estimate is Claude Code's API-equivalent estimate; actual marginal spend is $0 on a Max subscription."
+}

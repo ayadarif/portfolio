@@ -2,6 +2,11 @@
 // Components in src/components only display what is defined below.
 
 export type CaseStudy = {
+  slug: string;
+  headline: string; // one line, contains a number
+  tldr: [string, string, string];
+  year: string;
+  metric: string; // short, for the index table
   title: string;
   role: string;
   problem: string;
@@ -12,6 +17,12 @@ export type CaseStudy = {
 };
 
 export type Project = {
+  slug: string;
+  headline: string;
+  tldr: [string, string, string];
+  type: string; // Tool, AI pipeline, Prototype
+  year: string;
+  metric: string;
   name: string;
   description: string;
   status: string;
@@ -23,15 +34,45 @@ export type ContactLink = {
   href: string;
 };
 
+export const SITE_URL = "https://aaportfolio-delta.vercel.app";
+export const PROVENANCE = "Designed, specified and verified by Ayad; built with Claude Code.";
+
 export const intro = {
   name: "Ayad Arif",
   headline: "Product manager with an analyst's toolkit.",
+  roleLine: "Product manager who builds: growth, experimentation and AI tools, with an analyst's toolkit.",
+  now: {
+    title: "Product Manager, Growth and Strategy",
+    company: "SastaTicket",
+    descriptor: "online travel booking platform in Pakistan",
+    dates: "Apr 2024 to Jul 2026",
+    before: "Before that: Daraz (Alibaba Group), an e-commerce marketplace, on promotions and discounting.",
+  },
+  years: "Nearly six years in product and data roles.",
+  numbers: [
+    { value: "+18%", label: "3-month retention from a loyalty program (SastaTicket, relative)", href: "/#loyalty-program" },
+    { value: "0.84 vs 0.41", label: "Kappa against my labels: triage pipeline against a keyword baseline", href: "/#feedback-triage" },
+    { value: "26% to 1%", label: "False winners under daily peeking, ordinary against sequential (simulation)", href: "/#experiment-readout" },
+  ],
+  location: "Karachi, PKT (UTC+5). Works across GMT and CET hours.",
   summary:
     "I've spent nearly six years in product and data roles at SastaTicket and Daraz (Alibaba Group), working on growth, retention, pricing and experimentation. I started as an analyst, so I find and size problems myself in SQL and Python before deciding what to build. Lately I've been building product tools with Claude Code.",
 };
 
+export const colophon = [
+  "Set in IBM Plex Sans and IBM Plex Mono.",
+  "The accent is ajrak indigo, the deep blue of Sindhi block-printed cloth. Neutrals are tinted toward it.",
+  "Next.js and Tailwind, hosted on Vercel. No tracking, no custom cursor, no intro animation.",
+  PROVENANCE,
+];
+
 export const caseStudies: CaseStudy[] = [
   {
+    slug: "loyalty-program",
+    headline: '3-month retention up 18% from a loyalty program Finance first turned down.',
+    tldr: ['Guest users had no stable ID, so bookings could not be attributed and A/B tests were unreliable.', 'Finance rejected my first proposal, so I ran a pilot: cashback for half of a B2B cohort, nothing for the other half.', 'The rewarded group came back sooner and more often, which won the budget. Paid CAC fell 12%.'],
+    year: "2024 to 2026",
+    metric: 'Retention +18% (3 months, relative)',
     title: "Loyalty program: turning guest traffic into retained accounts",
     role: "Product Manager, Growth and Strategy | SastaTicket | Apr 2024 to Jul 2026",
     problem:
@@ -49,6 +90,11 @@ export const caseStudies: CaseStudy[] = [
       "I underestimated abuse. Points were credited at booking with no lock-up, so some users booked, cancelled and kept the points. We changed the rule so points unlock only after the flight is taken. I now plan for abuse cases before launch, not after.",
   },
   {
+    slug: "experimentation",
+    headline: 'Cut the GA4 reporting gap from 15 to 18% to under 6%, then ran 10 to 15 experiments across 4 teams in 6 months.',
+    tldr: ['Product decisions went to the strongest hunch, and GA4 disagreed with internal numbers by 15 to 18%.', 'I traced the gap to four causes and unified GA4 with internal data, then brought in GrowthBook for four teams.', 'Teams still stopped tests early and picked metrics after the fact, so I now build those checks in from day one.'],
+    year: "2024 to 2026",
+    metric: 'Reporting gap 15 to 18% down to under 6%',
     title: "Experimentation: from the loudest voice to evidence",
     role: "Product Manager, Growth and Strategy | SastaTicket | Apr 2024 to Jul 2026",
     problem:
@@ -65,6 +111,11 @@ export const caseStudies: CaseStudy[] = [
     learnedLink: { text: "Experiment Readout", href: "/experiment-readout" },
   },
   {
+    slug: "free-cancellation",
+    headline: 'Three insurance-style products, priced from airline penalty schedules, lifted profitability by 5%.',
+    tldr: ['Customers kept complaining about airline cancellation charges, and absorbing the cost would never have been funded.', 'I treated it as underwriting: a premium paid at booking, priced flight by flight from the penalty schedule, time to departure and route cancellation rate.', 'Extended into Free Date Changes and Delay Protection, still running when I left in 2026.'],
+    year: "2022 to 2026",
+    metric: 'Profitability +5% across three products',
     title: "Free cancellation: flexibility priced like insurance",
     role: "Senior Data Analyst, then Product Manager | SastaTicket | 2022 to 2026",
     problem:
@@ -84,6 +135,12 @@ export const caseStudies: CaseStudy[] = [
 
 export const projects: Project[] = [
   {
+    slug: "experiment-readout",
+    headline: 'In 4,000 simulated A/B tests with no real difference, daily peeking called a winner in 26%; the sequential range, in 1%.',
+    tldr: ['Paste daily results; get checks for uneven splits, early peeking and underpowered tests, then one verdict.', 'Below the planned sample, only a sequential range that stays valid under daily checking can make an early call.', 'It will not call a result significant unless the p-value and the confidence range both support it.'],
+    type: "Tool",
+    year: "2026",
+    metric: '26% to 1% false winners (simulated)',
     name: "Experiment Readout",
     description:
       "Review an A/B test the way a careful analyst would: checks for uneven splits, early peeking and underpowered tests, then gives one clear verdict. Won't call a result significant unless the p-value and the confidence range both support it.",
@@ -91,6 +148,12 @@ export const projects: Project[] = [
     href: "/experiment-readout",
   },
   {
+    slug: "feedback-triage",
+    headline: 'Matches my labels with kappa 0.84 against 0.41 for a keyword baseline, on 100 held-out reviews.',
+    tldr: ['Sorts 900 public Google Play reviews of three Nigerian banking apps into categories and severities, then ranks them with plain code.', 'Every quote is checked word for word against the source review.', 'Tested five times against my own labels, with a prompt-injection set and a batch-size test.'],
+    type: "AI pipeline",
+    year: "2026",
+    metric: 'Kappa 0.84 vs 0.41 baseline',
     name: "Feedback triage pipeline",
     description:
       "A fixed pipeline, run with Claude Code, that sorts 900 public Google Play reviews of three Nigerian banking apps into categories and severities, then ranks them with plain code. Quotes are checked word for word against the source. On 100 held-out reviews, its first category matched mine 87 times (kappa 0.84), against 50 for a keyword baseline. The tool also runs on any feedback CSV.",
@@ -98,6 +161,12 @@ export const projects: Project[] = [
     href: "/feedback-triage",
   },
   {
+    slug: "five-minute-brief",
+    headline: 'Turns an email thread into what you owe, what they owe and what to raise, each tied to the line it came from.',
+    tldr: ['Paste an email thread before a client meeting.', 'Get three lists, each item pointing to its source line.', 'The demo uses a made-up thread; generating your own may need a Claude account.'],
+    type: "Prototype",
+    year: "2026",
+    metric: 'Each item cites its source line',
     name: "Five-Minute Brief",
     description:
       "Paste an email thread before a client meeting and get what you owe, what they owe and what to raise, each tied to the line it came from. The demo uses a made-up thread; generating your own brief may need a Claude account.",
@@ -105,6 +174,12 @@ export const projects: Project[] = [
     href: "https://claude.ai/artifact/MhbGR8RkAYidk3WVEiR7YQ",
   },
   {
+    slug: "pmex-calculator",
+    headline: 'Shows how far price can move against a PMEX position before the broker closes it, solved exactly, with no price predictions.',
+    tldr: ['Margin, tick value in rupees, break-even after fees and taxes, for gold, crude and Brent contracts.', 'Liquidation distance is recomputed at the new price, as brokers do, not the 0.9% rule of thumb.', 'A risk tool: it never predicts prices or suggests trades.'],
+    type: "Tool",
+    year: "2026",
+    metric: 'Exact liquidation distance',
     name: "PMEX contract calculator",
     description:
       "Margin, tick value in rupees, break-even after fees and taxes, and how far price can move against you before the broker closes the position, for PMEX gold, crude and Brent contracts. A risk tool: it never predicts prices or suggests trades.",

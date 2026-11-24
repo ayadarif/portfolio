@@ -1,3 +1,4 @@
+import EvalV2 from "./EvalV2";
 import { categoryLabel, lookFirst, rankedRows, sharePct, type EvalBlock, type TriageData } from "@/lib/triage";
 
 function Accuracy({ ev }: { ev: EvalBlock }) {
@@ -175,6 +176,7 @@ export default function TriagePage({ data }: { data: TriageData }) {
           <div><dt className="inline font-medium">What the model is trusted to do: </dt><dd className="inline">sort and summarise short reviews. It is not trusted to count, rank or quote; code does that. It can be wrong, and the accuracy check below measures how often on 100 reviews.</dd></div>
         </dl>
         <Accuracy ev={data.eval} />
+        <EvalV2 />
         <p className="mt-6 text-sm">
           Run it on your own feedback CSV: <a className="underline" href="https://github.com/ayadarif/portfolio/blob/main/scripts/triage/README.md">tool README</a>.
           Nothing on this page calls a model; it shows saved results.

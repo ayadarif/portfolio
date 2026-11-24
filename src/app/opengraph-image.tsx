@@ -9,10 +9,10 @@ export const contentType = "image/png";
 export default function Image() {
   return new ImageResponse(
     (
-      <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", justifyContent: "center", padding: 96, background: "#0a0a0a", color: "#ededed" }}>
+      <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", justifyContent: "center", padding: 96, background: "#f7f7fb", color: "#1c1c26" }}>
         <div style={{ display: "flex", fontSize: 96, fontWeight: 700 }}>{intro.name}</div>
-        <div style={{ display: "flex", marginTop: 24, fontSize: 48, color: "#a1a1aa" }}>{intro.headline}</div>
-        <div style={{ display: "flex", marginTop: 56, fontSize: 32, color: "#71717a" }}>Case studies and AI tools for product teams</div>
+        <div style={{ display: "flex", marginTop: 24, fontSize: 44, color: "#34247f" }}>{intro.headline}</div>
+        <div style={{ display: "flex", marginTop: 56, fontSize: 32, color: "#4a4a5e" }}>Karachi, PKT (UTC+5). Case studies and AI tools.</div>
       </div>
     ),
     { ...size },

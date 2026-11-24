@@ -1,34 +1,36 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
+import { intro, SITE_URL } from "@/data/content";
+import Footer from "@/components/site/Footer";
+import TopBar from "@/components/site/TopBar";
+import { themeScript } from "@/components/site/theme";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const plexSans = IBM_Plex_Sans({ variable: "--font-plex-sans", subsets: ["latin"], weight: ["400", "500", "600"], display: "swap" });
+const plexMono = IBM_Plex_Mono({ variable: "--font-plex-mono", subsets: ["latin"], weight: ["400", "500"], display: "swap" });
 
 const title = "Ayad Arif | Product Manager";
-const description = "Portfolio of a product manager: case studies and AI projects.";
+const description = intro.roleLine;
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://aaportfolio-delta.vercel.app"), // makes the og:image URL absolute, which LinkedIn needs
-  title,
+  metadataBase: new URL(SITE_URL), // makes og:image URLs absolute, which LinkedIn needs
+  title: { default: title, template: "%s | Ayad Arif" },
   description,
   openGraph: { title, description, siteName: "Ayad Arif", type: "website" },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">{children}</body>
+    // suppressHydrationWarning: the inline script adds the "dark" class before React loads.
+    <html lang="en" className={`${plexSans.variable} ${plexMono.variable} h-full antialiased`} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
+      <body className="flex min-h-full flex-col">
+        <TopBar />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }

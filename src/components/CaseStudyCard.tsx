@@ -4,7 +4,7 @@ import type { CaseStudy } from "@/data/content";
 function Row({ label, text }: { label: string; text: string }) {
   return (
     <div>
-      <dt className="text-xs font-medium uppercase tracking-wider text-zinc-500">
+      <dt className="font-mono text-xs uppercase tracking-wider text-zinc-500">
         {label}
       </dt>
       <dd className="mt-1 leading-7">{text}</dd>
@@ -16,7 +16,7 @@ function Row({ label, text }: { label: string; text: string }) {
 function ListRow({ label, items }: { label: string; items: string[] }) {
   return (
     <div>
-      <dt className="text-xs font-medium uppercase tracking-wider text-zinc-500">
+      <dt className="font-mono text-xs uppercase tracking-wider text-zinc-500">
         {label}
       </dt>
       <dd className="mt-1">
@@ -32,15 +32,14 @@ function ListRow({ label, items }: { label: string; items: string[] }) {
 
 export default function CaseStudyCard({ study }: { study: CaseStudy }) {
   return (
-    <article className="rounded-xl border border-zinc-200 p-6 dark:border-zinc-800">
-      <h3 className="text-xl font-semibold">{study.title}</h3>
-      <p className="mt-1 text-sm text-zinc-500">{study.role}</p>
+    <article className="mt-8 border-t border-border-token pt-6">
+      <h2 className="text-xl font-semibold">{study.title}</h2>
       <dl className="mt-6 space-y-4">
         <Row label="Problem" text={study.problem} />
         <Row label="What I did" text={study.whatIDid} />
         <ListRow label="Results" items={study.results} />
         <div>
-          <dt className="text-xs font-medium uppercase tracking-wider text-zinc-500">
+          <dt className="font-mono text-xs uppercase tracking-wider text-zinc-500">
             What I learned
           </dt>
           <dd className="mt-1 leading-7">
@@ -48,7 +47,7 @@ export default function CaseStudyCard({ study }: { study: CaseStudy }) {
             {study.learnedLink && (
               <>
                 {" "}Later, I built those checks into a tool:{" "}
-                <a href={study.learnedLink.href} className="font-medium underline">
+                <a href={study.learnedLink.href} className="font-medium text-accent underline">
                   {study.learnedLink.text}
                 </a>
                 .

@@ -59,3 +59,5 @@ __pycache__/
 # Ayad working copies of the labelling sheet
 /data/eval/to_label1.csv
 /data/eval/to_label.numbers
+/data/cache_*/
+/data/live_runs.log
