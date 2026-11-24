@@ -38,7 +38,7 @@ Owner: Ayad Arif. Written Nov 24, 2026. Claude Code works through this file on i
 - Write docs/triage-codebook.md (categories with definitions and examples, severity anchors).
 - Draw 100 eval reviews (fixed seed, stratified by star rating) into data/eval/to_label.csv with empty columns: my_category_1, my_category_2, my_severity, notes. Exclude them from all model runs until Ayad's labels are committed.
 - Add the labelling task to NEEDS_AYAD.md with instructions (open in Numbers or Excel, fill columns, save as CSV, tell Claude Code "labels done").
-- Status:
+- Status: DONE 2026-11-24 (fe3036d)
 
 ### T4. Feedback triage: pipeline
 - Build the pipeline per spec: classify, theme, count and rank, excerpts. Use `claude -p` per the spec's safety flags. Mock the model in unit tests. Validate the real pipeline on a 50-review dev slice (2 to 3 calls) before any larger run.
