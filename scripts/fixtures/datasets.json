@@ -198,122 +198,122 @@
    {
     "date": "2026-10-01",
     "variant": "control",
-    "users": 1000,
-    "conversions": 100
+    "users": 1007,
+    "conversions": 105
    },
    {
     "date": "2026-10-01",
     "variant": "treatment",
-    "users": 900,
-    "conversions": 95
+    "users": 886,
+    "conversions": 103
    },
    {
     "date": "2026-10-02",
     "variant": "control",
-    "users": 1000,
-    "conversions": 100
+    "users": 997,
+    "conversions": 107
    },
    {
     "date": "2026-10-02",
     "variant": "treatment",
-    "users": 900,
-    "conversions": 95
+    "users": 909,
+    "conversions": 108
    },
    {
     "date": "2026-10-03",
     "variant": "control",
-    "users": 1000,
-    "conversions": 100
+    "users": 981,
+    "conversions": 81
    },
    {
     "date": "2026-10-03",
     "variant": "treatment",
     "users": 900,
-    "conversions": 95
+    "conversions": 80
    },
    {
     "date": "2026-10-04",
     "variant": "control",
-    "users": 1000,
-    "conversions": 100
+    "users": 1017,
+    "conversions": 107
    },
    {
     "date": "2026-10-04",
     "variant": "treatment",
-    "users": 900,
-    "conversions": 95
+    "users": 909,
+    "conversions": 88
    },
    {
     "date": "2026-10-05",
     "variant": "control",
-    "users": 1000,
-    "conversions": 100
+    "users": 970,
+    "conversions": 88
    },
    {
     "date": "2026-10-05",
     "variant": "treatment",
-    "users": 900,
-    "conversions": 95
+    "users": 876,
+    "conversions": 91
    },
    {
     "date": "2026-10-06",
     "variant": "control",
-    "users": 1000,
-    "conversions": 100
+    "users": 1019,
+    "conversions": 116
    },
    {
     "date": "2026-10-06",
     "variant": "treatment",
-    "users": 900,
-    "conversions": 95
+    "users": 879,
+    "conversions": 88
    },
    {
     "date": "2026-10-07",
     "variant": "control",
-    "users": 1000,
-    "conversions": 100
+    "users": 978,
+    "conversions": 107
    },
    {
     "date": "2026-10-07",
     "variant": "treatment",
-    "users": 900,
-    "conversions": 95
+    "users": 890,
+    "conversions": 65
    },
    {
     "date": "2026-10-08",
     "variant": "control",
-    "users": 1000,
-    "conversions": 100
+    "users": 973,
+    "conversions": 106
    },
    {
     "date": "2026-10-08",
     "variant": "treatment",
-    "users": 900,
-    "conversions": 95
+    "users": 916,
+    "conversions": 77
    },
    {
     "date": "2026-10-09",
     "variant": "control",
-    "users": 1000,
-    "conversions": 100
+    "users": 986,
+    "conversions": 84
    },
    {
     "date": "2026-10-09",
     "variant": "treatment",
-    "users": 900,
-    "conversions": 95
+    "users": 918,
+    "conversions": 88
    },
    {
     "date": "2026-10-10",
     "variant": "control",
-    "users": 1000,
+    "users": 1024,
     "conversions": 100
    },
    {
     "date": "2026-10-10",
     "variant": "treatment",
-    "users": 900,
-    "conversions": 95
+    "users": 896,
+    "conversions": 92
    }
   ]
  },
@@ -327,68 +327,344 @@
    "valuePerConversion": 500,
    "baseline": 0.1,
    "targetRelLift": 0.1,
-   "plannedPerVariant": 15000
+   "plannedPerVariant": 40000
   },
   "rows": [
    {
     "date": "2026-10-01",
     "variant": "control",
-    "users": 1000,
-    "conversions": 100
+    "users": 1003,
+    "conversions": 110
    },
    {
     "date": "2026-10-01",
     "variant": "treatment",
-    "users": 1000,
-    "conversions": 118
+    "users": 1014,
+    "conversions": 120
    },
    {
     "date": "2026-10-02",
     "variant": "control",
-    "users": 1000,
-    "conversions": 96
+    "users": 986,
+    "conversions": 105
    },
    {
     "date": "2026-10-02",
     "variant": "treatment",
-    "users": 1000,
-    "conversions": 112
+    "users": 1006,
+    "conversions": 132
    },
    {
     "date": "2026-10-03",
+    "variant": "control",
+    "users": 984,
+    "conversions": 95
+   },
+   {
+    "date": "2026-10-03",
+    "variant": "treatment",
+    "users": 1019,
+    "conversions": 151
+   },
+   {
+    "date": "2026-10-04",
+    "variant": "control",
+    "users": 975,
+    "conversions": 98
+   },
+   {
+    "date": "2026-10-04",
+    "variant": "treatment",
+    "users": 986,
+    "conversions": 115
+   },
+   {
+    "date": "2026-10-05",
+    "variant": "control",
+    "users": 1003,
+    "conversions": 98
+   },
+   {
+    "date": "2026-10-05",
+    "variant": "treatment",
+    "users": 1007,
+    "conversions": 110
+   },
+   {
+    "date": "2026-10-06",
+    "variant": "control",
+    "users": 1023,
+    "conversions": 113
+   },
+   {
+    "date": "2026-10-06",
+    "variant": "treatment",
+    "users": 1012,
+    "conversions": 105
+   },
+   {
+    "date": "2026-10-07",
+    "variant": "control",
+    "users": 1004,
+    "conversions": 102
+   },
+   {
+    "date": "2026-10-07",
+    "variant": "treatment",
+    "users": 978,
+    "conversions": 109
+   },
+   {
+    "date": "2026-10-08",
+    "variant": "control",
+    "users": 979,
+    "conversions": 102
+   },
+   {
+    "date": "2026-10-08",
+    "variant": "treatment",
+    "users": 1025,
+    "conversions": 113
+   },
+   {
+    "date": "2026-10-09",
+    "variant": "control",
+    "users": 993,
+    "conversions": 85
+   },
+   {
+    "date": "2026-10-09",
+    "variant": "treatment",
+    "users": 987,
+    "conversions": 86
+   },
+   {
+    "date": "2026-10-10",
     "variant": "control",
     "users": 1000,
     "conversions": 103
    },
    {
-    "date": "2026-10-03",
+    "date": "2026-10-10",
     "variant": "treatment",
-    "users": 1000,
-    "conversions": 121
+    "users": 987,
+    "conversions": 105
    },
    {
-    "date": "2026-10-04",
+    "date": "2026-10-11",
     "variant": "control",
-    "users": 1000,
-    "conversions": 99
+    "users": 1015,
+    "conversions": 107
    },
    {
-    "date": "2026-10-04",
+    "date": "2026-10-11",
     "variant": "treatment",
-    "users": 1000,
+    "users": 1017,
+    "conversions": 81
+   },
+   {
+    "date": "2026-10-12",
+    "variant": "control",
+    "users": 1014,
+    "conversions": 106
+   },
+   {
+    "date": "2026-10-12",
+    "variant": "treatment",
+    "users": 1029,
+    "conversions": 127
+   },
+   {
+    "date": "2026-10-13",
+    "variant": "control",
+    "users": 1017,
+    "conversions": 101
+   },
+   {
+    "date": "2026-10-13",
+    "variant": "treatment",
+    "users": 1021,
+    "conversions": 116
+   },
+   {
+    "date": "2026-10-14",
+    "variant": "control",
+    "users": 1020,
+    "conversions": 85
+   },
+   {
+    "date": "2026-10-14",
+    "variant": "treatment",
+    "users": 1029,
+    "conversions": 81
+   },
+   {
+    "date": "2026-10-15",
+    "variant": "control",
+    "users": 998,
+    "conversions": 87
+   },
+   {
+    "date": "2026-10-15",
+    "variant": "treatment",
+    "users": 1020,
+    "conversions": 107
+   },
+   {
+    "date": "2026-10-16",
+    "variant": "control",
+    "users": 995,
+    "conversions": 80
+   },
+   {
+    "date": "2026-10-16",
+    "variant": "treatment",
+    "users": 999,
+    "conversions": 107
+   },
+   {
+    "date": "2026-10-17",
+    "variant": "control",
+    "users": 1027,
+    "conversions": 112
+   },
+   {
+    "date": "2026-10-17",
+    "variant": "treatment",
+    "users": 985,
+    "conversions": 100
+   },
+   {
+    "date": "2026-10-18",
+    "variant": "control",
+    "users": 1027,
+    "conversions": 107
+   },
+   {
+    "date": "2026-10-18",
+    "variant": "treatment",
+    "users": 1010,
+    "conversions": 111
+   },
+   {
+    "date": "2026-10-19",
+    "variant": "control",
+    "users": 1006,
+    "conversions": 117
+   },
+   {
+    "date": "2026-10-19",
+    "variant": "treatment",
+    "users": 971,
+    "conversions": 97
+   },
+   {
+    "date": "2026-10-20",
+    "variant": "control",
+    "users": 979,
+    "conversions": 94
+   },
+   {
+    "date": "2026-10-20",
+    "variant": "treatment",
+    "users": 990,
+    "conversions": 81
+   },
+   {
+    "date": "2026-10-21",
+    "variant": "control",
+    "users": 1014,
+    "conversions": 115
+   },
+   {
+    "date": "2026-10-21",
+    "variant": "treatment",
+    "users": 1022,
+    "conversions": 96
+   },
+   {
+    "date": "2026-10-22",
+    "variant": "control",
+    "users": 1008,
+    "conversions": 91
+   },
+   {
+    "date": "2026-10-22",
+    "variant": "treatment",
+    "users": 993,
+    "conversions": 103
+   },
+   {
+    "date": "2026-10-23",
+    "variant": "control",
+    "users": 1027,
+    "conversions": 118
+   },
+   {
+    "date": "2026-10-23",
+    "variant": "treatment",
+    "users": 1013,
+    "conversions": 90
+   },
+   {
+    "date": "2026-10-24",
+    "variant": "control",
+    "users": 1025,
+    "conversions": 83
+   },
+   {
+    "date": "2026-10-24",
+    "variant": "treatment",
+    "users": 989,
+    "conversions": 87
+   },
+   {
+    "date": "2026-10-25",
+    "variant": "control",
+    "users": 1021,
+    "conversions": 127
+   },
+   {
+    "date": "2026-10-25",
+    "variant": "treatment",
+    "users": 993,
     "conversions": 110
    },
    {
-    "date": "2026-10-05",
+    "date": "2026-10-26",
     "variant": "control",
-    "users": 1000,
-    "conversions": 102
+    "users": 981,
+    "conversions": 100
    },
    {
-    "date": "2026-10-05",
+    "date": "2026-10-26",
     "variant": "treatment",
-    "users": 1000,
-    "conversions": 116
+    "users": 975,
+    "conversions": 99
+   },
+   {
+    "date": "2026-10-27",
+    "variant": "control",
+    "users": 1004,
+    "conversions": 83
+   },
+   {
+    "date": "2026-10-27",
+    "variant": "treatment",
+    "users": 1025,
+    "conversions": 107
+   },
+   {
+    "date": "2026-10-28",
+    "variant": "control",
+    "users": 1004,
+    "conversions": 103
+   },
+   {
+    "date": "2026-10-28",
+    "variant": "treatment",
+    "users": 992,
+    "conversions": 113
    }
   ]
  }
