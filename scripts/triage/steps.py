@@ -97,16 +97,16 @@ def read_ids(path: Path) -> set:
 
 # ---------- Step 2: classify ----------
 
-def classify(rows: list, cb: dict, llm: Callable, log: Callable = print) -> dict:
+def classify(rows: list, cb: dict, llm: Callable, log: Callable = print, batch_size: int = BATCH) -> dict:
     """Returns {id: {categories, severity, summary}} for every review that got a valid answer."""
     sl = slugs(cb)
     system, schema = classify_system(cb), schemas.classify_schema(sl)
     out: dict = {}
-    for b in range(0, len(rows), BATCH):
-        batch = rows[b:b + BATCH]
+    for b in range(0, len(rows), batch_size):
+        batch = rows[b:b + batch_size]
         ids = [r["id"] for r in batch]
         user = "<data>\n" + "\n".join(f"[{r['id']}] {r['text']}" for r in batch) + "\n</data>"
-        label = f"classify {b // BATCH + 1}/{-(-len(rows) // BATCH)}"
+        label = f"classify {b // batch_size + 1}/{-(-len(rows) // batch_size)}"
         res = llm(system, user, schema, lambda o, ids=ids: schemas.check_classify(o, ids, sl), label)
         if res:
             for it in res["items"]:

@@ -13,6 +13,7 @@ import json
 import os
 import subprocess
 import tempfile
+import time
 from pathlib import Path
 from typing import Callable
 
@@ -56,6 +57,8 @@ class ClaudeRunner:
         self.live_calls = 0
         self.cache_hits = 0
         self.failures: list[dict] = []
+        self.calls: list[dict] = []  # one entry per live call: label, tokens, latency, Claude Code's cost estimate
+        self._label = ""
 
     def _once(self, system: str, user: str, schema: dict) -> dict:
         cmd = [
@@ -63,17 +66,26 @@ class ClaudeRunner:
             "--output-format", "json", "--system-prompt", system, "--json-schema", json.dumps(schema), user,
         ]
         env = {k: v for k, v in os.environ.items() if k != "ANTHROPIC_API_KEY"}
+        t0 = time.monotonic()
         with tempfile.TemporaryDirectory(prefix="triage-") as empty:
             p = subprocess.run(cmd, cwd=empty, env=env, capture_output=True, text=True, timeout=self.timeout, stdin=subprocess.DEVNULL)
         self.live_calls += 1
+        elapsed = time.monotonic() - t0
         if p.returncode != 0:
             raise PipelineError(f"claude exited {p.returncode}: {p.stderr[:300]}")
         data = json.loads(p.stdout)
+        u = data.get("usage") or {}
+        self.calls.append({
+            "label": self._label, "latency_s": round(elapsed, 2), "input_tokens": u.get("input_tokens"), "output_tokens": u.get("output_tokens"),
+            "cache_read_tokens": u.get("cache_read_input_tokens"), "cache_creation_tokens": u.get("cache_creation_input_tokens"),
+            "total_cost_usd_estimate": data.get("total_cost_usd"),
+        })
         if data.get("is_error") or not isinstance(data.get("structured_output"), dict):
             raise PipelineError(f"No structured output: {str(data.get('result'))[:300]}")
         return data["structured_output"]
 
     def __call__(self, system: str, user: str, schema: dict, validate: Validator, label: str = "") -> "dict | None":
+        self._label = label
         key = cache_key(system, user, schema, self.model)
         path = self.cache_dir / f"{key}.json"
         if path.exists():
