@@ -3,9 +3,10 @@
 import { useEffect, useMemo, useState } from "react";
 import { buildNarrative, rewritePayload } from "@/lib/narrative";
 import type { Readout as R, Setup } from "@/lib/readout";
+import { requestRewrite } from "@/lib/rewrite-client";
 
-// Shows the rule-based readout. If the server has an API key it may return a validated rewrite, which replaces it.
-// With no key (today) the server answers { enabled: false } and nothing changes on screen.
+// Shows the rule-based readout. Only when the build flag NEXT_PUBLIC_REWRITE_ENABLED is "true" does it ask the server
+// for a validated rewrite. With the flag unset (default) no request is made at all.
 export default function WrittenReadout({ r, setup }: { r: R; setup: Setup }) {
   const sentences = useMemo(() => buildNarrative(setup, r), [setup, r]);
   const body = useMemo(() => JSON.stringify(rewritePayload(setup, r, sentences)), [setup, r, sentences]);
@@ -13,10 +14,7 @@ export default function WrittenReadout({ r, setup }: { r: R; setup: Setup }) {
 
   useEffect(() => {
     const ctl = new AbortController();
-    fetch("/api/rewrite", { method: "POST", headers: { "content-type": "application/json" }, body, signal: ctl.signal })
-      .then((res) => (res.ok ? res.json() : null))
-      .then((d) => { if (d?.ok && typeof d.text === "string") setAi({ body, text: d.text }); })
-      .catch(() => {});
+    requestRewrite(body, ctl.signal).then((text) => { if (text) setAi({ body, text }); });
     return () => ctl.abort();
   }, [body]);
 

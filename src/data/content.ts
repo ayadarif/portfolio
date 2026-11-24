@@ -27,7 +27,7 @@ export const intro = {
   name: "Ayad Arif",
   headline: "Product manager with an analyst's toolkit.",
   summary:
-    "I've spent nearly six years in product and data roles at SastaTicket and Daraz (Alibaba Group), working on growth, retention, pricing and experimentation. I started as an analyst, so I find and size problems myself in SQL and Python before deciding what to build. Right now I'm building AI tools for product teams with Claude Code.",
+    "I've spent nearly six years in product and data roles at SastaTicket and Daraz (Alibaba Group), working on growth, retention, pricing and experimentation. I started as an analyst, so I find and size problems myself in SQL and Python before deciding what to build. Lately I've been building product tools with Claude Code.",
 };
 
 export const caseStudies: CaseStudy[] = [
@@ -91,16 +91,10 @@ export const projects: Project[] = [
     href: "/experiment-readout",
   },
   {
-    name: "Feedback triage",
+    name: "Feedback triage pipeline",
     description:
-      "JazzCash vs Easypaisa. An AI pipeline, run offline with Claude Code, sorts hundreds of public app reviews (many in Roman Urdu) into ranked themes, with its accuracy measured against my own labels.",
-    status: "In progress",
-  },
-  {
-    name: "Five-Minute Brief",
-    description:
-      "Paste an email thread before a client meeting and get what you owe, what they owe and what to raise, each tied to the line it came from.",
-    status: "Prototype",
+      "A one-off AI pipeline, run with Claude Code, that sorts customer reviews into ranked themes, with its accuracy checked against my own labels.",
+    status: "Planned",
   },
 ];
 

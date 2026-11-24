@@ -32,6 +32,8 @@ See decisions.md. Ayad chose the stack; Claude chose the file layout (approved p
 - Review fix batch (2026-11-24): copy fixes in content.ts (intro, GrowthBook, Readout link via optional learnedLink, case study 3 wording, three new project entries); demo planned samples now match sampleSizePerVariant (clean win 12,242 at 11% lift, broken split 8,838 at 13%, early peek 40,286 at 6%; data unchanged, verdicts unchanged; guard test in readout.test.ts); README intro; no-paid-API decision; Open Graph metadata plus generated /opengraph-image (metadataBase is https://aaportfolio-delta.vercel.app, change it if a custom domain arrives). 97 tests pass; lint and build pass.
   - Early peek now also shows an amber "underpowered" check (MDE 0.71 pts vs 0.60 target). Intended; 7% target would remove it.
   - /experiment-readout has no openGraph of its own, so shared links to it show the home page title and image.
+- Review fix batch 2 (2026-11-24): the browser now calls /api/rewrite only if build flag NEXT_PUBLIC_REWRITE_ENABLED is "true" (unset by default), so the tool makes zero network requests after load. Logic in src/lib/rewrite-client.ts, test in rewrite-client.test.ts; README and decisions.md updated; "runs in your browser" lines (page.tsx, ResultsStep.tsx, README) are true with the flag off. Copy: intro last sentence changed; Five-Minute Brief removed; "Feedback triage" is now "Feedback triage pipeline", status Planned. 101 tests, lint and build pass.
+  - Not verified in a real browser. Check Network tab (see below) after Vercel redeploys.
 
 ## Next
 0. Look at /experiment-readout on a phone. Before ever setting ANTHROPIC_API_KEY on Vercel: set a spend limit on the key, and read the README note on the rate limit.

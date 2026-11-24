@@ -30,6 +30,7 @@
 - Validator allows a number only if it equals an input number rounded to the digits written. Heuristic, not proof; a rejected rewrite silently falls back, so the cost of a false reject is low.
 - Rate limit on /api/rewrite is in memory (per server instance). Good enough to slow abuse for a portfolio; a real limit needs a shared store.
 - No paid API. AI steps for future projects run offline in Claude Code; the site shows static results.
+- The browser only calls /api/rewrite when the build flag NEXT_PUBLIC_REWRITE_ENABLED is "true" (unset by default). Why: the call sent a summary to our server on every readout even with the AI off, which contradicted "nothing is sent anywhere". Test: src/lib/rewrite-client.test.ts.
 - The one exception is the Experiment Readout rewrite route (src/app/api/rewrite). It is dormant: off without a key and never run against the live API. Kept because it is built and tested; deleting it is a separate decision.
 - Demo planned samples are written as literals in demos.ts (not computed) so scripts/write_fixtures.ts runs under plain Node with no tsconfig change; a test in readout.test.ts fails if any drifts from sampleSizePerVariant().
 - Clean win target lift is 11%, not 10%: at 10% the formula needs 14,751 per variant but the data has about 14,130, which would flip the demo to Keep running.
