@@ -1,0 +1,147 @@
+[
+  {
+    "id": "r0547",
+    "text": "Your apps are terrible both on iOS. Horrible services",
+    "ayad": [
+      "support",
+      null,
+      1
+    ],
+    "model": [
+      [
+        "app_stability"
+      ],
+      1
+    ],
+    "ayad_note": "Generic 'horrible services'; no concrete failure. Note: arguably other but complaint word present."
+  },
+  {
+    "id": "r0199",
+    "text": "I really do not understand what has been happening to my app since on Friday.... It's even embarrassing that I have money in my account yet at the pos stand, I am told that I'm having an insufficient balance.. I can't make transfers, I can't do nothing... I'm frustrated right now and this is month end and worse is taht it's my salary account",
+    "ayad": [
+      "money_balance",
+      "transfers_payments",
+      3
+    ],
+    "model": [
+      [
+        "app_stability",
+        "transfers_payments"
+      ],
+      3
+    ],
+    "ayad_note": "Balance shown as insufficient despite funds; cannot transact. Money/access issue, urgent (salary, month end)."
+  },
+  {
+    "id": "r0532",
+    "text": "access is the best mide wurld caption \ud83d\udcaf",
+    "ayad": [
+      "other",
+      null,
+      1
+    ],
+    "model": [
+      [
+        "praise"
+      ],
+      1
+    ],
+    "ayad_note": "Gibberish/decorative praise; other."
+  },
+  {
+    "id": "r0771",
+    "text": "I don't understand it",
+    "ayad": [
+      "other",
+      null,
+      1
+    ],
+    "model": [
+      [
+        "ui_ux"
+      ],
+      1
+    ],
+    "ayad_note": "No content; other."
+  },
+  {
+    "id": "r0664",
+    "text": "Improve on the service. It's sometimes frustrating...",
+    "ayad": [
+      "support",
+      null,
+      1
+    ],
+    "model": [
+      [
+        "other"
+      ],
+      1
+    ],
+    "ayad_note": "Vague service complaint; annoyance."
+  },
+  {
+    "id": "r0302",
+    "text": "Always work on the app for easy use . Thanks",
+    "ayad": [
+      "ui_ux",
+      null,
+      1
+    ],
+    "model": [
+      [
+        "praise"
+      ],
+      1
+    ],
+    "ayad_note": "Vague improvement request; annoyance."
+  },
+  {
+    "id": "r0678",
+    "text": "My first is not working",
+    "ayad": [
+      "other",
+      null,
+      1
+    ],
+    "model": [
+      [
+        "app_stability"
+      ],
+      1
+    ],
+    "ayad_note": "Ambiguous ('my first' unclear); no content."
+  },
+  {
+    "id": "r0945",
+    "text": "Good beginning better end",
+    "ayad": [
+      "praise",
+      null,
+      1
+    ],
+    "model": [
+      [
+        "other"
+      ],
+      1
+    ],
+    "ayad_note": "Vague positive; praise."
+  },
+  {
+    "id": "r0421",
+    "text": "I was given service at Enugu Nike Lake Road branch",
+    "ayad": [
+      "support",
+      null,
+      1
+    ],
+    "model": [
+      [
+        "other"
+      ],
+      1
+    ],
+    "ayad_note": "Mentions branch service with no valence/content; other-leaning but support branch experience."
+  }
+]

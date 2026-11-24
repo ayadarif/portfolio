@@ -3,10 +3,11 @@
 Claude Code adds items here instead of stopping. Each item says what default was taken. Answer by editing this file or telling Claude Code.
 
 ## Open
-10. (T3, blocks T7) Label the 100 eval reviews in data/eval/to_label.csv (in progress by Ayad; Claude Code must not touch that file). Steps: read docs/triage-codebook.md; fill my_category_1 (slug exactly), my_category_2 (optional), my_severity (1 to 3), notes; save as CSV with the same name and columns; tell Claude Code "labels done". Do not look at model output first.
+(Added by Claude Code, T7) Method line "Labels by Ayad; an AI assistant helped draft the notes, not the labels." is on the triage page exactly as you wrote it. I could not check it; confirm it is accurate.
 11. (T8) Real-trade check: still no broker statement. The skipped test stays skipped; the PMEX page shows a visible note that fees have not been checked against a real statement. When you have one (account numbers removed): contract, lots, entry and exit, USD/PKR rate, every charge line. Then say "statement ready".
 
 ## Resolved (answered 2026-11-24)
+10. Eval labels done and committed (d7591e0). T7 run; results are on the triage page and in decisions.md.
 1. Retention 18% is relative; CAC mechanism recorded in docs/case-studies/loyalty-program.md (not in the site bullet).
 2. Free Cancellation role and scale-up wording updated on the site and in the content (role line, one sentence on scaling to all flights and routes, "nearly four years after the first version").
 3. Five-Minute Brief added to Projects as "Prototype (runs on claude.ai)" with the link and your description.

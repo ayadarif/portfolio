@@ -99,9 +99,26 @@ Per bank, the code picks up to 8 candidate reviews per category (highest severit
 
 Every headline is scoped ("Among N Google Play reviews from 2023, from an open research dataset"), and the page says the reviews are unverified. The accuracy section reads "Accuracy check in progress" until the eval is run; no number appears before that.
 
+## 5b. The accuracy check (T7)
+
+`evaluate.py` runs the same classify step on the 100 held-out reviews twice, with separate caches so the second run is a fresh sample from the model, then compares with your labels. Results (run 1 is the headline):
+
+| Measure | Run 1 | Run 2 | Keyword baseline |
+|---|---|---|---|
+| Matches either of your categories | 91 of 100 (95% interval 83.8% to 95.2%) | 90 | 58 |
+| Matches your first category exactly | 87 | 85 | 50 |
+| Cohen's kappa, first category | 0.84 | 0.82 | 0.41 |
+| Severity exactly the same | 83 | 86 | n/a |
+| Severity within one level | 100 | 100 | n/a |
+| Share in "other" (yours: 9%) | 9% | 11% | 30% |
+
+Run to run: same first category on 93 of 100 (kappa 0.91), same severity on 97. Nine run 1 category misses, eight of them short or vague reviews; they are logged in decisions.md and data/eval/disagreements.json.
+
+Plain-English terms: the **Wilson interval** is the range of true agreement rates consistent with 91 of 100 (sampling noise only). **Kappa** is agreement beyond what two labellers with these category frequencies would reach by luck (0 is chance, 1 is perfect). The **keyword baseline** is a fixed word list per category; a model that can't beat it adds nothing.
+
 ## 6. Limits to be honest about
 
-- The model can mislabel; the eval measures how often (see the accuracy section once published).
+- The model can mislabel; the eval measures how often (section 5b). One labeller, 100 reviews, quota sampled.
 - Reviews are self-selected and the sample is 1,000 reviews, so small differences between banks are noise.
 - Priority is a made-up index. It is explained in words on the page and stress-tested by the robustness check.
 - Personal-data stripping is regex only.
@@ -118,7 +135,7 @@ Every headline is scoped ("Among N Google Play reviews from 2023, from an open r
 7. A model returns a quote with one word changed. What does the code do, and why?
 8. Why are the stars and bank hidden on the labelling sheet?
 9. Why is the eval set not proportional to the star mix, and what does that limit?
-10. Why does the page say "Accuracy check in progress" instead of an estimate?
+10. The model matched either of your categories on 91 of 100 with a 95% interval of 83.8% to 95.2%. What does that interval cover, and what does it not?
 
 ## Answers
 
@@ -131,4 +148,4 @@ Every headline is scoped ("Among N Google Play reviews from 2023, from an open r
 7. It drops the quote. A quote must appear word for word in the original review, so invented or edited quotes never reach the page.
 8. They could nudge your labels (a 1 star review reads as more severe). You label from the text alone, as the model does.
 9. So 2 and 3 star reviews aren't too few to measure. It means the agreement figure describes this sampled set, not the whole corpus.
-10. No labels exist yet, so any number would be invented. The page never shows a number the code didn't produce.
+10. It covers sampling noise from having only 100 reviews. It does not cover label quality (one labeller), nor the fact that the set was quota sampled rather than representative of all 900.

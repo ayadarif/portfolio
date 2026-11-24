@@ -57,7 +57,12 @@ def build_html(data: dict, title: str = "Feedback triage report") -> str:
     out.append(f"<li><b>Model:</b> {e(m['model'])}; Claude Code {e(m['claude_code_version'])}; prompt hash {e(m['prompt_hash'])}</li>")
     out.append(f"<li><b>Not classified:</b> {m['n_unclassified']} reviews</li></ul>")
     ev = data.get("eval", {})
-    out.append(f"<p class='note'>Accuracy check: {e(ev.get('status', 'not run'))}.</p></body></html>")
+    if ev.get("status") == "Done":
+        r1, lo, hi = ev["run1"], ev["run1"]["category_agree_ci"][0], ev["run1"]["category_agree_ci"][1]
+        out.append(f"<p class='note'>Accuracy check against {ev['n_eval']} hand-labelled reviews: the model's first category matched one of the labeller's categories on "
+                   f"{r1['category_agree']} of {r1['n']} (95% interval {lo:.1%} to {hi:.1%}); Cohen's kappa {r1['kappa_first_category']:.2f}; keyword baseline {ev['keyword_baseline']['category_agree']} of {r1['n']}.</p></body></html>")
+    else:
+        out.append(f"<p class='note'>Accuracy check: {e(ev.get('status', 'not run'))}.</p></body></html>")
     return "".join(out)
 
 

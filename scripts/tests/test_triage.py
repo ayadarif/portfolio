@@ -273,6 +273,38 @@ class ReportTests(unittest.TestCase):
         self.assertNotIn("<script", page)
 
 
+class EvalMetricTests(unittest.TestCase):
+    def test_wilson_and_kappa_known_values(self):
+        from triage.evaluate import kappa, wilson
+        lo, hi = wilson(80, 100)
+        self.assertAlmostEqual(lo, 0.7112, 3)
+        self.assertAlmostEqual(hi, 0.8666, 3)
+        self.assertAlmostEqual(kappa(list("aabb"), list("aabb")), 1.0)
+        self.assertAlmostEqual(kappa(list("aabb"), list("abab")), 0.0)  # agreement no better than chance
+        self.assertAlmostEqual(kappa(list("aaab"), list("aaaa")), 0.0)
+
+    def test_score_counts_either_of_two_labels_and_severity_within_one(self):
+        from triage.evaluate import score
+        truth = [{"id": "1", "c1": "login_access", "c2": "support", "sev": 3}, {"id": "2", "c1": "praise", "c2": None, "sev": 1}]
+        model = {"1": {"categories": ["support"], "severity": 2}, "2": {"categories": ["other"], "severity": 3}}
+        s = score(truth, model)
+        self.assertEqual((s["category_agree"], s["first_category_exact"], s["severity_exact"], s["severity_within_one"]), (1, 0, 0, 1))
+        self.assertEqual(s["model_other_share"], 0.5)
+
+    def test_confusion_groups_rest(self):
+        from triage.evaluate import confusion
+        c = confusion(["a", "b", "z"], ["a", "a", "y"], ["a", "b"])
+        self.assertEqual(c["rows"]["a"], [1, 0, 0])
+        self.assertEqual(c["rows"]["b"], [1, 0, 0])
+        self.assertEqual(c["rows"]["rest"], [0, 0, 1])
+
+    def test_keyword_baseline_is_fixed_rules(self):
+        from triage.evaluate import keyword_label
+        self.assertEqual(keyword_label("I cannot login, OTP never arrives"), "login_access")
+        self.assertEqual(keyword_label("Nice app"), "praise")
+        self.assertEqual(keyword_label("zzz qqq"), "other")
+
+
 class RunnerTests(unittest.TestCase):
     def test_refuses_when_api_key_is_set(self):
         with mock.patch.dict(os.environ, {"ANTHROPIC_API_KEY": "sk-test"}):

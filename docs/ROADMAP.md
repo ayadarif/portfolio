@@ -57,7 +57,7 @@ Owner: Ayad Arif. Written Nov 24, 2026. Claude Code works through this file on i
 ### T7. Feedback triage: eval (blocked until Ayad's labels are committed)
 - Run the model on the 100 eval reviews twice. Report agreement with a 95% interval, Cohen's kappa, confusion matrix for the top categories, severity exact and within-one agreement, share in "other", run-to-run agreement, and a keyword baseline. Publish on the page. Log disagreements in decisions.md.
 - If labels aren't in yet, skip to T8 and come back.
-- Status: SKIPPED for now: Ayad's labels are not committed (NEEDS_AYAD item 10). Come back after T10 if labels arrive
+- Status: DONE 2026-11-24; labels committed before the run (d7591e0); results on the page and in decisions.md
 
 ### T8. PMEX contract calculator
 - Spec: docs/pmex-calculator-spec.md (v1.1). Build Layer 1 at /pmex-calculator with all maths in src/lib/pmex.ts and unit tests. Contract and fee data in one file with source URL and date per row. Defaults: gold oz, crude and Tola Gold; KTrade and SCS fee presets; ALT 55%.

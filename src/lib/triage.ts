@@ -50,7 +50,7 @@ export interface TriageData {
   ranking: Record<string, GroupResult>;
   themes: Record<string, Theme[]>;
   excerpts: Record<string, Record<string, Quote[]>>;
-  eval: { status: string } & Record<string, unknown>;
+  eval: EvalBlock;
 }
 
 export const CATEGORY_LABELS: Record<string, string> = {
@@ -77,3 +77,27 @@ export function lookFirst(g: GroupResult): CategoryRow[] {
 }
 
 export const sharePct = (x: number) => `${(x * 100).toFixed(1)}%`;
+
+export interface EvalRun {
+  n: number;
+  category_agree: number;
+  category_agree_ci: [number, number];
+  first_category_exact: number;
+  kappa_first_category: number;
+  severity_exact?: number;
+  severity_within_one?: number;
+  model_other_share: number;
+  ayad_other_share: number;
+}
+
+export type EvalBlock =
+  | { status: "Accuracy check in progress" }
+  | {
+      status: "Done";
+      n_eval: number;
+      run1: EvalRun;
+      run2: EvalRun;
+      keyword_baseline: EvalRun;
+      confusion_run1: { labels: string[]; rows: Record<string, number[]> };
+      run_to_run: { first_category_same: number; kappa: number; severity_same: number; n: number };
+    };

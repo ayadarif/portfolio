@@ -977,6 +977,143 @@
     }
   },
   "eval": {
-    "status": "Accuracy check in progress"
+    "status": "Done",
+    "headline_run": "run 1 (run 2 shown for stability)",
+    "n_eval": 100,
+    "run1": {
+      "n": 100,
+      "category_agree": 91,
+      "category_agree_ci": [
+        0.8377378707781101,
+        0.9519274602313131
+      ],
+      "first_category_exact": 87,
+      "kappa_first_category": 0.8419260700389105,
+      "severity_exact": 83,
+      "severity_within_one": 100,
+      "model_other_share": 0.09,
+      "ayad_other_share": 0.09
+    },
+    "run2": {
+      "n": 100,
+      "category_agree": 90,
+      "category_agree_ci": [
+        0.8256343377898756,
+        0.9447708631949274
+      ],
+      "first_category_exact": 85,
+      "kappa_first_category": 0.8184239196223216,
+      "severity_exact": 86,
+      "severity_within_one": 100,
+      "model_other_share": 0.11,
+      "ayad_other_share": 0.09
+    },
+    "keyword_baseline": {
+      "n": 100,
+      "category_agree": 58,
+      "category_agree_ci": [
+        0.48206486626332634,
+        0.6720161739336342
+      ],
+      "first_category_exact": 50,
+      "kappa_first_category": 0.4068098232293273,
+      "model_other_share": 0.3,
+      "ayad_other_share": 0.09
+    },
+    "confusion_run1": {
+      "labels": [
+        "praise",
+        "app_stability",
+        "other",
+        "login_access",
+        "money_balance",
+        "support",
+        "rest"
+      ],
+      "rows": {
+        "praise": [
+          29,
+          2,
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        "app_stability": [
+          0,
+          19,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "other": [
+          1,
+          1,
+          6,
+          0,
+          0,
+          0,
+          1
+        ],
+        "login_access": [
+          0,
+          1,
+          0,
+          7,
+          0,
+          0,
+          0
+        ],
+        "money_balance": [
+          0,
+          1,
+          0,
+          0,
+          7,
+          0,
+          0
+        ],
+        "support": [
+          0,
+          1,
+          2,
+          0,
+          0,
+          4,
+          0
+        ],
+        "rest": [
+          1,
+          0,
+          0,
+          0,
+          1,
+          0,
+          15
+        ]
+      }
+    },
+    "run_to_run": {
+      "first_category_same": 93,
+      "kappa": 0.914602903501281,
+      "severity_same": 97,
+      "n": 100
+    },
+    "ayad_distribution": {
+      "app_stability": 19,
+      "login_access": 8,
+      "money_balance": 8,
+      "support": 7,
+      "praise": 32,
+      "other": 9,
+      "ui_ux": 5,
+      "fees_charges": 1,
+      "transfers_payments": 7,
+      "feature_request": 3,
+      "security_fraud": 1
+    }
   }
 }
